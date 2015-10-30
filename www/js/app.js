@@ -41,6 +41,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+  .state('app.register', {
+    url: '/register',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/register.html',
+        controller: "Register"
+      }
+    }
+  })
+
   .state('app.browse', {
       url: '/browse',
       views: {
@@ -54,7 +64,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       views: {
         'menuContent': {
           templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
+          controller: 'TrickOrEat'
         }
       }
     })

@@ -41,7 +41,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
+.controller('TrickOrEat', function($scope) {
   $scope.playlists = [
     { title: 'Reggae', id: 1 },
     { title: 'Chill', id: 2 },
@@ -57,4 +57,8 @@ angular.module('starter.controllers', [])
     {title: "Testing How This Works", id: 1},
   ];
   $scope.temp = "ASDF"
+})
+
+.controller('Register', function($scope, $stateParams) {
+
 });

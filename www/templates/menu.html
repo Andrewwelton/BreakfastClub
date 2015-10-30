@@ -9,7 +9,13 @@
         </button>
       </ion-nav-buttons>
     </ion-nav-bar>
-    <ion-nav-view name="menuContent"></ion-nav-view>
+    <div class="bar bar-subheader">
+      <div class="button-bar">
+        <a class="button button-positive" href="#/app/register">Register</a>
+        <button class="button button-positive">Log In</button>
+      </div>
+    </div>
+    <ion-nav-view has-subheader="true" name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
 
   <ion-side-menu side="left">
