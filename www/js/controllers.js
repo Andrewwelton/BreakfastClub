@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, AuthService) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -36,20 +36,16 @@ angular.module('starter.controllers', [])
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
     $timeout(function() {
+      AuthService.login($scope.loginData.username, $scope.loginData.password);
       $scope.closeLogin();
+      console.log(AuthService.isAuthenticated());
     }, 1000);
   };
 })
 
-.controller('TrickOrEat', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
+.controller('TrickOrEat', function($scope, AuthService) {
+  $scope.loggedIn = AuthService.isAuthenticated();
+  console.log(AuthService.isAuthenticated());
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
@@ -59,6 +55,10 @@ angular.module('starter.controllers', [])
   $scope.temp = "ASDF"
 })
 
-.controller('Register', function($scope, $stateParams) {
-
+.controller('Register', function($scope, $stateParams, $state) {
+  $scope.registerData = {};
+  $scope.register = function() {
+    console.log("Registering with: ", $scope.registerData);
+    $state.go("app.home");
+  };
 });

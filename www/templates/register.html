@@ -1,17 +1,19 @@
-<ion-content has-subheader="true">
-  <form ng-submit="doLogin()">
-    <div class="list">
-      <label class="item item-input">
-        <span class="input-label">Username</span>
-        <input type="text" ng-model="loginData.username">
-      </label>
-      <label class="item item-input">
-        <span class="input-label">Password</span>
-        <input type="password" ng-model="loginData.password">
-      </label>
-      <label class="item">
-        <button class="button button-block button-positive" type="submit">Log in</button>
-      </label>
-    </div>
-  </form>
-</ion-content>
+<ion-view view-title="Register">
+  <ion-content has-subheader="true">
+    <form ng-submit="register()">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Username</span>
+          <input type="text" ng-model="registerData.username">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Password</span>
+          <input type="password" ng-model="registerData.password">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Register</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>
