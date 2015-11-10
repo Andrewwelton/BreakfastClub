@@ -56,7 +56,8 @@ angular.module('starter.controllers', [])
       $scope.loggedIn = newValue;
     }
   });
-  $scope.test = "Hello World"
+  // Example of a variable to iterate over
+  $scope.test = [{"label":"Hello World"}, {"label":"Hello World 2"}, {"label":"Hello World 3"}];
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
