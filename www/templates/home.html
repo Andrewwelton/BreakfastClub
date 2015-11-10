@@ -1,5 +1,5 @@
 <ion-view view-title="Trick or Eat">
-  <div class="bar bar-subheader" ng-hide="loggedIn">
+  <div class="bar bar-subheader" ng-if="loggedIn!=true">
     <div class="button-bar">
       <a class="button button-positive" href="#/app/register">Register</a>
       <button class="button button-positive" ng-click="login()">Log In</button>
@@ -7,5 +7,6 @@
   </div>
   <ion-content class="has-subheader">
     <h1>Home</h1>
+    <p>{{test}}</p>
   </ion-content>
 </ion-view>

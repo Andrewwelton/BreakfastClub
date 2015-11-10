@@ -44,7 +44,11 @@ angular.module('starter.controllers', [])
 })
 
 .controller('TrickOrEat', function($scope, AuthService) {
+  $scope.$watch(AuthService.isAuthenticated, function(newValue, oldValue){
+    $scope.loggedIn = newValue;
+  });
   $scope.loggedIn = AuthService.isAuthenticated();
+  $scope.test = "Hello World"
   console.log(AuthService.isAuthenticated());
 })
 
