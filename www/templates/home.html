@@ -5,7 +5,7 @@
       <button class="button button-positive" ng-click="login()">Log In</button>
     </div>
   </div>
-  <ion-content class="has-subheader" style="padding:20px;">
+  <ion-content ng-class="{'has-subheader' : !loggedIn}" style="padding:20px;">
     <h1>Home</h1>
     <img id="img" src="img/placeholder.jpg" width="100%"> </img>
     <p>&nbsp;&nbsp;&nbsp;&nbsp;Trick or Eat is a youth-led national event that puts a new spin on the annual night of giving – Halloween!
