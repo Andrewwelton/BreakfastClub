@@ -7,10 +7,19 @@ angular.module("starter")
   function login(name, pw) {
     username = name;
     isAuthenticated = true;
+    window.localStorage.setItem("loggedIn", true);
   }
   return {
     login: login,
     username: function(){return username;},
-    isAuthenticated: function(){return isAuthenticated;}
+    isAuthenticated: function(){
+      if(!isAuthenticated) {
+        var localVal = window.localStorage.getItem("loggedIn");
+        if(localVal) {
+          isAuthenticated = true;
+        }
+      }
+      return isAuthenticated;
+    }
   }
 })
