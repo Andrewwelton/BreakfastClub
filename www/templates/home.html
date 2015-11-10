@@ -1,11 +1,16 @@
 <ion-view view-title="Trick or Eat">
-  <div class="bar bar-subheader" ng-if="loggedIn!=true">
+  <div class="bar bar-subheader">
     <div class="button-bar">
-      <a class="button button-positive" href="#/app/register">Register</a>
-      <button class="button button-positive" ng-click="login()">Log In</button>
+      <!--Not Logged In HTML-->
+      <a class="button button-positive" href="#/app/register" ng-if="loggedIn===false">Register</a>
+      <button class="button button-positive" ng-click="login()" ng-if="loggedIn===false">Log In</button>
+
+      <!--Logged In HTML-->
+      <a class="button button-positive" href="#/app/myaccount" ng-if="loggedIn===true">My Account</a>
+      <button class="button button-positive" ng-click="logout()" ng-if="loggedIn===true">Log Out</button>
     </div>
   </div>
-  <ion-content ng-class="{'has-subheader' : !loggedIn}" style="padding:20px;">
+  <ion-content class="has-subheader" style="padding:20px;">
     <h1>Home</h1>
     <img id="img" src="img/placeholder.jpg" width="100%"> </img>
     <p>&nbsp;&nbsp;&nbsp;&nbsp;Trick or Eat is a youth-led national event that puts a new spin on the annual night of giving – Halloween!

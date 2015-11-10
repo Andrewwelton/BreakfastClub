@@ -9,14 +9,21 @@ angular.module("starter")
     isAuthenticated = true;
     window.localStorage.setItem("loggedIn", true);
   }
+  function logout() {
+    username = "";
+    isAuthenticated = false;
+    role = "";
+    window.localStorage.setItem("loggedIn", false);
+  }
   return {
     login: login,
+    logout: logout,
     username: function(){return username;},
     isAuthenticated: function(){
       if(!isAuthenticated) {
-        var localVal = window.localStorage.getItem("loggedIn");
-        if(localVal) {
-          isAuthenticated = true;
+        isAuthenticated = window.localStorage.getItem("loggedIn");
+        if(isAuthenticated === null) {
+          isAuthenticated = false;
         }
       }
       return isAuthenticated;

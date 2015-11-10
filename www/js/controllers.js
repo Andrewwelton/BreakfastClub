@@ -29,6 +29,11 @@ angular.module('starter.controllers', [])
     $scope.modal.show();
   };
 
+  // Log out of the currently logged in account
+  $scope.logout = function() {
+    AuthService.logout();
+  };
+
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
@@ -45,11 +50,13 @@ angular.module('starter.controllers', [])
 
 .controller('TrickOrEat', function($scope, AuthService) {
   $scope.$watch(AuthService.isAuthenticated, function(newValue, oldValue){
-    $scope.loggedIn = newValue;
+    if(typeof newValue !== "boolean") {
+      $scope.loggedIn = newValue === "true";
+    } else {
+      $scope.loggedIn = newValue;
+    }
   });
-  $scope.loggedIn = AuthService.isAuthenticated();
   $scope.test = "Hello World"
-  console.log(AuthService.isAuthenticated());
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
