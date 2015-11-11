@@ -2,7 +2,7 @@
     <ion-content>
         <h1>Routes</h1>
 
-            <ion-radio ng-repeat="text in routes" ng-value="text.route" ng-model="data.serverSide" ng-change="serverSideChange(item)">
+            <ion-radio ng-repeat="text in routes" ng-value="text.route" ng-model="data.serverSide" ng-change="serverSideChange(text)">
                 {{text.route}}
 
             </ion-radio>

@@ -78,6 +78,10 @@ angular.module('starter.controllers', [])
     $scope.data = {
         clientSide: 'ng'
     };
+
+    $scope.serverSideChange = function (item) {
+        console.log("Selected Serverside, route:", item.route);
+    };
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
