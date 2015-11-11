@@ -1,5 +1,5 @@
 angular.module('starter.controllers', [])
-
+//Main controller for the application
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, AuthService) {
 
   // With the new view caching in Ionic, Controllers are only called
@@ -47,8 +47,12 @@ angular.module('starter.controllers', [])
     }, 1000);
   };
 })
-
+//TrickOrEat controller (AKA Home controller)
+//$scope are variables that can be used in the HTML
+//AuthService is needed to handle logins
 .controller('TrickOrEat', function($scope, AuthService) {
+  //Watches the value of AuthService.isAuthenticated waiting for a change.
+  //The value is sometimes returned as a string, hence the conversion
   $scope.$watch(AuthService.isAuthenticated, function(newValue, oldValue){
     if(typeof newValue !== "boolean") {
       $scope.loggedIn = newValue === "true";

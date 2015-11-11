@@ -21,7 +21,10 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   });
 })
-
+//These are the app "routes"
+//State should be a sub state of app, url should be below app as well.
+//TemplateURL is the name of the HTML file for the page
+//controller is the name of the controller in controllers.js
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
