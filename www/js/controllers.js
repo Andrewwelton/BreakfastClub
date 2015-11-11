@@ -66,21 +66,53 @@ angular.module('starter.controllers', [])
 
 .controller('Routes', function ($scope, $stateParams) {
     $scope.routes = [
-        { "route": "Route 1", "img":"test.png" },
-        { "route": "Route 2" },
-        { "route": "Route 3", "img":"test.png"},
-        { "route": "Route 4" },
-        { "route": "Route 5" },
-        { "route": "Route 6", "img":"test.png"},
-        { "route": "Route 7" }
+        {
+            "route": "Route 1",
+            "team": [{
+                "id": "1",
+                "name": "Fried Chicken"
+            }]
+        },
+        {
+            "route": "Route 2",
+            "team": [{}]
+        },
+        { 
+            "route": "Route 3", "img": "test.png" ,
+            "team": [{}]
+        },
+        {
+            "route": "Route 4",
+           "team": [
+                {"id": "1",
+                    "name": "Cheese Omelet"},
+                {"id": "2",
+                    "name": "Bacon and Eggs"}
+            ]
+        },
+        {
+            "route": "Route 5",
+            "team": [{}]
+        },
+        {
+            "route": "Route 6",
+            "team": [{}]
+        },
+        {
+            "route": "Route 7",
+            team: [{
+                "id": "1",
+                "name": "Rice Crackers",
+            }]
+        }
     ];
 
     $scope.data = {
         clientSide: 'ng'
     };
 
-    $scope.serverSideChange = function (item) {
-        console.log("Selected Serverside, route:", item.route);
+    $scope.onChange = function (item) {
+        console.log("Route:", item.team);
     };
 })
 
