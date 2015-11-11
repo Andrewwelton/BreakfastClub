@@ -76,7 +76,17 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         controller: "Register"
       }
     }
-  });
+  })
+
+  .state('app.route', {
+    url: '/route',
+    views: {
+        'menuContent': {
+            templateUrl: 'templates/route.html',
+            controller: "Routes"
+         }
+     }
+    });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/home');
 });
