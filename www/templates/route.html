@@ -2,12 +2,14 @@
     <ion-content ng-init="init()">
         <h1>Routes</h1>
           <ion-list>
-            <div ng-repeat="route in routes">
+            <div id="{{route.routeID}}" ng-repeat="route in routes">
               <ion-item class="item-stable" ng-click="toggleAccordion(route)" ng-class="{active: isAccordionOpen(route)}">
-                  <i class="icon" ng-class="isAccordionOpen(route) ? 'ion-minus' : 'ion-plus'"></i>
+                <i class="icon" ng-class="isAccordionOpen(route) ? 'ion-minus' : 'ion-plus'"></i>
                 &nbsp;
                 {{route.route}}
-                <i ng-if="route.accessible" class="fa fa-wheelchair"></i>
+                <div class="route-icons">
+                  <i ng-if="route.accessible" class="fa fa-wheelchair"></i>
+                </div>
               </ion-item>
                 <ion-item class="item-accordion" ng-show="isAccordionOpen(route)">
                     {{route.start}}
@@ -15,11 +17,9 @@
               <ion-item class="item-accordion" ng-show="isAccordionOpen(route)" ng-repeat="teams in route.team">
                 {{teams.name}}
               </ion-item>
+              <div id="map" data-tap-disabled="true" ng-if="isAccordionOpen(route)"></div>
             </div>
           </ion-list>
-          
-        &nbsp;
-        <div id="map" data-tap-disabled="true"></div>
     </ion-content>
-        
+
 </ion-view>

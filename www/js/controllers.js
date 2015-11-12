@@ -89,33 +89,10 @@ angular.module('starter.controllers', [])
 
 
 .controller('Routes', function ($scope, $stateParams, $ionicLoading) {
-
-    google.maps.event.addDomListener(window, 'load', $scope.init = function () {
-        var myLatlng = new google.maps.LatLng(37.3000, -120.4833);
-        var mapOptions = {
-            center: myLatlng,
-            zoom: 16,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-
-        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-        navigator.geolocation.getCurrentPosition(function (pos) {
-            map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-            $scope.myLocation = new google.maps.Marker({
-                position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
-                map: map,
-                title: "My Location"
-            });
-        });
-
-        $scope.map = map;
-    });
-
-
-
   $scope.routes = [
       {
         "route": "Route 1",
+        "routeID": "route1",
         "accessible": true,
         "start": "50 Stone Rd",
         "startlat": 43.530799,
@@ -127,6 +104,7 @@ angular.module('starter.controllers', [])
       },
       {
         "route": "Route 2",
+        "routeID": "route2",
         "start": "50 Stone Rd",
         "startlat": 43.530799,
         "startlong": -80.226220,
@@ -135,6 +113,7 @@ angular.module('starter.controllers', [])
       },
       {
         "route": "Route 3",
+        "routeID": "route3",
         "start": "50 Stone Rd",
         "startlat": 43.530799,
         "startlong": -80.226220,
@@ -144,6 +123,7 @@ angular.module('starter.controllers', [])
       },
       {
         "route": "Route 4",
+        "routeID": "route4",
         "start": "50 Stone Rd",
         "startlat": 43.530799,
         "startlong": -80.226220,
@@ -161,6 +141,7 @@ angular.module('starter.controllers', [])
       },
       {
         "route": "Route 5",
+        "routeID": "route5",
         "start": "50 Stone Rd",
         "startlat": 43.530799,
         "startlong": -80.226220,
@@ -169,6 +150,7 @@ angular.module('starter.controllers', [])
       },
       {
         "route": "Route 6",
+        "routeID": "route6",
         "start": "50 Stone Rd",
         "startlat": 43.530799,
         "startlong": -80.226220,
@@ -177,6 +159,7 @@ angular.module('starter.controllers', [])
       },
       {
         "route": "Route 7",
+        "routeID": "route7",
         "start": "50 Stone Rd",
         "startlat": 43.530799,
         "startlong": -80.226220,
@@ -192,15 +175,37 @@ angular.module('starter.controllers', [])
     if ($scope.isAccordionOpen(route)) {
       $scope.shownRoute = null;
     } else {
-        $scope.shownRoute = route;
-        $scope.myLocation.setPosition(new google.maps.LatLng(route.startlat, route.startlong))
-        $scope.map.setCenter(new google.maps.LatLng(route.startlat, route.startlong))
+      $scope.shownRoute = route;
+      window.setTimeout(function(){
+        $scope.mapSetup(route);
+      }, 1000);
+      // $scope.myLocation.setPosition(new google.maps.LatLng(route.startlat, route.startlong))
+      // $scope.map.setCenter(new google.maps.LatLng(route.startlat, route.startlong))
     }
     //Resize if an accordion is too big -- Might be needed
     //$ionicScrollDelegate.resize();
   };
+
   $scope.isAccordionOpen = function(route) {
     return $scope.shownRoute === route;
+  };
+
+  $scope.mapSetup = function(route) {
+    var myLatlng = new google.maps.LatLng(37.3000, -120.4833);
+    var mapOptions = {
+        center: myLatlng,
+        zoom: 16,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.querySelector("#" +route.routeID+ " #map"), mapOptions);
+    map.setCenter(new google.maps.LatLng(route.startlat, route.startlong));
+    // navigator.geolocation.getCurrentPosition(function (pos) {
+    //     $scope.myLocation = new google.maps.Marker({
+    //         position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
+    //         map: map,
+    //         title: "My Location"
+    //     });
+    // });
   };
 
   // $scope.data = {
@@ -211,7 +216,7 @@ angular.module('starter.controllers', [])
   //     console.log("Route:", item.team);
     // };
 
-  
+
 })
 
 .controller('Teams', function ($scope, $stateParams) {

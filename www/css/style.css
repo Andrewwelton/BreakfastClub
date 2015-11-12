@@ -32,16 +32,17 @@
 .list .item.item-accordion.ng-hide-remove {
   display: block !important;
 }
-
 .scroll {
-    height: 100%;
-
+  height: 100%;
 }
- 
+.route-icons {
+  float: right;
+}
+
 #map {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 90%;
-    height: 100%;
+    width:100%;
+    height:20em;
 }
