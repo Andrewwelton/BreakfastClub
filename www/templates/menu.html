@@ -8,7 +8,10 @@
         </button>
       </ion-nav-buttons>
       <ion-nav-buttons side="right">
-          <a href="#/app/notifications" class="button button-icon button-clear ion-alert" menu-toggle="right" ng-if="loggedIn===true">
+          <a href="#/app/notifications" class="button button-icon button-clear ion-alert" menu-toggle="right" ng-if="role==='participant'">
+              <div class="badge badge-assertive notification-icon">3</div>
+          </a>
+          <a href="#/app/notifications" class="button button-icon button-clear ion-alert" menu-toggle="right" ng-if="role==='admin'">
               <div class="badge badge-assertive notification-icon">3</div>
           </a>
         </button>
