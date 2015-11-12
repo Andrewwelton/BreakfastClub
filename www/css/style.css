@@ -18,6 +18,25 @@
 }
 
 
+a:link {
+    text-decoration: none;
+}
+
+.right {
+  text-align: right;
+}
+
+/* MENU */
+.notification-icon{
+    position: absolute !important;
+    top: -3px;
+    right: 14px;
+    height: 16px;
+    width: 16px;
+    padding-top: 0px;
+    padding-left:4px;
+}
+
 /* ROUTES */
 .list .item.item-accordion {
   line-height: 38px;
@@ -32,6 +51,7 @@
 .list .item.item-accordion.ng-hide-remove {
   display: block !important;
 }
+
 .scroll {
   height: 100%;
 }
@@ -45,4 +65,19 @@
     margin-right: auto;
     width:100%;
     height:20em;
+}
+
+/* NOTIFICATIONS */
+.half-width{
+    width: 50%;
+}
+
+.show-all-text{
+    overflow: visible !important;
+    text-overflow: initial !important;
+    white-space: initial !important;
+}
+
+.darken-every-other:nth-child(2){
+      background: #eeeeee;
 }

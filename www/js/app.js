@@ -65,6 +65,23 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngMessages'])
       }
     }
   })
+  .state('app.teams', {
+    url: '/teams',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/teams.html',
+        controller: 'TeamList'
+      }
+    }
+  })
+  .state('app.waiver', {
+    url: '/waiver',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/waiver.html'
+      }
+    }
+  })
   .state('app.addroute', {
     url: '/addroute',
     views: {
@@ -96,6 +113,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngMessages'])
     }
   })
 
+  .state('app.notifications', {
+    url: '/notifications',
+    params: {
+      'notifications': null
+    },
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/notifications.html',
+        controller: "Notifications"
+      }
+    }
+  })
+
   .state('app.route', {
     url: '/route',
     views: {
@@ -107,7 +137,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngMessages'])
      }
   });
 
-  
+
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/home');

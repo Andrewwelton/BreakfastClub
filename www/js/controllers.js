@@ -25,6 +25,14 @@ angular.module('starter.controllers', [])
     $scope.teamCaptain = modal;
   });
 
+  $scope.$watch(AuthService.isAuthenticated, function(newValue, oldValue){
+      if(typeof newValue !== "boolean") {
+          $scope.loggedIn = newValue === "true";
+      } else {
+          $scope.loggedIn = newValue;
+      }
+  });
+
   // Triggered in the login modal to close it
   $scope.closeLogin = function() {
     $scope.modal.hide();
@@ -215,8 +223,47 @@ angular.module('starter.controllers', [])
   // $scope.onChange = function (item) {
   //     console.log("Route:", item.team);
     // };
+})
 
-
+.controller('TeamList', function ($scope, $stateParams) {
+  $scope.teams = [
+      {
+        "team": "Team Fun",
+        "accessible": false,
+        "routes": 2
+      },
+      {
+        "team": "Team Weird",
+        "accessible": false,
+        "routes": 0
+      },
+      {
+        "team": "Team Smart",
+        "img": "test.png" ,
+        "accessible": false,
+        "routes": 0
+      },
+      {
+        "team": "Team Silly",
+        "accessible": true,
+        "routes": 1
+      },
+      {
+        "team": "Team Crazy",
+        "accessible": false,
+        "routes": 2
+      },
+      {
+        "team": "Team Fluffy",
+        "accessible": false,
+        "routes": 0
+      },
+      {
+        "team": "Team Lazy",
+        "accessible": false,
+        "routes": 1
+      }
+  ];
 })
 
 .controller('Teams', function ($scope, $stateParams) {
@@ -332,6 +379,28 @@ angular.module('starter.controllers', [])
   ];
   $scope.temp = "ASDF"
 })
+
+
+
+.controller('Notifications', function($scope, $stateParams) {
+  $scope.test = [
+    {title: "Testing How This Works", id: 1},
+  ];
+  $scope.temp = "ASDF"
+})
+
+/*var selected = [];
+
+$scope.clicked = function (member) {
+    var index = selected.indexOf(member);
+    if(index > -1) {
+        selected.splice(index, 1);
+        member.selected = false;
+    } else {
+        selected.push(member);
+        member.selected = true;
+    }
+}*/
 
 .controller('Register', function($scope, $stateParams, $state, AuthService) {
   $scope.registerData = {};
