@@ -126,6 +126,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngMessages'])
     }
   })
 
+  .state('app.livechat', {
+    url: '/livechat',
+    params: {
+      'notifications': null
+    },
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/livechat.html',
+        controller: "LiveChat"
+      }
+    }
+  })
+
   .state('app.route', {
     url: '/route',
     views: {

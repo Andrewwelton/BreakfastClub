@@ -76,6 +76,9 @@ a:link {
 .half-width{
     width: 50%;
 }
+.full-width{
+    width: 100%;
+}
 
 .show-all-text{
     overflow: visible !important;
@@ -85,4 +88,21 @@ a:link {
 
 .darken-every-other:nth-child(2){
       background: #eeeeee;
+}
+
+
+.space{
+    text-indent: 1em;
+}
+.tab{
+    text-indent: 4em;
+}
+.stick-to-bottom{
+    position: fixed;
+    bottom: 0;
+    right: 5px;
+    left: 5px;
+}
+.stick-to-bottom button{
+    margin-right: 6px;
 }

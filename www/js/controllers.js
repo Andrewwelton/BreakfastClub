@@ -397,7 +397,16 @@ angular.module('starter.controllers', [])
 
 
 
-.controller('Notifications', function($scope, $stateParams) {
+.controller('Notifications', function($scope, $stateParams, AuthService) {
+  $scope.test = [
+    {title: "Testing How This Works", id: 1},
+  ];
+  $scope.role = AuthService.role();
+
+
+})
+
+.controller('LiveChat', function($scope, $stateParams) {
   $scope.test = [
     {title: "Testing How This Works", id: 1},
   ];
