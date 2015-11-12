@@ -394,8 +394,6 @@ angular.module('starter.controllers', [])
   $scope.temp = "ASDF"
 })
 
-
-
 .controller('Notifications', function($scope, $stateParams) {
   $scope.test = [
     {title: "Testing How This Works", id: 1},
