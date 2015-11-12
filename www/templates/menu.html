@@ -7,15 +7,10 @@
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
         </button>
       </ion-nav-buttons>
-
       <ion-nav-buttons side="right">
-
-
-          <a href="#/app/notifications" class="button button-icon button-clear ion-alert" menu-toggle="right" >
+          <a href="#/app/notifications" class="button button-icon button-clear ion-alert" menu-toggle="right" ng-if="loggedIn===true">
               <div class="badge badge-assertive notification-icon">9</div>
-
           </a>
-
         </button>
       </ion-nav-buttons>
 
