@@ -1,13 +1,25 @@
 ﻿<ion-view view-title="Routes">
     <ion-content>
         <h1>Routes</h1>
-
-            <ion-radio ng-repeat="text in routes" ng-value="text" ng-model="data.serverSide" ng-change="onChange(text)">
-                {{text.route}}
-
-            </ion-radio>
-        <div ng-repeat="teams in data.serverSide.team">
+          <ion-list>
+            <div ng-repeat="route in routes">
+              <ion-item class="item-stable" ng-click="toggleAccordion(route)" ng-class="{active: isAccordionOpen(route)}">
+                  <i class="icon" ng-class="isAccordionOpen(route) ? 'ion-minus' : 'ion-plus'"></i>
+                &nbsp;
+                {{route.route}}
+                <i ng-if="route.accessible" class="fa fa-wheelchair"></i>
+              </ion-item>
+              <ion-item class="item-accordion" ng-show="isAccordionOpen(route)">
+                {{route.team[0].name}}
+              </ion-item>
+            </div>
+          </ion-list>
+          <!-- <ion-radio ng-repeat="text in routes" ng-value="text" ng-model="data.serverSide" ng-change="onChange(text)">
+              {{text.route}}
+              <i ng-if="text.accessible" class="fa fa-wheelchair"></i>
+          </ion-radio> -->
+        <!-- <div ng-repeat="teams in data.serverSide.team">
             {{teams.name}}
-        </div>
+        </div> -->
     </ion-content>
 </ion-view>

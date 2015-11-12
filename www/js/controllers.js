@@ -89,53 +89,78 @@ angular.module('starter.controllers', [])
 .controller('Routes', function ($scope, $stateParams) {
   $scope.routes = [
       {
-          "route": "Route 1",
-          "team": [{
-              "id": "1",
-              "name": "Fried Chicken"
-          }]
+        "route": "Route 1",
+        "accessible": true,
+        "team": [{
+            "id": "1",
+            "name": "Fried Chicken"
+        }]
       },
       {
-          "route": "Route 2",
-          "team": [{}]
+        "route": "Route 2",
+        "accessible": true,
+        "team": [{}]
       },
       {
-          "route": "Route 3", "img": "test.png" ,
-          "team": [{}]
+        "route": "Route 3",
+        "img": "test.png" ,
+        "accessible": true,
+        "team": [{}]
       },
       {
-          "route": "Route 4",
-         "team": [
-              {"id": "1",
-                  "name": "Cheese Omelet"},
-              {"id": "2",
-                  "name": "Bacon and Eggs"}
-          ]
+        "route": "Route 4",
+        "accessible": true,
+        "team": [
+          {
+            "id": "1",
+            "name": "Cheese Omelet"
+          },
+          {
+            "id": "2",
+            "name": "Bacon and Eggs"
+          }
+        ]
       },
       {
-          "route": "Route 5",
-          "team": [{}]
+        "route": "Route 5",
+        "accessible": false,
+        "team": [{}]
       },
       {
-          "route": "Route 6",
-          "team": [{}]
+        "route": "Route 6",
+        "accessible": true,
+        "team": [{}]
       },
       {
-          "route": "Route 7",
-          team: [{
-              "id": "1",
-              "name": "Rice Crackers",
-          }]
+        "route": "Route 7",
+        "accessible": false,
+        team: [{
+            "id": "1",
+            "name": "Rice Crackers",
+        }]
       }
   ];
-
-  $scope.data = {
-      clientSide: 'ng'
+  $scope.shownRoute = null;
+  $scope.toggleAccordion = function(route) {
+    if ($scope.isAccordionOpen(route)) {
+      $scope.shownRoute = null;
+    } else {
+      $scope.shownRoute = route;
+    }
+    //Resize if an accordion is too big -- Might be needed
+    //$ionicScrollDelegate.resize();
+  };
+  $scope.isAccordionOpen = function(route) {
+    return $scope.shownRoute === route;
   };
 
-  $scope.onChange = function (item) {
-      console.log("Route:", item.team);
-  };
+  // $scope.data = {
+  //     clientSide: 'ng'
+  // };
+  //
+  // $scope.onChange = function (item) {
+  //     console.log("Route:", item.team);
+  // };
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
