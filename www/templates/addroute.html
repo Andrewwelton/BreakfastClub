@@ -1,0 +1,17 @@
+<ion-view view-title="Routes">
+    <ion-content style="padding:10px;">
+        <h1>Choose Route(s)</h1>
+
+        <ion-list>
+          <div ng-repeat="route in routes">
+            <div class="item" ng-click="clicked(route)" ng-class="{ active: route.selected }">
+              <h3 class="spaceWrap"><b>{{route.route}}</b></h3>
+            </div>
+          </div>
+        </ion-list><br />
+
+        <img id="img" src="img/map.gif" width="100%"> </img>
+
+        <br/><br/><a style="width:100%;" class="button button-positive" href="#/app/team">Submit</a>
+    </ion-content>
+</ion-view>

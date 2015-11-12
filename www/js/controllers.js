@@ -214,6 +214,113 @@ angular.module('starter.controllers', [])
   
 })
 
+.controller('Teams', function ($scope, $stateParams) {
+
+  $scope.shownTeam = null;
+  $scope.shownRoute = null;
+  $scope.toggleTeamAccordion = function(info) {
+    if ($scope.isTeamAccordionOpen(info)) {
+      $scope.shownTeam = null;
+    } else {
+      $scope.shownTeam = info;
+    }
+    //Resize if an accordion is too big -- Might be needed
+    //$ionicScrollDelegate.resize();
+  };
+  $scope.isTeamAccordionOpen = function(info) {
+    return $scope.shownTeam === info;
+  };
+
+  $scope.toggleRouteAccordion = function(info) {
+    if ($scope.isRouteAccordionOpen(info)) {
+      $scope.shownRoute = null;
+    } else {
+      $scope.shownRoute = info;
+    }
+    //Resize if an accordion is too big -- Might be needed
+    //$ionicScrollDelegate.resize();
+  };
+  $scope.isRouteAccordionOpen = function(info) {
+    return $scope.shownRoute === info;
+  };
+
+  // $scope.data = {
+  //     clientSide: 'ng'
+  // };
+  //
+  // $scope.onChange = function (item) {
+  //     console.log("Route:", item.team);
+  // };
+})
+
+.controller('addRoute', function ($scope, $stateParams) {
+  $scope.routes = [
+      {
+        "route": "Route 1",
+        "accessible": true,
+        "team": [{
+            "id": "1",
+            "name": "Fried Chicken"
+        }]
+      },
+      {
+        "route": "Route 2",
+        "accessible": true,
+        "team": [{}]
+      },
+      {
+        "route": "Route 3",
+        "img": "test.png" ,
+        "accessible": true,
+        "team": [{}]
+      },
+      {
+        "route": "Route 4",
+        "accessible": true,
+        "team": [
+          {
+            "id": "1",
+            "name": "Cheese Omelet"
+          },
+          {
+            "id": "2",
+            "name": "Bacon and Eggs"
+          }
+        ]
+      },
+      {
+        "route": "Route 5",
+        "accessible": false,
+        "team": [{}]
+      },
+      {
+        "route": "Route 6",
+        "accessible": true,
+        "team": [{}]
+      },
+      {
+        "route": "Route 7",
+        "accessible": false,
+        team: [{
+            "id": "1",
+            "name": "Rice Crackers",
+        }]
+      }
+  ];
+  var selected = [];
+
+  $scope.clicked = function (member) {
+      var index = selected.indexOf(member);
+      if(index > -1) {
+          selected.splice(index, 1);
+          member.selected = false;
+      } else {
+          selected.push(member);
+          member.selected = true;
+      }
+  }
+})
+
 .controller('PlaylistCtrl', function($scope, $stateParams) {
   $scope.test = [
     {title: "Testing How This Works", id: 1},
