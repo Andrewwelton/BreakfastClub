@@ -163,12 +163,118 @@ angular.module('starter.controllers', [])
   // };
 })
 
+.controller('Teams', function ($scope, $stateParams) {
+
+  $scope.shownInfo = null;
+  $scope.toggleAccordion = function(info) {
+    if ($scope.isAccordionOpen(info)) {
+      $scope.shownInfo = null;
+    } else {
+      $scope.shownInfo = info;
+    }
+    //Resize if an accordion is too big -- Might be needed
+    //$ionicScrollDelegate.resize();
+  };
+  $scope.isAccordionOpen = function(info) {
+    return $scope.shownInfo === info;
+  };
+
+  // $scope.data = {
+  //     clientSide: 'ng'
+  // };
+  //
+  // $scope.onChange = function (item) {
+  //     console.log("Route:", item.team);
+  // };
+})
+
+.controller('addRoute', function ($scope, $stateParams) {
+  $scope.routes = [
+      {
+        "route": "Route 1",
+        "accessible": true,
+        "team": [{
+            "id": "1",
+            "name": "Fried Chicken"
+        }]
+      },
+      {
+        "route": "Route 2",
+        "accessible": true,
+        "team": [{}]
+      },
+      {
+        "route": "Route 3",
+        "img": "test.png" ,
+        "accessible": true,
+        "team": [{}]
+      },
+      {
+        "route": "Route 4",
+        "accessible": true,
+        "team": [
+          {
+            "id": "1",
+            "name": "Cheese Omelet"
+          },
+          {
+            "id": "2",
+            "name": "Bacon and Eggs"
+          }
+        ]
+      },
+      {
+        "route": "Route 5",
+        "accessible": false,
+        "team": [{}]
+      },
+      {
+        "route": "Route 6",
+        "accessible": true,
+        "team": [{}]
+      },
+      {
+        "route": "Route 7",
+        "accessible": false,
+        team: [{
+            "id": "1",
+            "name": "Rice Crackers",
+        }]
+      }
+  ];
+  var selected = [];
+
+  $scope.clicked = function (member) {
+      var index = selected.indexOf(member);
+      if(index > -1) {
+          selected.splice(index, 1);
+          member.selected = false;
+      } else {
+          selected.push(member);
+          member.selected = true;
+      }
+  }
+})
+
 .controller('PlaylistCtrl', function($scope, $stateParams) {
   $scope.test = [
     {title: "Testing How This Works", id: 1},
   ];
   $scope.temp = "ASDF"
 })
+
+var selected = [];
+
+$scope.clicked = function (member) {
+    var index = selected.indexOf(member);
+    if(index > -1) {
+        selected.splice(index, 1);
+        member.selected = false;
+    } else {
+        selected.push(member);
+        member.selected = true;
+    }
+}
 
 .controller('Register', function($scope, $stateParams, $state, AuthService) {
   $scope.registerData = {};

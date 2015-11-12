@@ -55,7 +55,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngMessages'])
     url: '/team',
     views: {
       'menuContent': {
-        templateUrl: 'templates/team.html'
+        templateUrl: 'templates/team.html',
+        controller: 'Teams'
+      }
+    }
+  })
+  .state('app.addroute', {
+    url: '/addroute',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/addroute.html',
+        controller: 'addRoute'
       }
     }
   })

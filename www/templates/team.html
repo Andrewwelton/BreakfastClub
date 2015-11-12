@@ -1,14 +1,63 @@
 <ion-view view-title="Team">
-  <ion-content>
-    <h1>Team</h1>
-    <p><b>Team Members:</b><br/>
+  <ion-content style="padding:10px;">
+    <ion-item class="item-stable" id="teaminfo" ng-click="toggleAccordion(teaminfo)" ng-class="{active: isAccordionOpen(teaminfo)}">
+        <i class="icon" ng-class="isAccordionOpen(teaminfo) ? 'ion-minus' : 'ion-plus'"></i>
+      &nbsp;
+      Team Info
+      <i ng-if="route.accessible" class="fa fa-wheelchair"></i>
+    </ion-item>
+    <ion-item class="item-accordion" ng-show="isAccordionOpen(teaminfo)">
+      <b>Team Name: </b> The Breakfast Club<br/><br/>
+      <b>Team Members:</b><br/>
+      <p>
 
-      Alex Eckensweiler<br/>
-      Andrew Downie<br/>
-      Brandon Lacey<br/>
-      Andrew Welton<br/>
+        <table style="padding:5px;">
+          <tr>
+            <td>Name</td>
+            <td>Email</td>
+          </tr>
+          <tr>
+            <td>(C) Alex Eckensweiler</td>
+            <td>aeckensw@mail.uoguelph.ca</td>
+          </tr>
+          <tr>
+            <td>Andrew Downie</td>
+            <td>drew@drewmail.ca</td>
+          </tr><tr>
+            <td>Brandon Lacey</td>
+            <td>blace@mail.uoguelph.ca</td>
+          </tr><tr>
+            <td><label class="item item-input">
+              <span class="input-label">Name</span>
+              <input type="text" ng-model="registerData.name">
+            </label></td>
+            <td><label class="item item-input">
+              <span class="input-label">Email</span>
+              <input type="text" ng-model="registerData.email">
+            </label></td>
+          </tr>
+        </table><br />
+        <a class="button button-positive">Add Member</a>
+      </p>
+    </ion-item>
 
-    </p>
-    <img id="img" src="img/placeholder.jpg" width="100%"> </img>
+    <ion-item id="routeinfo" class="item-stable" ng-click="toggleAccordion(routeinfo)" ng-class="{active: isAccordionOpen(routeinfo)}">
+        <i class="icon" ng-class="isAccordionOpen(routeinfo) ? 'ion-minus' : 'ion-plus'"></i>
+      &nbsp;
+      Route Info
+      <i ng-if="route.accessible" class="fa fa-wheelchair"></i>
+    </ion-item>
+    <ion-item class="item-accordion" ng-show="isAccordionOpen(routeinfo)">
+
+      <b>Route Name: </b> Route 24248<br/><br/>
+
+      <a class="button button-positive" href="#/app/addroute">Choose Route</a>
+
+      <br/><img id="img" src="img/map.gif" width="100%"> </img>
+
+      <b>Bus: </b> 1A<br/><br/>
+
+      <b>Accessible: </b> Yes<br/><br/>
+    </ion-item>
   </ion-content>
 </ion-view>
