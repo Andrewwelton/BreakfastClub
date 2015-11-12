@@ -111,6 +111,10 @@ angular.module('starter.controllers', [])
         $scope.map = map;
     });
 
+    $scope.setMark = function ($scope,lat,long) {
+        google.maps.Marker.setMark(lat,long)
+    };
+
   $scope.routes = [
       {
         "route": "Route 1",
