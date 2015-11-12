@@ -24,11 +24,17 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item menu-close ng-click="login()">
+        <ion-item menu-close ng-click="login()" ng-if="loggedIn===false">
           Login
         </ion-item>
-        <ion-item menu-close href="#/app/team">
+        <ion-item menu-close href="#/app/home">
+          Home
+        </ion-item>
+        <ion-item menu-close href="#/app/team" ng-if="role!=='admin'">
           Team
+        </ion-item>
+        <ion-item menu-close href="#/app/teams" ng-if="role==='admin'">
+          Teams
         </ion-item>
         <ion-item menu-close href="#/app/search">
           Search
@@ -39,9 +45,6 @@
          <ion-item menu-close href="#/app/route">
            Routes
          </ion-item>
-        <ion-item menu-close href="#/app/home">
-          Home
-        </ion-item>
       </ion-list>
     </ion-content>
   </ion-side-menu>
