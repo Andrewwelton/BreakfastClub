@@ -119,6 +119,7 @@ angular.module('starter.controllers', [])
       {
         "route": "Route 1",
         "accessible": true,
+        "start": "50 Stone Rd",
         "team": [{
             "id": "1",
             "name": "Fried Chicken"
@@ -126,17 +127,20 @@ angular.module('starter.controllers', [])
       },
       {
         "route": "Route 2",
+        "start": "50 Stone Rd",
         "accessible": true,
         "team": [{}]
       },
       {
         "route": "Route 3",
+        "start": "50 Stone Rd",
         "img": "test.png" ,
         "accessible": true,
         "team": [{}]
       },
       {
         "route": "Route 4",
+        "start": "50 Stone Rd",
         "accessible": true,
         "team": [
           {
@@ -151,16 +155,19 @@ angular.module('starter.controllers', [])
       },
       {
         "route": "Route 5",
+        "start": "50 Stone Rd",
         "accessible": false,
         "team": [{}]
       },
       {
         "route": "Route 6",
+        "start": "50 Stone Rd",
         "accessible": true,
         "team": [{}]
       },
       {
-        "route": "Route 7",
+         "route": "Route 7",
+         "start": "50 Stone Rd",
         "accessible": false,
         team: [{
             "id": "1",

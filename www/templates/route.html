@@ -9,18 +9,15 @@
                 {{route.route}}
                 <i ng-if="route.accessible" class="fa fa-wheelchair"></i>
               </ion-item>
-              <ion-item class="item-accordion" ng-show="isAccordionOpen(route)">
-                {{route.team[0].name}}
+                <ion-item class="item-accordion" ng-show="isAccordionOpen(route)">
+                    {{route.start}}
+                </ion-item>
+              <ion-item class="item-accordion" ng-show="isAccordionOpen(route)" ng-repeat="teams in route.team">
+                {{teams.name}}
               </ion-item>
             </div>
           </ion-list>
-          <!-- <ion-radio ng-repeat="text in routes" ng-value="text" ng-model="data.serverSide" ng-change="onChange(text)">
-              {{text.route}}
-              <i ng-if="text.accessible" class="fa fa-wheelchair"></i>
-          </ion-radio> -->
-        <!-- <div ng-repeat="teams in data.serverSide.team">
-            {{teams.name}}
-        </div> -->
+          
         &nbsp;
         <div id="map" data-tap-disabled="true"></div>
     </ion-content>
