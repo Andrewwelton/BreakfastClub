@@ -1,1 +1,18 @@
 /* Empty. Add your own CSS if you like */
+.error {
+  color: red;
+}
+
+.error .validation-message {
+  border-top: 6px solid red;
+}
+
+.validation-message {
+  padding: 0.25em;
+  font-size: 16px;
+}
+
+.validation-icon  {
+  margin-right: 0.5em;
+  font-size: 20px;
+}
