@@ -1,33 +1,27 @@
-<ion-view view-title="Notifications">
+<ion-view view-title="Notifications" cache-view="false">
   <ion-content>
 
     <div class="list">
 
-      <div class="item">
-
+      <div class="item" ng-if="role==='captain'">
           <h2>Team Invitiation</h2>
           <p class="show-all-text">Team taco has invited you to join their team.
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Integer nec odio. Praesent libero.
           Sed cursus ante dapibus diam. Sed nisi.
           Nulla quis sem at nibh elementum imperdiet.</p>
-
-
         <button class="button button-positive button-small half-width">
             Accept
         </button>
         <button class="button button-dark button-small half-width">
           Reject
         </button>
-
-
       </div>
 
-      <div class="item darken-every-other">
+      <div class="item darken-every-other" ng-if="role==='captain' || role==='participant'">
           <h2>Message from Trick or Eat</h2>
           <p class="show-all-text">Bus 3A is leaving at 3:45, please be at the loading station
               at least 15 minutes early.</p>
-
       </div>
 
       <div class="item" ng-if="role==='admin'">
