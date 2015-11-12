@@ -38,10 +38,18 @@ angular.module("starter")
       return isAuthenticated;
     },
     role: function() {
-      if(!isAuthenticated()) {
+      console.log(isAuthenticated)
+      if(!isAuthenticated) {
+        isAuthenticated = window.localStorage.getItem("loggedIn");
+        if(isAuthenticated === null) {
+          isAuthenticated = false;
+        }
+      }
+      if(!isAuthenticated) {
         return;
       }
       role = window.localStorage.getItem("role");
+      console.log(role);
       return role;
     }
   }
