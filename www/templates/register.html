@@ -1,6 +1,6 @@
 <ion-view view-title="Register">
   <ion-content has-subheader="true">
-    <form name="registerForm" ng-submit="register()">
+    <form name="registerForm" novalidate ng-submit="register(registerForm)">
       <div class="list">
         <div class="item item-divider">
           Account Information
@@ -9,38 +9,71 @@
           <span class="input-label">Username</span>
           <input type="text" name="username" ng-model="registerData.username" ng-minlength="1" required>
         </label>
-        <div ng-messages="registerForm.username.$error" style="color:maroon" role="alert" ng-if="registerForm.$submitted">
-          <div ng-message="required">You did not enter a field</div>
-          <div ng-message="minlength">Your field is too short</div>
-          <div ng-message="maxlength">Your field is too long</div>
+        <div ng-messages="registerForm.username.$error" class="error" role="alert" ng-if="registerForm.$submitted">
+          <div class="validation-message" ng-message="required">
+            <i class="ion-information-circled validation-icon"></i>
+            You must enter a username.
+          </div>
+          <!-- <div class="validation-message" ng-message="minlength">Your field is too short</div>
+          <div class="validation-message" ng-message="maxlength">Your field is too long</div> -->
         </div>
         <label class="item item-input">
           <span class="input-label">Password</span>
-          <input type="password" ng-model="registerData.password">
+          <input name="password" type="password" ng-model="registerData.password" ng-minlength="1" required>
         </label>
+        <div ng-messages="registerForm.password.$error" class="error" role="alert" ng-if="registerForm.$submitted">
+          <div class="validation-message" ng-message="required">
+            <i class="ion-information-circled validation-icon"></i>
+            You must enter a password.
+          </div>
+        </div>
         <div class="item item-divider">
           Personal Information
         </div>
         <label class="item item-input">
           <span class="input-label">First Name</span>
-          <input type="text" ng-model="registerData.firstname">
+          <input name="firstname" type="text" ng-model="registerData.firstname" required>
         </label>
+        <div ng-messages="registerForm.firstname.$error" class="error" role="alert" ng-if="registerForm.$submitted">
+          <div class="validation-message" ng-message="required">
+            <i class="ion-information-circled validation-icon"></i>
+            You must provide your first name.
+          </div>
+        </div>
         <label class="item item-input">
           <span class="input-label">Last Name</span>
-          <input type="text" ng-model="registerData.lastname">
+          <input name="lastname" type="text" ng-model="registerData.lastname" required>
         </label>
+        <div ng-messages="registerForm.lastname.$error" class="error" role="alert" ng-if="registerForm.$submitted">
+          <div class="validation-message" ng-message="required">
+            <i class="ion-information-circled validation-icon"></i>
+            You must provide your last name.
+          </div>
+        </div>
         <label class="item item-input">
           <span class="input-label">Email</span>
-          <input type="email" ng-model="registerData.email">
+          <input name="email" type="email" ng-model="registerData.email" required>
         </label>
+        <div ng-messages="registerForm.email.$error" class="error" role="alert" ng-if="registerForm.$submitted">
+          <div class="validation-message" ng-message="required">
+            <i class="ion-information-circled validation-icon"></i>
+            You must provide your email address.
+          </div>
+        </div>
         <div ng-if="teamCaptain===true">
           <div class="item item-divider">
             Team Information
           </div>
           <label class="item item-input">
             <span class="input-label">Team Name</span>
-            <input type="text" ng-model="registerData.teamName">
+            <input name="teamname" type="text" ng-model="registerData.teamName" required>
           </label>
+          <div ng-messages="registerForm.teamname.$error" class="error" role="alert" ng-if="registerForm.$submitted">
+            <div class="validation-message" ng-message="required">
+              <i class="ion-information-circled validation-icon"></i>
+              You must enter a team name.
+            </div>
+          </div>
           <label class="item item-input">
             <span class="input-label">Team Member 1</span>
             <input type="email" ng-model="registerData.teamMemberOne">

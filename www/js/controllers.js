@@ -87,55 +87,55 @@ angular.module('starter.controllers', [])
 })
 
 .controller('Routes', function ($scope, $stateParams) {
-    $scope.routes = [
-        {
-            "route": "Route 1",
-            "team": [{
-                "id": "1",
-                "name": "Fried Chicken"
-            }]
-        },
-        {
-            "route": "Route 2",
-            "team": [{}]
-        },
-        {
-            "route": "Route 3", "img": "test.png" ,
-            "team": [{}]
-        },
-        {
-            "route": "Route 4",
-           "team": [
-                {"id": "1",
-                    "name": "Cheese Omelet"},
-                {"id": "2",
-                    "name": "Bacon and Eggs"}
-            ]
-        },
-        {
-            "route": "Route 5",
-            "team": [{}]
-        },
-        {
-            "route": "Route 6",
-            "team": [{}]
-        },
-        {
-            "route": "Route 7",
-            team: [{
-                "id": "1",
-                "name": "Rice Crackers",
-            }]
-        }
-    ];
+  $scope.routes = [
+      {
+          "route": "Route 1",
+          "team": [{
+              "id": "1",
+              "name": "Fried Chicken"
+          }]
+      },
+      {
+          "route": "Route 2",
+          "team": [{}]
+      },
+      {
+          "route": "Route 3", "img": "test.png" ,
+          "team": [{}]
+      },
+      {
+          "route": "Route 4",
+         "team": [
+              {"id": "1",
+                  "name": "Cheese Omelet"},
+              {"id": "2",
+                  "name": "Bacon and Eggs"}
+          ]
+      },
+      {
+          "route": "Route 5",
+          "team": [{}]
+      },
+      {
+          "route": "Route 6",
+          "team": [{}]
+      },
+      {
+          "route": "Route 7",
+          team: [{
+              "id": "1",
+              "name": "Rice Crackers",
+          }]
+      }
+  ];
 
-    $scope.data = {
-        clientSide: 'ng'
-    };
+  $scope.data = {
+      clientSide: 'ng'
+  };
 
-    $scope.onChange = function (item) {
-        console.log("Route:", item.team);
-    };
+  $scope.onChange = function (item) {
+      console.log("Route:", item.team);
+  };
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
@@ -149,7 +149,10 @@ angular.module('starter.controllers', [])
   $scope.registerData = {};
   $scope.registerData.teamPrivacy = "public";
   $scope.teamCaptain = $stateParams.teamCaptain;
-  $scope.register = function() {
+  $scope.register = function(registerForm) {
+    if(!registerForm.$valid) {
+      return;
+    }
     console.log("Registering with: ", $scope.registerData);
     AuthService.login($scope.registerData.username, $scope.registerData.password);
     $state.go("app.home");
