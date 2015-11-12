@@ -17,12 +17,24 @@
   font-size: 20px;
 }
 
+<<<<<<< Updated upstream
 a:link {
     text-decoration: none;
 }
 
 .right {
   text-align: right;
+=======
+/* MENU */
+.notification-icon{
+    position: absolute !important;
+    top: -3px;
+    right: 14px;
+    height: 16px;
+    width: 16px;
+    padding-top: 0px;
+    padding-left:4px;
+>>>>>>> Stashed changes
 }
 
 /* ROUTES */
@@ -40,6 +52,7 @@ a:link {
   display: block !important;
 }
 
+<<<<<<< Updated upstream
 .scroll {
     height: 100%;
 
@@ -52,3 +65,19 @@ a:link {
     width: 90%;
     height: 100%;
 }
+=======
+/* NOTIFICATIONS */
+.half-width{
+    width: 50%;
+}
+
+.show-all-text{
+    overflow: visible !important;
+    text-overflow: initial !important;
+    white-space: initial !important;
+}
+
+.darken-every-other:nth-child(2){
+      background: #eeeeee;
+}
+>>>>>>> Stashed changes

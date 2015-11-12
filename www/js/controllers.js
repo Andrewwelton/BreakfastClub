@@ -24,6 +24,14 @@ angular.module('starter.controllers', [])
   }).then(function(modal) {
     $scope.teamCaptain = modal;
   });
+  
+  $scope.$watch(AuthService.isAuthenticated, function(newValue, oldValue){
+      if(typeof newValue !== "boolean") {
+          $scope.loggedIn = newValue === "true";
+      } else {
+          $scope.loggedIn = newValue;
+      }
+  });
 
   // Triggered in the login modal to close it
   $scope.closeLogin = function() {
@@ -369,6 +377,29 @@ angular.module('starter.controllers', [])
   $scope.temp = "ASDF"
 })
 
+<<<<<<< Updated upstream
+=======
+.controller('Notifications', function($scope, $stateParams) {
+  $scope.test = [
+    {title: "Testing How This Works", id: 1},
+  ];
+  $scope.temp = "ASDF"
+})
+
+/*var selected = [];
+
+$scope.clicked = function (member) {
+    var index = selected.indexOf(member);
+    if(index > -1) {
+        selected.splice(index, 1);
+        member.selected = false;
+    } else {
+        selected.push(member);
+        member.selected = true;
+    }
+}*/
+
+>>>>>>> Stashed changes
 .controller('Register', function($scope, $stateParams, $state, AuthService) {
   $scope.registerData = {};
   $scope.registerData.teamPrivacy = "public";

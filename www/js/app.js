@@ -105,6 +105,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngMessages'])
     }
   })
 
+  .state('app.notifications', {
+    url: '/notifications',
+    params: {
+      'notifications': null
+    },
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/notifications.html',
+        controller: "Notifications"
+      }
+    }
+  })
+
   .state('app.route', {
     url: '/route',
     views: {
