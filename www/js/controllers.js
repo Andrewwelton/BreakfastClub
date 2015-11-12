@@ -27,12 +27,13 @@ angular.module('starter.controllers', [])
   $scope.$watch(AuthService.isAuthenticated, function(newValue, oldValue){
       if(typeof newValue !== "boolean") {
           $scope.loggedIn = newValue === "true";
+          $scope.role = AuthService.role();
       } else {
           $scope.loggedIn = newValue;
+          $scope.role = AuthService.role();
       }
   });
   $scope.role = AuthService.role();
-  console.log($scope.role);
 
   // Triggered in the login modal to close it
   $scope.closeLogin = function() {
