@@ -1,5 +1,5 @@
 ﻿<ion-view view-title="Routes">
-    <ion-content>
+    <ion-content ng-init="init()">
         <h1>Routes</h1>
           <ion-list>
             <div ng-repeat="route in routes">
@@ -21,5 +21,7 @@
         <!-- <div ng-repeat="teams in data.serverSide.team">
             {{teams.name}}
         </div> -->
+        <div id="map" data-tap-disabled="true"></div>
     </ion-content>
+        
 </ion-view>

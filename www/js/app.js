@@ -4,6 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
+
+
+
 angular.module('starter', ['ionic', 'starter.controllers', 'ngMessages'])
 
 .run(function($ionicPlatform) {
@@ -21,6 +24,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngMessages'])
     }
   });
 })
+
+
 //These are the app "routes"
 //State should be a sub state of app, url should be below app as well.
 //TemplateURL is the name of the HTML file for the page
@@ -87,9 +92,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngMessages'])
         'menuContent': {
             templateUrl: 'templates/route.html',
             controller: "Routes"
+
          }
      }
-    });
+  });
+
+  
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/home');
 });

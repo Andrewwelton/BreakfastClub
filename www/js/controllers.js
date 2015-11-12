@@ -86,7 +86,31 @@ angular.module('starter.controllers', [])
     $scope.test = [{"label":"Hello World"}, {"label":"Hello World 2"}, {"label":"Hello World 3"}];
 })
 
-.controller('Routes', function ($scope, $stateParams) {
+
+
+.controller('Routes', function ($scope, $stateParams, $ionicLoading) {
+
+    google.maps.event.addDomListener(window, 'load', $scope.init = function () {
+        var myLatlng = new google.maps.LatLng(37.3000, -120.4833);
+        var mapOptions = {
+            center: myLatlng,
+            zoom: 16,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        navigator.geolocation.getCurrentPosition(function (pos) {
+            map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+            var myLocation = new google.maps.Marker({
+                position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
+                map: map,
+                title: "My Location"
+            });
+        });
+
+        $scope.map = map;
+    });
+
   $scope.routes = [
       {
         "route": "Route 1",
@@ -141,7 +165,7 @@ angular.module('starter.controllers', [])
       }
   ];
   $scope.shownRoute = null;
-  $scope.toggleAccordion = function(route) {
+  $scope.toggleAccordion = function (route) {
     if ($scope.isAccordionOpen(route)) {
       $scope.shownRoute = null;
     } else {
@@ -160,7 +184,9 @@ angular.module('starter.controllers', [])
   //
   // $scope.onChange = function (item) {
   //     console.log("Route:", item.team);
-  // };
+    // };
+
+  
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
