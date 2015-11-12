@@ -1,12 +1,12 @@
 <ion-view view-title="Team">
   <ion-content style="padding:10px;">
-    <ion-item class="item-stable" id="teaminfo" ng-click="toggleAccordion(teaminfo)" ng-class="{active: isAccordionOpen(teaminfo)}">
-        <i class="icon" ng-class="isAccordionOpen(teaminfo) ? 'ion-minus' : 'ion-plus'"></i>
+    <ion-item class="item-stable" id="teaminfo" ng-click="toggleTeamAccordion(teaminfo)" ng-class="{active: isTeamAccordionOpen(teaminfo)}">
+        <i class="icon" ng-class="isTeamAccordionOpen(teaminfo) ? 'ion-minus' : 'ion-plus'"></i>
       &nbsp;
       Team Info
       <i ng-if="route.accessible" class="fa fa-wheelchair"></i>
     </ion-item>
-    <ion-item class="item-accordion" ng-show="isAccordionOpen(teaminfo)">
+    <ion-item class="item-accordion" ng-show="isTeamAccordionOpen(teaminfo)">
       <b>Team Name: </b> The Breakfast Club<br/><br/>
       <b>Team Members:</b><br/>
       <p>
@@ -17,7 +17,7 @@
             <td>Email</td>
           </tr>
           <tr>
-            <td>(C) Alex Eckensweiler</td>
+            <td><b>(C)</b> Alex Eckensweiler</td>
             <td>aeckensw@mail.uoguelph.ca</td>
           </tr>
           <tr>
@@ -37,23 +37,23 @@
             </label></td>
           </tr>
         </table><br />
-        <a class="button button-positive">Add Member</a>
+        <a style="width:100%;" class="button button-positive">Add Member</a>
       </p>
     </ion-item>
 
-    <ion-item id="routeinfo" class="item-stable" ng-click="toggleAccordion(routeinfo)" ng-class="{active: isAccordionOpen(routeinfo)}">
-        <i class="icon" ng-class="isAccordionOpen(routeinfo) ? 'ion-minus' : 'ion-plus'"></i>
+    <ion-item id="routeinfo" class="item-stable" ng-click="toggleRouteAccordion(routeinfo)" ng-class="{active: isRouteAccordionOpen(routeinfo)}">
+        <i class="icon" ng-class="isRouteAccordionOpen(routeinfo) ? 'ion-minus' : 'ion-plus'"></i>
       &nbsp;
       Route Info
       <i ng-if="route.accessible" class="fa fa-wheelchair"></i>
     </ion-item>
-    <ion-item class="item-accordion" ng-show="isAccordionOpen(routeinfo)">
+    <ion-item class="item-accordion" ng-show="isRouteAccordionOpen(routeinfo)">
 
       <b>Route Name: </b> Route 24248<br/><br/>
 
-      <a class="button button-positive" href="#/app/addroute">Choose Route</a>
+      <a style="width:100%;" class="button button-positive" href="#/app/addroute">Choose Route(s)</a><br/><br/>
 
-      <br/><img id="img" src="img/map.gif" width="100%"> </img>
+      <img id="img" src="img/map.gif" width="100%"> </img><br /><br />
 
       <b>Bus: </b> 1A<br/><br/>
 

@@ -165,18 +165,32 @@ angular.module('starter.controllers', [])
 
 .controller('Teams', function ($scope, $stateParams) {
 
-  $scope.shownInfo = null;
-  $scope.toggleAccordion = function(info) {
-    if ($scope.isAccordionOpen(info)) {
-      $scope.shownInfo = null;
+  $scope.shownTeam = null;
+  $scope.shownRoute = null;
+  $scope.toggleTeamAccordion = function(info) {
+    if ($scope.isTeamAccordionOpen(info)) {
+      $scope.shownTeam = null;
     } else {
-      $scope.shownInfo = info;
+      $scope.shownTeam = info;
     }
     //Resize if an accordion is too big -- Might be needed
     //$ionicScrollDelegate.resize();
   };
-  $scope.isAccordionOpen = function(info) {
-    return $scope.shownInfo === info;
+  $scope.isTeamAccordionOpen = function(info) {
+    return $scope.shownTeam === info;
+  };
+
+  $scope.toggleRouteAccordion = function(info) {
+    if ($scope.isRouteAccordionOpen(info)) {
+      $scope.shownRoute = null;
+    } else {
+      $scope.shownRoute = info;
+    }
+    //Resize if an accordion is too big -- Might be needed
+    //$ionicScrollDelegate.resize();
+  };
+  $scope.isRouteAccordionOpen = function(info) {
+    return $scope.shownRoute === info;
   };
 
   // $scope.data = {
@@ -262,19 +276,6 @@ angular.module('starter.controllers', [])
   ];
   $scope.temp = "ASDF"
 })
-
-var selected = [];
-
-$scope.clicked = function (member) {
-    var index = selected.indexOf(member);
-    if(index > -1) {
-        selected.splice(index, 1);
-        member.selected = false;
-    } else {
-        selected.push(member);
-        member.selected = true;
-    }
-}
 
 .controller('Register', function($scope, $stateParams, $state, AuthService) {
   $scope.registerData = {};
