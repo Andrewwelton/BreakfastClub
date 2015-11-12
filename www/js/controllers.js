@@ -214,6 +214,47 @@ angular.module('starter.controllers', [])
   
 })
 
+.controller('TeamList', function ($scope, $stateParams) {
+  $scope.teams = [
+      {
+        "team": "Team Fun",
+        "accessible": true,
+        "routes": 2
+      },
+      {
+        "team": "Team Weird",
+        "accessible": true,
+        "routes": 0
+      },
+      {
+        "team": "Team Smart",
+        "img": "test.png" ,
+        "accessible": true,
+        "routes": 0
+      },
+      {
+        "team": "Team Silly",
+        "accessible": true,
+        "routes": 1
+      },
+      {
+        "team": "Team Crazy",
+        "accessible": false,
+        "routes": 2
+      },
+      {
+        "team": "Team Fluffy",
+        "accessible": true,
+        "routes": 0
+      },
+      {
+        "team": "Team Lazy",
+        "accessible": false,
+        "routes": 1
+      }
+  ];
+})
+
 .controller('Teams', function ($scope, $stateParams) {
 
   $scope.shownTeam = null;

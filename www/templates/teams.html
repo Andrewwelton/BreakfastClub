@@ -1,0 +1,20 @@
+<ion-view view-title="Teams">
+    <ion-content>
+        <h1>Teams</h1>
+          <ion-list>
+            <div ng-repeat="team in teams">
+              <a href="#/app/team">
+              <ion-item class="item-stable">
+                &nbsp;
+                {{team.team}}
+
+                <div class="right">
+                  <i ng-if="team.accessible" class="fa fa-wheelchair"></i>
+                  {{team.routes}}
+                </div>
+              </ion-item>
+              </a>
+            </div>
+          </ion-list>
+    </ion-content>
+</ion-view>

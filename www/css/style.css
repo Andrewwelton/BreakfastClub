@@ -17,6 +17,13 @@
   font-size: 20px;
 }
 
+a:link {
+    text-decoration: none;
+}
+
+.right {
+  text-align: right;
+}
 
 /* ROUTES */
 .list .item.item-accordion {
