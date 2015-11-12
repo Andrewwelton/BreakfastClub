@@ -11,32 +11,26 @@
       <b>Team Members:</b><br/>
       <p>
 
-        <table style="padding:5px;">
+        <table>
           <tr>
-            <td>Name</td>
-            <td>Email</td>
+            <td class="cell-pad"><b>(C)</b> Alex Eck</td>
+            <td class="cell-pad">aeckensw@uoguelph.ca</td>
           </tr>
           <tr>
-            <td><b>(C)</b> Alex Eckensweiler</td>
-            <td>aeckensw@mail.uoguelph.ca</td>
-          </tr>
-          <tr>
-            <td>Andrew Downie</td>
-            <td>drew@drewmail.ca</td>
+            <td class="cell-pad">Drew Downie</td>
+            <td class="cell-pad">drew@drewmail.ca</td>
           </tr><tr>
-            <td>Brandon Lacey</td>
-            <td>blace@mail.uoguelph.ca</td>
+            <td class="cell-pad">Bran Lacey</td>
+            <td class="cell-pad">blace@uoguelph.ca</td>
           </tr><tr>
-            <td><label class="item item-input">
-              <span class="input-label">Name</span>
-              <input type="text" ng-model="registerData.name">
+            <td class="cell-pad"><label class="item item-input">
+              <input type="text" placeholder="Name">
             </label></td>
-            <td><label class="item item-input">
-              <span class="input-label">Email</span>
-              <input type="text" ng-model="registerData.email">
+            <td class="cell-pad"><label class="item item-input">
+              <input type="text" placeholder="Email">
             </label></td>
           </tr>
-        </table><br />
+        </table>
         <a class="button button-positive button-full">Send Invite</a>
       </p>
     </ion-item>
@@ -49,7 +43,7 @@
     </ion-item>
     <ion-item class="item-accordion" ng-show="isRouteAccordionOpen(routeinfo)">
 
-      <b>Route Name: </b> Route 24248<br/><br/>
+      <b>Route(s): </b> Route 2, Route 5<br/><br/>
 
       <a class="button button-positive button-full" href="#/app/addroute">Choose Route(s)</a><br/>
 

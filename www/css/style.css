@@ -26,6 +26,9 @@ a:link {
 
 }
 
+.cell-pad {
+  padding:15px;
+}
 
 /* MENU */
 .notification-icon{
