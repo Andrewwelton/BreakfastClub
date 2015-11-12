@@ -102,6 +102,7 @@ angular.module('starter.controllers', [])
         "route": "Route 1",
         "routeID": "route1",
         "accessible": true,
+        "bus": true,
         "start": "50 Stone Rd",
         "startlat": 43.530799,
         "startlong":-80.226220,
@@ -117,6 +118,7 @@ angular.module('starter.controllers', [])
         "startlat": 43.530799,
         "startlong": -80.226220,
         "accessible": true,
+        "bus": false,
         "team": [{}]
       },
       {
@@ -127,6 +129,7 @@ angular.module('starter.controllers', [])
         "startlong": -80.226220,
         "img": "test.png" ,
         "accessible": true,
+        "bus": true,
         "team": [{}]
       },
       {
@@ -136,6 +139,7 @@ angular.module('starter.controllers', [])
         "startlat": 43.530799,
         "startlong": -80.226220,
         "accessible": true,
+        "bus": false,
         "team": [
           {
             "id": "1",
@@ -154,6 +158,7 @@ angular.module('starter.controllers', [])
         "startlat": 43.530799,
         "startlong": -80.226220,
         "accessible": false,
+        "bus": true,
         "team": [{}]
       },
       {
@@ -163,6 +168,7 @@ angular.module('starter.controllers', [])
         "startlat": 43.530799,
         "startlong": -80.226220,
         "accessible": true,
+        "bus": true,
         "team": [{}]
       },
       {
@@ -172,6 +178,7 @@ angular.module('starter.controllers', [])
         "startlat": 43.530799,
         "startlong": -80.226220,
         "accessible": false,
+        "bus": false,
         team: [{
             "id": "1",
             "name": "Rice Crackers",
