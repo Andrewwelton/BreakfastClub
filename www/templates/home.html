@@ -2,7 +2,7 @@
   <div class="bar bar-subheader">
     <div class="button-bar">
       <!--Not Logged In HTML-->
-      <a class="button button-positive" href="#/app/register" ng-if="loggedIn===false">Register</a>
+      <a class="button button-positive" ng-click="teamCaptainPrompt()" ng-if="loggedIn===false">Register</a>
       <button class="button button-positive" ng-click="login()" ng-if="loggedIn===false">Log In</button>
 
       <!--Logged In HTML-->

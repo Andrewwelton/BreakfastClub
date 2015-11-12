@@ -1,0 +1,23 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Register as a Team Captain?</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="teamCaptainPromptClose()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <p>
+      As a Team Captain, you will be responsible for managing the members of your team, and selecting a route for your team to canvas on the night of the event.
+    </p>
+    <p>
+      You will need to invite at least 3 other people to join your team if you decide to be a Team Captain.
+    </p>
+    <p>
+      Do you want to be a Team Captain?
+    </p>
+    <div class="buttons">
+      <a id="no" class="button" ng-click="teamCaptainContinue($event)">No</a>
+      <a id="yes" class="button" ng-click="teamCaptainContinue($event)">Yes</a>
+    </div>
+  </ion-content>
+</ion-modal-view>

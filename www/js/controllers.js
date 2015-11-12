@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 //Main controller for the application
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, AuthService) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $state, AuthService) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -19,6 +19,12 @@ angular.module('starter.controllers', [])
     $scope.modal = modal;
   });
 
+  $ionicModal.fromTemplateUrl('templates/teamcaptain.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.teamCaptain = modal;
+  });
+
   // Triggered in the login modal to close it
   $scope.closeLogin = function() {
     $scope.modal.hide();
@@ -33,6 +39,23 @@ angular.module('starter.controllers', [])
   $scope.logout = function() {
     AuthService.logout();
   };
+
+  $scope.teamCaptainPrompt = function() {
+    $scope.teamCaptain.show();
+  };
+
+  $scope.teamCaptainPromptClose = function() {
+    $scope.teamCaptain.hide();
+  }
+
+  $scope.teamCaptainContinue = function(event) {
+    $scope.teamCaptain.hide();
+    if(event.target.id == "no") {
+      $state.go("app.register",{"teamCaptain": false});
+    } else {
+      $state.go("app.register",{"teamCaptain": true});
+    }
+  }
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
@@ -71,10 +94,13 @@ angular.module('starter.controllers', [])
   $scope.temp = "ASDF"
 })
 
-.controller('Register', function($scope, $stateParams, $state) {
+.controller('Register', function($scope, $stateParams, $state, AuthService) {
   $scope.registerData = {};
+  $scope.registerData.teamPrivacy = "public";
+  $scope.teamCaptain = $stateParams.teamCaptain;
   $scope.register = function() {
     console.log("Registering with: ", $scope.registerData);
+    AuthService.login($scope.registerData.username, $scope.registerData.password);
     $state.go("app.home");
   };
 });

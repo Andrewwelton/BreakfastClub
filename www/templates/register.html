@@ -1,16 +1,26 @@
 <ion-view view-title="Register">
   <ion-content has-subheader="true">
-    <form ng-submit="register()">
+    <form name="registerForm" ng-submit="register()">
       <div class="list">
+        <div class="item item-divider">
+          Account Information
+        </div>
         <label class="item item-input">
           <span class="input-label">Username</span>
-          <input type="text" ng-model="registerData.username">
+          <input type="text" name="username" ng-model="registerData.username" ng-minlength="1" required>
         </label>
+        <div ng-messages="registerForm.username.$error" style="color:maroon" role="alert" ng-if="registerForm.$submitted">
+          <div ng-message="required">You did not enter a field</div>
+          <div ng-message="minlength">Your field is too short</div>
+          <div ng-message="maxlength">Your field is too long</div>
+        </div>
         <label class="item item-input">
           <span class="input-label">Password</span>
           <input type="password" ng-model="registerData.password">
         </label>
-        <br/><br/>
+        <div class="item item-divider">
+          Personal Information
+        </div>
         <label class="item item-input">
           <span class="input-label">First Name</span>
           <input type="text" ng-model="registerData.firstname">
@@ -23,6 +33,36 @@
           <span class="input-label">Email</span>
           <input type="email" ng-model="registerData.email">
         </label>
+        <div ng-if="teamCaptain===true">
+          <div class="item item-divider">
+            Team Information
+          </div>
+          <label class="item item-input">
+            <span class="input-label">Team Name</span>
+            <input type="text" ng-model="registerData.teamName">
+          </label>
+          <label class="item item-input">
+            <span class="input-label">Team Member 1</span>
+            <input type="email" ng-model="registerData.teamMemberOne">
+          </label>
+          <label class="item item-input">
+            <span class="input-label">Team Member 2</span>
+            <input type="email" ng-model="registerData.teamMemberTwo">
+          </label>
+          <label class="item item-input">
+            <span class="input-label">Team Member 3</span>
+            <input type="email" ng-model="registerData.teamMemberThree">
+          </label>
+          <label class="item item-input">
+            <span class="input-label">Team Member 4</span>
+            <input type="email" ng-model="registerData.teamMemberFour">
+          </label>
+          <div class="item item-divider">
+            Public / Private Team
+          </div>
+          <ion-radio ng-model="registerData.teamPrivacy" ng-value="'public'">Public</ion-radio>
+          <ion-radio ng-model="registerData.teamPrivacy" ng-value="'private'">Private</ion-radio>
+        </div>
         <label class="item">
           <button class="button button-block button-positive" type="submit">Register</button>
         </label>
