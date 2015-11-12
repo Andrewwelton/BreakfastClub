@@ -101,7 +101,7 @@ angular.module('starter.controllers', [])
         var map = new google.maps.Map(document.getElementById("map"), mapOptions);
         navigator.geolocation.getCurrentPosition(function (pos) {
             map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-            var myLocation = new google.maps.Marker({
+            $scope.myLocation = new google.maps.Marker({
                 position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
                 map: map,
                 title: "My Location"
@@ -111,15 +111,15 @@ angular.module('starter.controllers', [])
         $scope.map = map;
     });
 
-    $scope.setMark = function ($scope,lat,long) {
-        google.maps.Marker.setMark(lat,long)
-    };
+
 
   $scope.routes = [
       {
         "route": "Route 1",
         "accessible": true,
         "start": "50 Stone Rd",
+        "startlat": 43.530799,
+        "startlong":-80.226220,
         "team": [{
             "id": "1",
             "name": "Fried Chicken"
@@ -128,12 +128,16 @@ angular.module('starter.controllers', [])
       {
         "route": "Route 2",
         "start": "50 Stone Rd",
+        "startlat": 43.530799,
+        "startlong": -80.226220,
         "accessible": true,
         "team": [{}]
       },
       {
         "route": "Route 3",
         "start": "50 Stone Rd",
+        "startlat": 43.530799,
+        "startlong": -80.226220,
         "img": "test.png" ,
         "accessible": true,
         "team": [{}]
@@ -141,6 +145,8 @@ angular.module('starter.controllers', [])
       {
         "route": "Route 4",
         "start": "50 Stone Rd",
+        "startlat": 43.530799,
+        "startlong": -80.226220,
         "accessible": true,
         "team": [
           {
@@ -156,18 +162,24 @@ angular.module('starter.controllers', [])
       {
         "route": "Route 5",
         "start": "50 Stone Rd",
+        "startlat": 43.530799,
+        "startlong": -80.226220,
         "accessible": false,
         "team": [{}]
       },
       {
         "route": "Route 6",
         "start": "50 Stone Rd",
+        "startlat": 43.530799,
+        "startlong": -80.226220,
         "accessible": true,
         "team": [{}]
       },
       {
-         "route": "Route 7",
-         "start": "50 Stone Rd",
+        "route": "Route 7",
+        "start": "50 Stone Rd",
+        "startlat": 43.530799,
+        "startlong": -80.226220,
         "accessible": false,
         team: [{
             "id": "1",
@@ -180,7 +192,9 @@ angular.module('starter.controllers', [])
     if ($scope.isAccordionOpen(route)) {
       $scope.shownRoute = null;
     } else {
-      $scope.shownRoute = route;
+        $scope.shownRoute = route;
+        $scope.myLocation.setPosition(new google.maps.LatLng(route.startlat, route.startlong))
+        $scope.map.setCenter(new google.maps.LatLng(route.startlat, route.startlong))
     }
     //Resize if an accordion is too big -- Might be needed
     //$ionicScrollDelegate.resize();
