@@ -74,6 +74,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngMessages'])
       }
     }
   })
+  .state('app.waiver', {
+    url: '/waiver',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/waiver.html'
+      }
+    }
+  })
   .state('app.addroute', {
     url: '/addroute',
     views: {
@@ -129,7 +137,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngMessages'])
      }
   });
 
-  
+
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/home');

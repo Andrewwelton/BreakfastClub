@@ -219,25 +219,25 @@ angular.module('starter.controllers', [])
   //     console.log("Route:", item.team);
     // };
 
-  
+
 })
 
 .controller('TeamList', function ($scope, $stateParams) {
   $scope.teams = [
       {
         "team": "Team Fun",
-        "accessible": true,
+        "accessible": false,
         "routes": 2
       },
       {
         "team": "Team Weird",
-        "accessible": true,
+        "accessible": false,
         "routes": 0
       },
       {
         "team": "Team Smart",
         "img": "test.png" ,
-        "accessible": true,
+        "accessible": false,
         "routes": 0
       },
       {
@@ -252,7 +252,7 @@ angular.module('starter.controllers', [])
       },
       {
         "team": "Team Fluffy",
-        "accessible": true,
+        "accessible": false,
         "routes": 0
       },
       {
