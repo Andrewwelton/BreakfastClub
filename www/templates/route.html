@@ -1,0 +1,13 @@
+﻿<ion-view view-title="Routes">
+    <ion-content>
+        <h1>Routes</h1>
+
+            <ion-radio ng-repeat="text in routes" ng-value="text" ng-model="data.serverSide" ng-change="onChange(text)">
+                {{text.route}}
+
+            </ion-radio>
+        <div ng-repeat="teams in data.serverSide.team">
+            {{teams.name}}
+        </div>
+    </ion-content>
+</ion-view>

@@ -14,9 +14,9 @@ angular.module('starter.controllers', [])
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
-    scope: $scope
+      scope: $scope
   }).then(function(modal) {
-    $scope.modal = modal;
+      $scope.modal = modal;
   });
 
   $ionicModal.fromTemplateUrl('templates/teamcaptain.html', {
@@ -32,12 +32,12 @@ angular.module('starter.controllers', [])
 
   // Open the login modal
   $scope.login = function() {
-    $scope.modal.show();
+      $scope.modal.show();
   };
 
   // Log out of the currently logged in account
   $scope.logout = function() {
-    AuthService.logout();
+      AuthService.logout();
   };
 
   $scope.teamCaptainPrompt = function() {
@@ -60,13 +60,12 @@ angular.module('starter.controllers', [])
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
-
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
     $timeout(function() {
-      AuthService.login($scope.loginData.username, $scope.loginData.password);
-      $scope.closeLogin();
-      console.log(AuthService.isAuthenticated());
+        AuthService.login($scope.loginData.username, $scope.loginData.password);
+        $scope.closeLogin();
+        console.log(AuthService.isAuthenticated());
     }, 1000);
   };
 })
@@ -74,17 +73,69 @@ angular.module('starter.controllers', [])
 //$scope are variables that can be used in the HTML
 //AuthService is needed to handle logins
 .controller('TrickOrEat', function($scope, AuthService) {
-  //Watches the value of AuthService.isAuthenticated waiting for a change.
-  //The value is sometimes returned as a string, hence the conversion
-  $scope.$watch(AuthService.isAuthenticated, function(newValue, oldValue){
-    if(typeof newValue !== "boolean") {
-      $scope.loggedIn = newValue === "true";
-    } else {
-      $scope.loggedIn = newValue;
-    }
-  });
-  // Example of a variable to iterate over
-  $scope.test = [{"label":"Hello World"}, {"label":"Hello World 2"}, {"label":"Hello World 3"}];
+    //Watches the value of AuthService.isAuthenticated waiting for a change.
+    //The value is sometimes returned as a string, hence the conversion
+    $scope.$watch(AuthService.isAuthenticated, function(newValue, oldValue){
+        if(typeof newValue !== "boolean") {
+            $scope.loggedIn = newValue === "true";
+        } else {
+            $scope.loggedIn = newValue;
+        }
+    });
+    // Example of a variable to iterate over
+    $scope.test = [{"label":"Hello World"}, {"label":"Hello World 2"}, {"label":"Hello World 3"}];
+})
+
+.controller('Routes', function ($scope, $stateParams) {
+    $scope.routes = [
+        {
+            "route": "Route 1",
+            "team": [{
+                "id": "1",
+                "name": "Fried Chicken"
+            }]
+        },
+        {
+            "route": "Route 2",
+            "team": [{}]
+        },
+        {
+            "route": "Route 3", "img": "test.png" ,
+            "team": [{}]
+        },
+        {
+            "route": "Route 4",
+           "team": [
+                {"id": "1",
+                    "name": "Cheese Omelet"},
+                {"id": "2",
+                    "name": "Bacon and Eggs"}
+            ]
+        },
+        {
+            "route": "Route 5",
+            "team": [{}]
+        },
+        {
+            "route": "Route 6",
+            "team": [{}]
+        },
+        {
+            "route": "Route 7",
+            team: [{
+                "id": "1",
+                "name": "Rice Crackers",
+            }]
+        }
+    ];
+
+    $scope.data = {
+        clientSide: 'ng'
+    };
+
+    $scope.onChange = function (item) {
+        console.log("Route:", item.team);
+    };
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
