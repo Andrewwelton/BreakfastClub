@@ -14,12 +14,17 @@
               </ion-item>
                 <ion-item class="item-accordion" ng-show="isAccordionOpen(route)">
                     {{route.start}}
+                    
                 </ion-item>
-              <ion-item class="item-accordion" ng-show="isAccordionOpen(route)" ng-repeat="teams in route.team">
-                {{teams.name}}
-              </ion-item>
-              <div id="map" data-tap-disabled="true" ng-if="isAccordionOpen(route)"></div>
-            </div>
+                <ion-item class="item-accordion" ng-show="isAccordionOpen(route)">
+                    Bus: {{route.busname}}
+                </ion-item>
+
+                <ion-item class="item-accordion" ng-show="isAccordionOpen(route)" ng-repeat="teams in route.team">
+                        {{teams.name}}
+                </ion-item>
+                    <div id="map" data-tap-disabled="true" ng-if="isAccordionOpen(route)"></div>
+          </div>
           </ion-list>
     </ion-content>
 

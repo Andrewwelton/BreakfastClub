@@ -103,6 +103,7 @@ angular.module('starter.controllers', [])
         "routeID": "route1",
         "accessible": true,
         "bus": true,
+        "busname":"2A",
         "start": "50 Stone Rd",
         "startlat": 43.530799,
         "startlong":-80.226220,
@@ -115,6 +116,7 @@ angular.module('starter.controllers', [])
         "route": "Route 2",
         "routeID": "route2",
         "start": "50 Stone Rd",
+        "busname": "None",
         "startlat": 43.530799,
         "startlong": -80.226220,
         "accessible": true,
@@ -130,6 +132,7 @@ angular.module('starter.controllers', [])
         "img": "test.png" ,
         "accessible": true,
         "bus": true,
+         "busname":"2B",
         "team": [{}]
       },
       {
@@ -139,6 +142,7 @@ angular.module('starter.controllers', [])
         "startlat": 43.530799,
         "startlong": -80.226220,
         "accessible": true,
+        "busname":"None",
         "bus": false,
         "team": [
           {
@@ -158,6 +162,7 @@ angular.module('starter.controllers', [])
         "startlat": 43.530799,
         "startlong": -80.226220,
         "accessible": false,
+        "busname":"3B",
         "bus": true,
         "team": [{}]
       },
@@ -169,6 +174,7 @@ angular.module('starter.controllers', [])
         "startlong": -80.226220,
         "accessible": true,
         "bus": true,
+        "busname":"50",
         "team": [{}]
       },
       {
@@ -178,6 +184,7 @@ angular.module('starter.controllers', [])
         "startlat": 43.530799,
         "startlong": -80.226220,
         "accessible": false,
+        "busname":"None",
         "bus": false,
         team: [{
             "id": "1",
