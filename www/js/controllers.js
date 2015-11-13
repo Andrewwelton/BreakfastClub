@@ -411,7 +411,12 @@ angular.module('starter.controllers', [])
   $scope.test = [
     {title: "Testing How This Works", id: 1},
   ];
-  $scope.temp = "ASDF"
+})
+
+.controller('MyAccount', function($scope, $stateParams) {
+  $scope.test = [
+    {title: "Testing How This Works", id: 1},
+  ];
 })
 
 /*var selected = [];

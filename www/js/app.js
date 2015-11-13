@@ -140,6 +140,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngMessages'])
     }
   })
 
+  .state('app.myaccount', {
+    url: '/myaccount',
+    params: {
+      'notifications': null
+    },
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/myaccount.html',
+        controller: "MyAccount"
+      }
+    }
+  })
+
   .state('app.route', {
     url: '/route',
     views: {
@@ -150,6 +163,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngMessages'])
          }
      }
   });
+
 
 
 

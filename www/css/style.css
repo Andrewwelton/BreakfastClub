@@ -106,3 +106,11 @@ a:link {
 .stick-to-bottom button{
     margin-right: 6px;
 }
+
+/* MY ACCOUNT */
+.green{
+    color: green;
+}
+.big-checkmark{
+    font-size: 30px;
+}
