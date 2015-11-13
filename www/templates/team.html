@@ -22,7 +22,7 @@
           </tr><tr>
             <td class="cell-pad">Bran Lacey</td>
             <td class="cell-pad">blace@uoguelph.ca</td>
-          </tr><tr>
+          </tr><tr ng-if="role==='captain' || role==='admin'">
             <td class="cell-pad"><label class="item item-input">
               <input type="text" placeholder="Name">
             </label></td>
@@ -31,7 +31,7 @@
             </label></td>
           </tr>
         </table>
-        <a class="button button-positive button-full">Send Invite</a>
+        <a class="button button-positive button-full" ng-if="role==='captain' || role==='admin'" >Send Invite</a>
       </p>
     </ion-item>
 

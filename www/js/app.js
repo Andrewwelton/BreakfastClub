@@ -78,7 +78,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngMessages'])
     url: '/waiver',
     views: {
       'menuContent': {
-        templateUrl: 'templates/waiver.html'
+        templateUrl: 'templates/waiver.html',
+        controller: 'Waiver'
       }
     }
   })

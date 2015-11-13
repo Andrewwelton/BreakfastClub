@@ -427,6 +427,19 @@ $scope.clicked = function (member) {
     }
 }*/
 
+.controller('Waiver', function($scope, $ionicPopup, $timeout) {
+// An alert dialog
+ $scope.showAlert = function() {
+   var alertPopup = $ionicPopup.alert({
+     title: 'Warning!',
+     template: 'You must sign the waiver'
+   });
+   alertPopup.then(function(res) {
+     console.log('Thank you for not eating my delicious ice cream cone');
+   });
+ };
+ })
+
 .controller('Register', function($scope, $stateParams, $state, AuthService) {
   $scope.registerData = {};
   $scope.registerData.teamPrivacy = "public";
@@ -437,6 +450,6 @@ $scope.clicked = function (member) {
     }
     console.log("Registering with: ", $scope.registerData);
     AuthService.login($scope.registerData.username, $scope.registerData.password);
-    $state.go("app.home");
+    $state.go("app.waiver");
   };
 });
