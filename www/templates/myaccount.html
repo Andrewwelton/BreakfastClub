@@ -1,4 +1,4 @@
-<ion-view view-title="Notifications">
+<ion-view view-title="My Account" cache-view="false">
   <ion-content>
 
     <div class="card">
@@ -32,17 +32,23 @@
                 <div class="item">
                   Email: johndoe@yahoo.com<br />
                 </div>
-                <div class="item">
+                <div class="item" ng-if="role==='participant'">
                   Account role: Participant
                 </div>
-
-
+                <div class="item" ng-if="role==='captain'">
+                  Account role: Team Captain
+                </div>
+                <div class="item" ng-if="role==='admin'">
+                  Account role: Administrator
+                </div>
             </div>
-
-
-
          </div>
      </div>
+    <div class="card text-center" ng-if="role==='participant' || role==='captain'">
+      <div class="item">
+        <a class="button button-positive" href="#/app/team">Go To My Team</a>
+      </div>
+    </div>
 
     <!--
 

@@ -1,4 +1,4 @@
-<ion-view view-title="Team">
+<ion-view view-title="Team" cache-view="false">
   <ion-content style="padding:10px;">
     <ion-item class="item-stable" id="teaminfo" ng-click="toggleTeamAccordion(teaminfo)" ng-class="{active: isTeamAccordionOpen(teaminfo)}">
         <i class="icon" ng-class="isTeamAccordionOpen(teaminfo) ? 'ion-minus' : 'ion-plus'"></i>
@@ -45,7 +45,7 @@
 
       <b>Route(s): </b> Route 2, Route 5<br/><br/>
 
-      <a class="button button-positive button-full" href="#/app/addroute">Choose Route(s)</a><br/>
+      <a class="button button-positive button-full" ng-if="role==='admin'||role==='captain'" href="#/app/addroute">Choose Route(s)</a><br/>
 
       <img id="img" src="img/map.gif" width="100%"> </img><br /><br />
 

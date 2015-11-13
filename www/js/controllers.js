@@ -282,8 +282,8 @@ angular.module('starter.controllers', [])
   ];
 })
 
-.controller('Teams', function ($scope, $stateParams) {
-
+.controller('Teams', function ($scope, $stateParams, AuthService) {
+  $scope.role = AuthService.role();
   $scope.shownTeam = null;
   $scope.shownRoute = null;
   $scope.toggleTeamAccordion = function(info) {
@@ -413,10 +413,8 @@ angular.module('starter.controllers', [])
   ];
 })
 
-.controller('MyAccount', function($scope, $stateParams) {
-  $scope.test = [
-    {title: "Testing How This Works", id: 1},
-  ];
+.controller('MyAccount', function($scope, $stateParams, AuthService) {
+  $scope.role = AuthService.role();
 })
 
 /*var selected = [];
