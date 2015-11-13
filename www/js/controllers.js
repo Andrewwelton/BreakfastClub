@@ -82,7 +82,7 @@ angular.module('starter.controllers', [])
 //TrickOrEat controller (AKA Home controller)
 //$scope are variables that can be used in the HTML
 //AuthService is needed to handle logins
-.controller('TrickOrEat', function($scope, AuthService) {
+.controller('TrickOrEat', function($scope, $ionicHistory, AuthService) {
     //Watches the value of AuthService.isAuthenticated waiting for a change.
     //The value is sometimes returned as a string, hence the conversion
     $scope.$watch(AuthService.isAuthenticated, function(newValue, oldValue){
@@ -427,18 +427,28 @@ $scope.clicked = function (member) {
     }
 }*/
 
-.controller('Waiver', function($scope, $ionicPopup, $timeout) {
+.controller('Waiver', function($scope, $ionicPopup, $timeout, $state, $ionicViewService, AuthService) {
 // An alert dialog
- $scope.showAlert = function() {
-   var alertPopup = $ionicPopup.alert({
-     title: 'Warning!',
-     template: 'You must sign the waiver'
-   });
-   alertPopup.then(function(res) {
-     console.log('Thank you for not eating my delicious ice cream cone');
-   });
- };
- })
+  $scope.showAlert = function() {
+    var alertPopup = $ionicPopup.alert({
+      title: 'Warning!',
+      template: 'You must sign the waiver'
+    });
+    alertPopup.then(function(res) {
+      console.log('Thank you for not eating my delicious ice cream cone');
+    });
+  };
+
+  $scope.signWaiver = function() {
+    console.log("Registering with: ", $scope.registerData);
+    AuthService.login("waiver","waiver"/*$scope.registerData.username, $scope.registerData.password*/);
+    $ionicViewService.nextViewOptions({
+        disableBack: true
+    });
+
+    $state.go("app.home", {}, {"location": "replace"});
+  };
+})
 
 .controller('Register', function($scope, $stateParams, $state, AuthService) {
   $scope.registerData = {};
@@ -448,8 +458,6 @@ $scope.clicked = function (member) {
     if(!registerForm.$valid) {
       return;
     }
-    console.log("Registering with: ", $scope.registerData);
-    AuthService.login($scope.registerData.username, $scope.registerData.password);
     $state.go("app.waiver");
   };
 });
