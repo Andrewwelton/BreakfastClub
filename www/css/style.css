@@ -111,6 +111,10 @@ a:link {
 .green{
     color: green;
 }
-.big-checkmark{
+.font-size-30{
     font-size: 30px;
+}
+/* LIVE CHAT*/
+.dark-grey-background{
+    background: #ddd;
 }
