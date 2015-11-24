@@ -33,7 +33,7 @@
         <ion-item menu-close href="#/app/home">
           Home
         </ion-item>
-        <ion-item menu-close href="#/app/team" ng-if="role!=='admin'">
+        <ion-item menu-close href="#/app/team" ng-if="role!=='admin' && loggedIn===true">
           Team
         </ion-item>
         <ion-item menu-close href="#/app/teams" ng-if="role==='admin'">
