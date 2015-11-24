@@ -102,7 +102,12 @@ angular.module('starter.controllers', [])
 
 
 
-.controller('Routes', function ($scope, $stateParams, $ionicLoading) {
+.controller('Routes', function ($scope, $stateParams, $http, $ionicLoading) {
+    $http.get("/api/route/", { "id": 32 }).then(function (response) {
+        console.log(response);
+        $scope.response = response;
+    });
+
   $scope.routes = [
       {
         "route": "Route 1",
