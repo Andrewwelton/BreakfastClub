@@ -8,10 +8,10 @@
         </button>
       </ion-nav-buttons>
       <ion-nav-buttons side="right">
-          <a href="#/app/notifications" class="button button-icon button-clear ion-alert" menu-toggle="right" ng-if="role==='participant'">
+          <a href="#/app/notifications" class="button button-icon button-clear ion-alert" menu-toggle="right" ng-if="role===1">
               <div class="badge badge-assertive notification-icon">2</div>
           </a>
-          <a href="#/app/notifications" class="button button-icon button-clear ion-alert" menu-toggle="right" ng-if="role==='captain' || role==='admin'">
+          <a href="#/app/notifications" class="button button-icon button-clear ion-alert" menu-toggle="right" ng-if="role===2 || role===0">
               <div class="badge badge-assertive notification-icon">1</div>
           </a>
         </button>
@@ -33,10 +33,10 @@
         <ion-item menu-close href="#/app/home">
           Home
         </ion-item>
-        <ion-item menu-close href="#/app/team" ng-if="role!=='admin' && loggedIn===true">
+        <ion-item menu-close href="#/app/team" ng-if="role!==0 && loggedIn===true">
           Team
         </ion-item>
-        <ion-item menu-close href="#/app/teams" ng-if="role==='admin'">
+        <ion-item menu-close href="#/app/teams" ng-if="role===0">
           Teams
         </ion-item>
          <ion-item menu-close href="#/app/route">

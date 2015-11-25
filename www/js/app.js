@@ -76,6 +76,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngMessages'])
   })
   .state('app.waiver', {
     url: '/waiver',
+    params: {
+      'teamCaptain': null,
+      'registerData': null,
+    },
     views: {
       'menuContent': {
         templateUrl: 'templates/waiver.html',

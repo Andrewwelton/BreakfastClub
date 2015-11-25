@@ -32,19 +32,19 @@
                 <div class="item">
                   Email: johndoe@yahoo.com<br />
                 </div>
-                <div class="item" ng-if="role==='participant'">
+                <div class="item" ng-if="role=== 1">
                   Account role: Participant
                 </div>
-                <div class="item" ng-if="role==='captain'">
+                <div class="item" ng-if="role=== 2">
                   Account role: Team Captain
                 </div>
-                <div class="item" ng-if="role==='admin'">
+                <div class="item" ng-if="role=== 0">
                   Account role: Administrator
                 </div>
             </div>
          </div>
      </div>
-    <div class="card text-center" ng-if="role==='participant' || role==='captain'">
+    <div class="card text-center" ng-if="role=== 1 || role=== 2">
       <div class="item">
         <a class="button button-positive" href="#/app/team">Go To My Team</a>
       </div>

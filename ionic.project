@@ -5,6 +5,10 @@
     {
       "path": "/api/team/",
       "proxyUrl": "http://131.104.49.63/api/team/"
+    },
+    {
+      "path": "/api/participants/",
+      "proxyUrl": "http://131.104.49.63/api/participants/"
     }
   ]
 }

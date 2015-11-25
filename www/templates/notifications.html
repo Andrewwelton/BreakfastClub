@@ -4,7 +4,7 @@
 
     <div class="list">
 
-      <div class="item" ng-if="role==='participant'">
+      <div class="item" ng-if="role===1">
           <h2>Team Invitiation</h2>
           <p class="show-all-text">Team taco has invited you to join their team.
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -19,13 +19,13 @@
         </button>
       </div>
 
-      <div class="item darken-every-other" ng-if="role==='captain' || role==='participant'">
+      <div class="item darken-every-other" ng-if="role===2 || role===1">
           <h2>Message from Trick or Eat</h2>
           <p class="show-all-text">Bus 3A is leaving at 3:45, please be at the loading station
               at least 15 minutes early.</p>
       </div>
 
-      <div class="item" ng-if="role==='admin'">
+      <div class="item" ng-if="role===0">
           <h2>Live Chat Request</h2>
           <p class="show-all-text">John Doe is requesting a live chat. Topic: "Is there a bus going to no frills?"</p>
 

@@ -24,6 +24,7 @@ angular.module('starter.controllers', [])
   }).then(function(modal) {
     $scope.teamCaptain = modal;
   });
+
   $scope.$watch(AuthService.isAuthenticated, function(newValue, oldValue){
       if(typeof newValue !== "boolean") {
           $scope.loggedIn = newValue === "true";
@@ -69,15 +70,14 @@ angular.module('starter.controllers', [])
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-        AuthService.login($scope.loginData.username, $scope.loginData.password);
+    AuthService.login($scope.loginData.username, $scope.loginData.password).then(function(success){
+      if(success) {
         $scope.closeLogin();
-        console.log(AuthService.isAuthenticated());
-    }, 1000);
-  };
+      } else {
+        $scope.loginError = true;
+      }
+    });
+  }
 })
 //TrickOrEat controller (AKA Home controller)
 //$scope are variables that can be used in the HTML
@@ -434,8 +434,12 @@ $scope.clicked = function (member) {
     }
 }*/
 
-.controller('Waiver', function($scope, $ionicPopup, $timeout, $state, $ionicViewService, AuthService) {
-// An alert dialog
+.controller('Waiver', function($scope, $stateParams, $http, $ionicPopup, $timeout, $state, $ionicViewService, AuthService) {
+  // An alert dialog
+  console.log($stateParams);
+  $scope.registerData = $stateParams.registerData;
+  console.log($scope.registerData);
+  $scope.teamCaptain = $stateParams.teamCaptain;
   $scope.showAlert = function() {
     var alertPopup = $ionicPopup.alert({
       title: 'Warning!',
@@ -448,12 +452,31 @@ $scope.clicked = function (member) {
 
   $scope.signWaiver = function() {
     console.log("Registering with: ", $scope.registerData);
-    AuthService.login("waiver","waiver"/*$scope.registerData.username, $scope.registerData.password*/);
-    $ionicViewService.nextViewOptions({
-        disableBack: true
-    });
-
-    $state.go("app.home", {}, {"location": "replace"});
+    if($scope.teamCaptain===true) {
+      //create team first
+    } else {
+      $http.post("/api/participants/",
+        {
+          "name": $scope.registerData.firstname + " " + $scope.registerData.lastname,
+          "type": 1,
+          "email": $scope.registerData.email,
+          "username": $scope.registerData.username,
+          "password": $scope.registerData.password,
+          "teamId": null,
+          "accessibleStatus": $scope.registerData.accessibilityNeeds,
+          "studentStatus": 0,
+          "busStatus": 0,
+          "participantStatus": 1
+        }
+      ).then(function(response){
+        console.log(response);
+        AuthService.login($scope.registerData.username, $scope.registerData.password);
+        $ionicViewService.nextViewOptions({
+            disableBack: true
+        });
+        $state.go("app.home", {}, {"location": "replace"});
+      });
+    }
   };
 })
 
@@ -464,7 +487,9 @@ $scope.clicked = function (member) {
   $scope.register = function(registerForm) {
     if(!registerForm.$valid) {
       return;
+    } else {
+      console.log($scope.registerData);
+      $state.go("app.waiver",{"registerData": $scope.registerData, "teamCaptain": $scope.teamCaptain});
     }
-    $state.go("app.waiver");
   };
 });
