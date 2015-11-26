@@ -420,6 +420,8 @@ angular.module('starter.controllers', [])
 
 .controller('MyAccount', function($scope, $stateParams, AuthService) {
   $scope.role = parseInt(AuthService.role());
+  $scope.name = AuthService.name();
+  $scope.email = AuthService.email();
   console.log($scope.role);
 })
 
