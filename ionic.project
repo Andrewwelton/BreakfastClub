@@ -10,6 +10,7 @@
 
       "path": "/api/participants/",
       "proxyUrl": "http://131.104.49.63/api/participants/"
+<<<<<<< Updated upstream
 
 
       "path": "/api/route/",
@@ -21,6 +22,12 @@
         "path": "/api/route",
         "proxyUrl": "http://131.104.49.63/api/route/"
 
+=======
+    },
+    {
+      "path": "/api/route/",
+      "proxyUrl": "http://131.104.49.63/api/route/"
+>>>>>>> Stashed changes
     }
   ]
 }
