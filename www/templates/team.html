@@ -7,22 +7,18 @@
       <i ng-if="route.accessible" class="fa fa-wheelchair"></i>
     </ion-item>
     <ion-item class="item-accordion" ng-show="isTeamAccordionOpen(teaminfo)">
-      <b>Team Name: </b> The Breakfast Club<br/><br/>
+      <b>Team Name: </b> {{team['data'][0]['name']}}<br/><br/>
       <b>Team Members:</b><br/>
       <p>
 
         <table>
+          <div ng-repeat="members in teamMembers">
           <tr>
-            <td class="cell-pad"><b>(C)</b> Alex Eck</td>
-            <td class="cell-pad">aeckensw@uoguelph.ca</td>
+            <td class="cell-pad"><b>(C)</b> {{teamMembers['data'][0]['name']}}</td>
+            <td class="cell-pad">{{teamMembers['data'][0]['email']}}</td>
           </tr>
-          <tr>
-            <td class="cell-pad">Drew Downie</td>
-            <td class="cell-pad">drew@drewmail.ca</td>
-          </tr><tr>
-            <td class="cell-pad">Bran Lacey</td>
-            <td class="cell-pad">blace@uoguelph.ca</td>
-          </tr><tr ng-if="role===2 || role===0">
+          </div>
+          <tr ng-repeat="i in getNumber(number) track by $index">
             <td class="cell-pad"><label class="item item-input">
               <input type="text" placeholder="Name">
             </label></td>
@@ -43,7 +39,7 @@
     </ion-item>
     <ion-item class="item-accordion" ng-show="isRouteAccordionOpen(routeinfo)">
 
-      <b>Route(s): </b> Route 2, Route 5<br/><br/>
+      <b>Route(s): </b> {{teamRoutes['data'][0]['name']}}<br/><br/>
 
       <a class="button button-positive button-full" ng-if="role===0||role===2" href="#/app/addroute">Choose Route(s)</a><br/>
 

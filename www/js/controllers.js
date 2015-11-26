@@ -364,6 +364,7 @@ angular.module('starter.controllers', [])
     ];
 })
 
+<<<<<<< Updated upstream
 .controller('Teams', function ($scope, $stateParams, AuthService) {
     $scope.role = AuthService.role();
     $scope.shownTeam = null;
@@ -380,6 +381,57 @@ angular.module('starter.controllers', [])
     $scope.isTeamAccordionOpen = function(info) {
         return $scope.shownTeam === info;
     };
+=======
+.controller('Teams', function ($scope, $stateParams, AuthService, $http) {
+  $scope.role = AuthService.role();
+  $scope.shownTeam = null;
+  $scope.shownRoute = null;
+
+  var numMems = 0;
+
+  $http.get("/api/team/" + AuthService.teamID()).then(function(team){
+    //console.log(team);
+    $scope.team = team;
+  });
+
+  $http.get("/api/participants/teamId/" + AuthService.teamID()).then(function(teamMembers){
+    numMems = teamMembers['headers']['length'];
+    $scope.number = 5 - numMems;
+    $scope.teamMembers = teamMembers;
+
+  });
+
+  $http.get("/api/route/teamId/" + AuthService.teamID()).then(function(teamRoutes){
+    console.log(teamRoutes);
+    $scope.teamRoutes = teamRoutes;
+
+  });
+
+  $scope.getNumber = function(num) {
+      return new Array(num);
+  }
+
+  /*$http.put("/api/participants/" + AuthService.id(), { 'teamId': 2 }).success(function(result) {
+      console.log(result);
+      $scope.resultPut = result;
+  }).error(function() {
+      console.log("error");
+  });*/
+
+
+  $scope.toggleTeamAccordion = function(info) {
+    if ($scope.isTeamAccordionOpen(info)) {
+      $scope.shownTeam = null;
+    } else {
+      $scope.shownTeam = info;
+    }
+    //Resize if an accordion is too big -- Might be needed
+    //$ionicScrollDelegate.resize();
+  };
+  $scope.isTeamAccordionOpen = function(info) {
+    return $scope.shownTeam === info;
+  };
+>>>>>>> Stashed changes
 
     $scope.toggleRouteAccordion = function(info) {
         if ($scope.isRouteAccordionOpen(info)) {
