@@ -373,11 +373,13 @@ $scope.isRouteAccordionOpen = function(info) {
     $scope.signBusWaiver = function(){
         $http.put("/api/participants/" + userID, {"busStatus" : 1})
         .success(function(response){
-            $state.go("app.myaccount");
+            AuthService.login(AuthService.username(), AuthService.password()).then(function(r){
+                $state.go("app.myaccount");
+            });
 
         })
         .error(function(response){
-            alert("failure");
+            alert("Unable to sign the waiver, please try again later.");
         })
     };
 })
@@ -386,7 +388,11 @@ $scope.isRouteAccordionOpen = function(info) {
   $scope.role = parseInt(AuthService.role());
   $scope.name = AuthService.name();
   $scope.email = AuthService.email();
-  $scope.busStatus = parseInt(AuthService.busStatus());
+  $scope.$watch(AuthService.busStatus, function(newValue, oldValue){
+      $scope.busStatus = parseInt(newValue);
+  });
+ // $scope.busStatus = parseInt(AuthService.busStatus());
+
 
 
   var teamID = parseInt(AuthService.teamID());
