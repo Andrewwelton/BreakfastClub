@@ -165,18 +165,26 @@ angular.module('starter.controllers', [])
             geodesic: true,
             strokeColor: "#FFAA00",
             strokeOpacity: 1.0,
-            strokeWeight: 2
+            strokeWeight: 5
         });
         map.setCenter(new google.maps.LatLng(43.530737, -80.226274));
 
         path.setMap(map);
-        // navigator.geolocation.getCurrentPosition(function (pos) {
-        //     $scope.myLocation = new google.maps.Marker({
-        //         position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
-        //         map: map,
-        //         title: "My Location"
-        //     });
-        // });
+         navigator.geolocation.getCurrentPosition(function (pos) {
+             $scope.myLocation = new google.maps.Marker({
+                 position: new google.maps.LatLng(43.530737, -80.226274),
+                 map: map,
+                title: "Start"
+             });
+         });
+
+         navigator.geolocation.getCurrentPosition(function (pos) {
+             $scope.myLocation = new google.maps.Marker({
+                 position: new google.maps.LatLng(43.527594, -80.226746),
+                 map: map,
+                 title: "End"
+             });
+         });
 
     };
 })
