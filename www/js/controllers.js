@@ -236,7 +236,6 @@ angular.module('starter.controllers', [])
     $scope.shownTeam = null;
     $scope.shownRoute = null;
 
-<<<<<<< HEAD
   var numMems = 0;
   var teamID;
 
@@ -247,11 +246,6 @@ angular.module('starter.controllers', [])
   } else {
     teamID = parseInt(AuthService.teamID());
   }
-=======
-    var numMems = 0;
-    var teamID = parseInt(AuthService.teamID());
->>>>>>> origin/master
-
 
     $http.get("/api/team/" + teamID).then(function(team){
         $scope.team = team;
@@ -277,7 +271,6 @@ angular.module('starter.controllers', [])
 
     });
 
-<<<<<<< HEAD
   $scope.teamAdd = {};
 
   $scope.newMember = function() {
@@ -289,38 +282,6 @@ angular.module('starter.controllers', [])
       }
     }
   };
-=======
-    $scope.getNumber = function(num) {
-        return new Array(num);
-    }
-
-    /*$http.put("/api/participants/" + AuthService.id(), { 'teamId': 2 }).success(function(result) {
-    console.log(result);
-    $scope.resultPut = result;
-}).error(function() {
-console.log("error");
-});*/
-
-
-$scope.newMember = function() {
-    $http.post("/api/participants/",
-    {
-        "name": "Butts McGee",
-        "type": 1,
-        "email": "drew@drewmail.com",
-        "username": "drew",
-        "password": "a",
-        "teamId": 2,
-        "accessibleStatus": 0,
-        "studentStatus": 0,
-        "busStatus": 0,
-        "participantStatus": 1
-    }
-
-).then(function(response){
-    console.log(response);
-});
->>>>>>> origin/master
 
   $scope.getNumber = function(num) {
     return new Array(num);
@@ -355,7 +316,6 @@ $scope.isRouteAccordionOpen = function(info) {
 
 .controller('addRoute', function ($scope, $stateParams, $http, AuthService) {
 
-<<<<<<< HEAD
   $http.get("/api/route").then(function(routes){
     console.log(routes);
     $scope.routes = routes;
@@ -374,15 +334,10 @@ $scope.isRouteAccordionOpen = function(info) {
           console.log("error");
         });
       }
-=======
-
-    $http.get("/api/route").then(function(routes){
-        console.log(routes);
-        $scope.routes = routes;
->>>>>>> origin/master
     });
+  }
 
-<<<<<<< HEAD
+
   $scope.clicked = function (member) {
     var index = selected.indexOf(member);
     if(index > -1) {
@@ -393,34 +348,6 @@ $scope.isRouteAccordionOpen = function(info) {
       member.selected = true;
     }
   }
-=======
-    var selected = [];
-    $scope.addR = function() {
-        $scope.routes['data'].forEach(function(route) {
-            if(route.selected) {
-                $http.put("/api/route/" + route['id'], { 'teamId': 2 }).success(function(result) {
-                    console.log(result);
-                    $scope.resultPut = result;
-                }).error(function() {
-                    console.log("error");
-                });
-            }
-        });
-    }
-
-
-
-    $scope.clicked = function (member) {
-        var index = selected.indexOf(member);
-        if(index > -1) {
-            selected.splice(index, 1);
-            member.selected = false;
-        } else {
-            selected.push(member);
-            member.selected = true;
-        }
-    };
->>>>>>> origin/master
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
