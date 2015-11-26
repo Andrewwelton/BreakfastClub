@@ -154,15 +154,35 @@ angular.module('starter.controllers', [])
     return $scope.shownRoute === route;
   };
 
-  $scope.mapSetup = function(route) {
+  $scope.mapSetup = function (route) {
+      
+
     var myLatlng = new google.maps.LatLng(37.3000, -120.4833);
     var mapOptions = {
         center: myLatlng,
         zoom: 16,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    var map = new google.maps.Map(document.querySelector("#" +route.routeID+ " #map"), mapOptions);
+    var map = new google.maps.Map(document.querySelector("#Route" + route.id + " #map"), mapOptions);
+
+    var coords = [
+        { lat: 43.530737, lng: -80.226274 },
+        { lat: 43.529803, lng: -80.224611 },
+        { lat: 43.529453, lng: -80.224128 },
+        { lat: 43.527594, lng: -80.226746 }
+
+    ];
+
+    var path = new google.maps.Polyline({
+        path: coords,
+        geodesic: true,
+        strokeColor: "#FFAA00",
+        strokeOpacity: 1.0,
+        strokeWeight: 2
+    });
     map.setCenter(new google.maps.LatLng(43.530737, -80.226274));
+
+    path.setMap(map);
     // navigator.geolocation.getCurrentPosition(function (pos) {
     //     $scope.myLocation = new google.maps.Marker({
     //         position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
