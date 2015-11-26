@@ -431,14 +431,9 @@ $scope.isRouteAccordionOpen = function(info) {
             AuthService.login(AuthService.username(), AuthService.password());
         })
         .error(function(response){
-            alert("There was a hole");
+        //    alert("There was a hole");
         });
     });
-    $scope.updateAccessibility = function(){
-
-
-
-    };
 
 
 
