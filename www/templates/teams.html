@@ -1,20 +1,23 @@
 <ion-view view-title="Teams">
-    <ion-content>
-        <h1>Teams</h1>
-          <ion-list>
-            <div ng-repeat="team in teams">
-              <a href="#/app/team">
-              <ion-item class="item-stable">
-                &nbsp;
-                {{team.team}}
-
-                <div class="route-icons">
-                  <i ng-if="team.accessible" class="fa fa-wheelchair"></i>
-                  <i class="fa fa-map"> </i>&nbsp;{{team.routes}}
-                </div>
-              </ion-item>
-              </a>
+  <ion-content class="padding">
+    <h1>Teams</h1>
+    <label class="item item-input">
+      <span class="input-label">Search&nbsp;<i class="fa fa-search"></i></span>
+      <input type="text" ng-model="searchText">
+    </label>
+    <br/>
+    <ion-list>
+      <div ng-repeat="team in teams | filter:searchText">
+        <a ng-click="goToTeam(team)">
+          <ion-item class="item-stable">
+            &nbsp;
+            {{team.name}}
+            <div class="route-icons">
+              <i ng-if="team.type===1" class="fa fa-user-secret"></i>
             </div>
-          </ion-list>
-    </ion-content>
+          </ion-item>
+        </a>
+      </div>
+    </ion-list>
+  </ion-content>
 </ion-view>

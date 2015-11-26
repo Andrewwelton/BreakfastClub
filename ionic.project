@@ -13,6 +13,10 @@
     {
       "path": "/api/route/",
       "proxyUrl": "http://131.104.49.63/api/route/"
+    },
+    {
+      "path": "/farm/",
+      "proxyUrl": "http://131.104.49.228/api/1.0/needs"
     }
   ]
 }

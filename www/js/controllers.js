@@ -28,13 +28,13 @@ angular.module('starter.controllers', [])
   $scope.$watch(AuthService.isAuthenticated, function(newValue, oldValue){
     if(typeof newValue !== "boolean") {
       $scope.loggedIn = newValue === "true";
-      $scope.role = AuthService.role();
+      $scope.role = parseInt(AuthService.role());
     } else {
       $scope.loggedIn = newValue;
-      $scope.role = AuthService.role();
+      $scope.role = parseInt(AuthService.role());
     }
   });
-  $scope.role = AuthService.role();
+  $scope.role = parseInt(AuthService.role());
 
   // Triggered in the login modal to close it
   $scope.closeLogin = function() {
@@ -193,45 +193,14 @@ $scope.mapSetup = function (route) {
 
 })
 
-.controller('TeamList', function ($scope, $stateParams) {
-  $scope.teams = [
-    {
-      "team": "Team Fun",
-      "accessible": false,
-      "routes": 2
-    },
-    {
-      "team": "Team Weird",
-      "accessible": false,
-      "routes": 0
-    },
-    {
-      "team": "Team Smart",
-      "img": "test.png" ,
-      "accessible": false,
-      "routes": 0
-    },
-    {
-      "team": "Team Silly",
-      "accessible": true,
-      "routes": 1
-    },
-    {
-      "team": "Team Crazy",
-      "accessible": false,
-      "routes": 2
-    },
-    {
-      "team": "Team Fluffy",
-      "accessible": false,
-      "routes": 0
-    },
-    {
-      "team": "Team Lazy",
-      "accessible": false,
-      "routes": 1
-    }
-  ];
+.controller('TeamList', function ($scope, $stateParams, $http) {
+  $http.get("/api/team/").then(function(response){
+    $scope.teams = response.data;
+    console.log($scope.teams);
+  });
+  $scope.goToTeam = function(team){
+    $state.go("app.team", {"teamID": team.id})
+  }
 })
 
 .controller('Team', function ($scope, $stateParams, AuthService, $http) {
