@@ -101,10 +101,6 @@ angular.module('starter.controllers', [])
     $scope.test = [{"label":"Hello World"}, {"label":"Hello World 2"}, {"label":"Hello World 3"}];
 })
 
-
-
-
-
 .controller('Routes', function ($scope, $stateParams, $http, $ionicLoading) {
     $http.get("/api/route").then(function (response) {
         $scope.response = response;
@@ -360,6 +356,12 @@ $scope.isRouteAccordionOpen = function(info) {
   ];
 })
 
+.controller('WhatWeNeed', function($scope, $stateParams, $http) {
+  $http.get("farm").then(function(response){
+    $scope.needs = response.data;
+  });
+})
+
 .controller('MyAccount', function($scope, $stateParams, $http, AuthService) {
   $scope.role = parseInt(AuthService.role());
   $scope.name = AuthService.name();
@@ -391,24 +393,7 @@ $scope.isRouteAccordionOpen = function(info) {
       }
     });
   }
-
-
-
-  //console.log($scope.role);
 })
-
-/*var selected = [];
-
-$scope.clicked = function (member) {
-var index = selected.indexOf(member);
-if(index > -1) {
-selected.splice(index, 1);
-member.selected = false;
-} else {
-selected.push(member);
-member.selected = true;
-}
-}*/
 
 .controller('Waiver', function($scope, $stateParams, $http, $ionicPopup, $timeout, $state, $ionicViewService, AuthService) {
   // An alert dialog
