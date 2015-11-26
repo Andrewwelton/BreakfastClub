@@ -360,6 +360,10 @@ $scope.isRouteAccordionOpen = function(info) {
   ];
 })
 
+.controller('busWaiver', function($scope, $stateParams) {
+ //put bus waiver hur
+})
+
 .controller('MyAccount', function($scope, $stateParams, $http, AuthService) {
   $scope.role = parseInt(AuthService.role());
   $scope.name = AuthService.name();
