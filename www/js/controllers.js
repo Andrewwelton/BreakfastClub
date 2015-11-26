@@ -106,6 +106,7 @@ angular.module('starter.controllers', [])
 
 
 .controller('Routes', function ($scope, $stateParams, $http, $ionicLoading) {
+<<<<<<< HEAD
   /*$http.put("/api/route/1",
   {
 
@@ -114,6 +115,10 @@ angular.module('starter.controllers', [])
 
 $http.get("/api/route").then(function (response) {
   $scope.response = response;
+=======
+    $http.get("/api/route").then(function (response) {
+        $scope.response = response;
+>>>>>>> origin/master
 
   $scope.routes = angular.copy(response['data']);
 
@@ -129,6 +134,7 @@ $http.get("/api/route").then(function (response) {
     obj.routeType = str.split('');
 
 
+<<<<<<< HEAD
   });
 });
 
@@ -194,17 +200,73 @@ $scope.mapSetup = function (route) {
 
 };
 
+=======
+        });
+    });
+  $scope.shownRoute = null;
+  $scope.toggleAccordion = function (route) {
+    if ($scope.isAccordionOpen(route)) {
+      $scope.shownRoute = null;
+    } else {
+      $scope.shownRoute = route;
+      window.setTimeout(function(){
+        $scope.mapSetup(route);
+      }, 1000);
+    }
+  };
+
+  $scope.isAccordionOpen = function(route) {
+    return $scope.shownRoute === route;
+  };
+
+    $scope.mapSetup = function (route) {
+
+
+        var myLatlng = new google.maps.LatLng(37.3000, -120.4833);
+        var mapOptions = {
+            center: myLatlng,
+            zoom: 16,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.querySelector("#Route" + route.id + " #map"), mapOptions);
+
+        var coords = [
+            { lat: 43.530737, lng: -80.226274 },
+            { lat: 43.529803, lng: -80.224611 },
+            { lat: 43.529453, lng: -80.224128 },
+            { lat: 43.527594, lng: -80.226746 }
+
+        ];
+
+        var path = new google.maps.Polyline({
+            path: coords,
+            geodesic: true,
+            strokeColor: "#FFAA00",
+            strokeOpacity: 1.0,
+            strokeWeight: 5
+        });
+        map.setCenter(new google.maps.LatLng(43.530737, -80.226274));
+
+        path.setMap(map);
+         navigator.geolocation.getCurrentPosition(function (pos) {
+             $scope.myLocation = new google.maps.Marker({
+                 position: new google.maps.LatLng(43.530737, -80.226274),
+                 map: map,
+                title: "Start"
+             });
+         });
+
+         navigator.geolocation.getCurrentPosition(function (pos) {
+             $scope.myLocation = new google.maps.Marker({
+                 position: new google.maps.LatLng(43.527594, -80.226746),
+                 map: map,
+                 title: "End"
+             });
+         });
+
+    };
+>>>>>>> origin/master
 })
-
-// $scope.data = {
-//     clientSide: 'ng'
-// };
-//
-// $scope.onChange = function (item) {
-//     console.log("Route:", item.team);
-
-// };
-
 
 .controller('TeamList', function ($scope, $stateParams) {
   $scope.teams = [
@@ -401,11 +463,31 @@ $scope.isRouteAccordionOpen = function(info) {
   ];
 })
 
+.controller('busWaiver', function($scope, $stateParams, $http, AuthService, $state) {
+    var userID = parseInt(AuthService.id());
+    $scope.signBusWaiver = function(){
+        $http.put("/api/participants/" + userID, {"busStatus" : 1})
+        .success(function(response){
+            AuthService.login(AuthService.username(), AuthService.password()).then(function(r){
+                $state.go("app.myaccount");
+            });
+
+        })
+        .error(function(response){
+            alert("Unable to sign the waiver, please try again later.");
+        })
+    };
+})
+
 .controller('MyAccount', function($scope, $stateParams, $http, AuthService) {
   $scope.role = parseInt(AuthService.role());
   $scope.name = AuthService.name();
   $scope.email = AuthService.email();
-  $scope.busStatus = parseInt(AuthService.busStatus());
+  $scope.$watch(AuthService.busStatus, function(newValue, oldValue){
+      $scope.busStatus = parseInt(newValue);
+  });
+ // $scope.busStatus = parseInt(AuthService.busStatus());
+
 
 
   var teamID = parseInt(AuthService.teamID());

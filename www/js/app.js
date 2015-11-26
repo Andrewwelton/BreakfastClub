@@ -65,6 +65,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngMessages'])
       }
     }
   })
+  .state('app.busWaiver', {
+    url: '/busWaiver',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/busWaiver.html',
+        controller: 'busWaiver'
+      }
+    }
+  })
   .state('app.teams', {
     url: '/teams',
     views: {
