@@ -156,6 +156,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngMessages'])
     }
   })
 
+  .state('app.whatweneed', {
+    url: '/whatweneed',
+    params: {
+
+    },
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/whatweneed.html',
+        controller: 'WhatWeNeed'
+      }
+    }
+  })
+
   .state('app.myaccount', {
     url: '/myaccount',
     params: {
