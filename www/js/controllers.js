@@ -503,17 +503,28 @@ angular.module('starter.controllers', [])
 
 
     var teamID = parseInt(AuthService.teamID());
-    console.log(teamID);
-    if(teamID === 1){//this should be 0
-        $scope.onBusRoute = false;
-    }
-    else{
-        console.log("before the http call");
-        $http.get("/api/route/teamId/" + teamID).then(function(response){
-            console.log("print response next:");
-            console.log("Response: " + reponse);
-        });
+    var routeCountForMyTeam = 0;
+    $scope.onBusRoute = false;
 
+    if(teamID != 0){
+        $http.get("/api/route/teamId/" + teamID).then(function(response){
+            routeCountForMyTeam = response.data.length;
+
+            if(routeCountForMyTeam > 0){
+                for(var i = 0; i < routeCountForMyTeam; i++){
+                    var type = response.data[i].type;
+                    var typeBitmap = type.toString(2).split("");
+
+
+                    if(typeBitmap.length >= 3){
+                        if(typeBitmap[2] == "1"){
+                            $scope.onBusRoute = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        });
     }
 
 
