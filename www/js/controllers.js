@@ -223,24 +223,7 @@ angular.module('starter.controllers', [])
     ];
 })
 
-<<<<<<< Updated upstream
-.controller('Teams', function ($scope, $stateParams, AuthService) {
-    $scope.role = AuthService.role();
-    $scope.shownTeam = null;
-    $scope.shownRoute = null;
-    $scope.toggleTeamAccordion = function(info) {
-        if ($scope.isTeamAccordionOpen(info)) {
-            $scope.shownTeam = null;
-        } else {
-            $scope.shownTeam = info;
-        }
-        //Resize if an accordion is too big -- Might be needed
-        //$ionicScrollDelegate.resize();
-    };
-    $scope.isTeamAccordionOpen = function(info) {
-        return $scope.shownTeam === info;
-    };
-=======
+
 .controller('Teams', function ($scope, $stateParams, AuthService, $http) {
   $scope.role = AuthService.role();
   $scope.shownTeam = null;
@@ -290,7 +273,7 @@ angular.module('starter.controllers', [])
   $scope.isTeamAccordionOpen = function(info) {
     return $scope.shownTeam === info;
   };
->>>>>>> Stashed changes
+
 
     $scope.toggleRouteAccordion = function(info) {
         if ($scope.isRouteAccordionOpen(info)) {
