@@ -10,6 +10,11 @@
   border-color: #FFF;
 }
 
+.toggle input:checked + .track {
+  background-color: #FF9800 !important;
+  border-color: #FF9800 !important;
+}
+
 .error {
   color: red;
 }
