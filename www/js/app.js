@@ -61,7 +61,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngMessages'])
     views: {
       'menuContent': {
         templateUrl: 'templates/team.html',
-        controller: 'Teams'
+        controller: 'Team'
       }
     }
   })
@@ -149,6 +149,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngMessages'])
       'menuContent': {
         templateUrl: 'templates/livechat.html',
         controller: "LiveChat"
+      }
+    }
+  })
+
+  .state('app.whatweneed', {
+    url: '/whatweneed',
+    params: {
+
+    },
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/whatweneed.html',
+        controller: 'WhatWeNeed'
       }
     }
   })

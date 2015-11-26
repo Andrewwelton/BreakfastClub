@@ -101,11 +101,8 @@ angular.module('starter.controllers', [])
     $scope.test = [{"label":"Hello World"}, {"label":"Hello World 2"}, {"label":"Hello World 3"}];
 })
 
-
-
-
-
 .controller('Routes', function ($scope, $stateParams, $http, $ionicLoading) {
+
     $http.get("/api/route").then(function (response) {
         $scope.response = response;
 
@@ -121,10 +118,11 @@ angular.module('starter.controllers', [])
             str = obj.type.toString(2);
 
             obj.routeType = str.split('');
-
-
         });
     });
+
+
+
     $scope.shownRoute = null;
     $scope.toggleAccordion = function (route) {
         if ($scope.isAccordionOpen(route)) {
@@ -134,16 +132,19 @@ angular.module('starter.controllers', [])
             window.setTimeout(function(){
                 $scope.mapSetup(route);
             }, 1000);
+            // $scope.myLocation.setPosition(new google.maps.LatLng(route.startlat, route.startlong))
+            // $scope.map.setCenter(new google.maps.LatLng(route.startlat, route.startlong))
         }
+        //Resize if an accordion is too big -- Might be needed
+        //$ionicScrollDelegate.resize();
     };
 
     $scope.isAccordionOpen = function(route) {
         return $scope.shownRoute === route;
     };
 
+
     $scope.mapSetup = function (route) {
-
-
         var myLatlng = new google.maps.LatLng(37.3000, -120.4833);
         var mapOptions = {
             center: myLatlng,
@@ -230,7 +231,7 @@ angular.module('starter.controllers', [])
     ];
 })
 
-.controller('Teams', function ($scope, $stateParams, AuthService, $http) {
+.controller('Team', function ($scope, $stateParams, AuthService, $http) {
     $scope.role = AuthService.role();
     $scope.shownTeam = null;
     $scope.shownRoute = null;
@@ -238,20 +239,27 @@ angular.module('starter.controllers', [])
     var numMems = 0;
     var teamID = parseInt(AuthService.teamID());
 
+
     $http.get("/api/team/" + teamID).then(function(team){
-        //console.log(team);
         $scope.team = team;
     });
 
-    $http.get("/api/participants/teamId/" + teamID).then(function(teamMembers){
-        numMems = teamMembers['headers']['length'];
-        $scope.number = 5 - numMems;
-        $scope.teamMembers = teamMembers;
+    $http.get("/api/route").then(function(routes){
+        console.log(routes);
+        $scope.routes = routes;
+    });
 
+    $http.get("/api/participants/teamId/" + teamID).then(function(teamMembers){
+
+        numMems = teamMembers['data']['length'];
+        $scope.number = 5 - numMems;
+
+        $scope.teamMembers = teamMembers;
+        console.log(teamMembers);
     });
 
     $http.get("/api/route/teamId/" + teamID).then(function(teamRoutes){
-        console.log(teamRoutes);
+        //console.log(teamRoutes);
         $scope.teamRoutes = teamRoutes;
 
     });
@@ -326,11 +334,27 @@ $scope.isRouteAccordionOpen = function(info) {
 
 .controller('addRoute', function ($scope, $stateParams, $http) {
 
-    $http.get("/api/team").then(function(routes){
+
+    $http.get("/api/route").then(function(routes){
+        console.log(routes);
         $scope.routes = routes;
     });
 
     var selected = [];
+    $scope.addR = function() {
+        $scope.routes['data'].forEach(function(route) {
+            if(route.selected) {
+                $http.put("/api/route/" + route['id'], { 'teamId': 2 }).success(function(result) {
+                    console.log(result);
+                    $scope.resultPut = result;
+                }).error(function() {
+                    console.log("error");
+                });
+            }
+        });
+    }
+
+
 
     $scope.clicked = function (member) {
         var index = selected.indexOf(member);
@@ -341,7 +365,7 @@ $scope.isRouteAccordionOpen = function(info) {
             selected.push(member);
             member.selected = true;
         }
-    }
+    };
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
@@ -366,6 +390,12 @@ $scope.isRouteAccordionOpen = function(info) {
     $scope.test = [
         {title: "Testing How This Works", id: 1},
     ];
+})
+
+.controller('WhatWeNeed', function($scope, $stateParams, $http) {
+    $http.get("farm").then(function(response){
+        $scope.needs = response.data;
+    });
 })
 
 .controller('busWaiver', function($scope, $stateParams, $http, AuthService, $state) {
@@ -440,20 +470,8 @@ $scope.isRouteAccordionOpen = function(info) {
 
 
     //console.log($scope.role);
+
 })
-
-/*var selected = [];
-
-$scope.clicked = function (member) {
-var index = selected.indexOf(member);
-if(index > -1) {
-selected.splice(index, 1);
-member.selected = false;
-} else {
-selected.push(member);
-member.selected = true;
-}
-}*/
 
 .controller('Waiver', function($scope, $stateParams, $http, $ionicPopup, $timeout, $state, $ionicViewService, AuthService) {
     // An alert dialog
