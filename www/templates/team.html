@@ -17,7 +17,7 @@
       <p>
         <table>
             <tr ng-repeat="members in teamMembers['data']">
-              <td class="cell-pad">{{members['name']}}</td>
+              <td class="cell-pad">{{members['name']}} <span ng-if="members['type'] === 1">(C)</span></td>
               <td class="cell-pad">{{members['email']}}</td>
             </tr>
           <tr ng-repeat="i in getNumber(number) track by $index">
@@ -49,7 +49,7 @@
           </tr>
       </table>
 
-      <a class="button button-positive button-full" href="#/app/addroute">Choose Route(s)</a><br/>
+      <a class="button button-positive button-full" ng-click="goToAddRoute()">Choose Route(s)</a><br/>
 
       <img id="img" src="img/map.gif" width="100%"> </img><br /><br />
 
