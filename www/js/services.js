@@ -28,7 +28,7 @@ angular.module("starter")
           role = user.type;
           name = user.name;
           email = user.email;
-          teamID = user.teamID;
+          teamID = user.teamId;
           accessibleStatus = user.accessibleStatus;
           studentStatus = user.studentStatus;
           busStatus = user.busStatus;
