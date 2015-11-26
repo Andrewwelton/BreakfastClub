@@ -58,6 +58,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngMessages'])
   })
   .state('app.team', {
     url: '/team',
+    params: {
+      'teamId': null
+    },
     views: {
       'menuContent': {
         templateUrl: 'templates/team.html',

@@ -7,6 +7,11 @@
       <i ng-if="route.accessible" class="fa fa-wheelchair"></i>
     </ion-item>
     <ion-item class="item-accordion" ng-show="isTeamAccordionOpen(teaminfo)">
+      <div ng-if="show === 1">
+        <div style="border:1px solid grey;background:limegreen;padding:10px;">
+          <h2>Invite Sent!</h2>
+        </div><br/>
+      </div>
       <b>Team Name: </b> {{team['data'][0]['name']}}<br/><br/>
       <b>Team Members:</b><br/>
       <p>
@@ -17,10 +22,10 @@
             </tr>
           <tr ng-repeat="i in getNumber(number) track by $index">
             <td class="cell-pad"><label class="item item-input">
-              <input type="text" placeholder="Name">
+              <input type="text" placeholder="Name" ng-model="teamAdd[$index].name">
             </label></td>
             <td class="cell-pad"><label class="item item-input">
-              <input type="text" placeholder="Email">
+              <input type="text" placeholder="Email" ng-model="teamAdd[$index].email">
             </label></td>
           </tr>
         </table>
