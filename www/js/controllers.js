@@ -2,82 +2,82 @@ angular.module('starter.controllers', [])
 //Main controller for the application
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $state, AuthService) {
 
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+    // With the new view caching in Ionic, Controllers are only called
+    // when they are recreated or on app start, instead of every page change.
+    // To listen for when this page is active (for example, to refresh data),
+    // listen for the $ionicView.enter event:
+    //$scope.$on('$ionicView.enter', function(e) {
+    //});
 
-  // Form data for the login modal
-  $scope.loginData = {};
+    // Form data for the login modal
+    $scope.loginData = {};
 
-  // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
-      scope: $scope
-  }).then(function(modal) {
-      $scope.modal = modal;
-  });
-
-  $ionicModal.fromTemplateUrl('templates/teamcaptain.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.teamCaptain = modal;
-  });
-
-  $scope.$watch(AuthService.isAuthenticated, function(newValue, oldValue){
-      if(typeof newValue !== "boolean") {
-          $scope.loggedIn = newValue === "true";
-          $scope.role = AuthService.role();
-      } else {
-          $scope.loggedIn = newValue;
-          $scope.role = AuthService.role();
-      }
-  });
-  $scope.role = AuthService.role();
-
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
-  };
-
-  // Open the login modal
-  $scope.login = function() {
-      $scope.modal.show();
-  };
-
-  // Log out of the currently logged in account
-  $scope.logout = function() {
-      AuthService.logout();
-  };
-
-  $scope.teamCaptainPrompt = function() {
-    $scope.teamCaptain.show();
-  };
-
-  $scope.teamCaptainPromptClose = function() {
-    $scope.teamCaptain.hide();
-  }
-
-  $scope.teamCaptainContinue = function(event) {
-    $scope.teamCaptain.hide();
-    if(event.target.id == "no") {
-      $state.go("app.register",{"teamCaptain": false});
-    } else {
-      $state.go("app.register",{"teamCaptain": true});
-    }
-  }
-
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    AuthService.login($scope.loginData.username, $scope.loginData.password).then(function(success){
-      if(success) {
-        $scope.closeLogin();
-      } else {
-        $scope.loginError = true;
-      }
+    // Create the login modal that we will use later
+    $ionicModal.fromTemplateUrl('templates/login.html', {
+        scope: $scope
+    }).then(function(modal) {
+        $scope.modal = modal;
     });
-  }
+
+    $ionicModal.fromTemplateUrl('templates/teamcaptain.html', {
+        scope: $scope
+    }).then(function(modal) {
+        $scope.teamCaptain = modal;
+    });
+
+    $scope.$watch(AuthService.isAuthenticated, function(newValue, oldValue){
+        if(typeof newValue !== "boolean") {
+            $scope.loggedIn = newValue === "true";
+            $scope.role = AuthService.role();
+        } else {
+            $scope.loggedIn = newValue;
+            $scope.role = AuthService.role();
+        }
+    });
+    $scope.role = AuthService.role();
+
+    // Triggered in the login modal to close it
+    $scope.closeLogin = function() {
+        $scope.modal.hide();
+    };
+
+    // Open the login modal
+    $scope.login = function() {
+        $scope.modal.show();
+    };
+
+    // Log out of the currently logged in account
+    $scope.logout = function() {
+        AuthService.logout();
+    };
+
+    $scope.teamCaptainPrompt = function() {
+        $scope.teamCaptain.show();
+    };
+
+    $scope.teamCaptainPromptClose = function() {
+        $scope.teamCaptain.hide();
+    }
+
+    $scope.teamCaptainContinue = function(event) {
+        $scope.teamCaptain.hide();
+        if(event.target.id == "no") {
+            $state.go("app.register",{"teamCaptain": false});
+        } else {
+            $state.go("app.register",{"teamCaptain": true});
+        }
+    }
+
+    // Perform the login action when the user submits the login form
+    $scope.doLogin = function() {
+        AuthService.login($scope.loginData.username, $scope.loginData.password).then(function(success){
+            if(success) {
+                $scope.closeLogin();
+            } else {
+                $scope.loginError = true;
+            }
+        });
+    }
 })
 //TrickOrEat controller (AKA Home controller)
 //$scope are variables that can be used in the HTML
@@ -103,102 +103,178 @@ angular.module('starter.controllers', [])
 
 
 
+
 .controller('Routes', function ($scope, $stateParams, $ionicLoading) {
-  $scope.routes = [
-      {
-        "route": "Route 1",
-        "routeID": "route1",
-        "accessible": true,
-        "bus": true,
-        "busname":"2A",
-        "start": "50 Stone Rd",
-        "startlat": 43.530799,
-        "startlong":-80.226220,
-        "team": [{
-            "id": "1",
-            "name": "Fried Chicken"
-        }]
-      },
-      {
-        "route": "Route 2",
-        "routeID": "route2",
-        "start": "50 Stone Rd",
-        "busname": "None",
-        "startlat": 43.530799,
-        "startlong": -80.226220,
-        "accessible": true,
-        "bus": false,
-        "team": [{}]
-      },
-      {
-        "route": "Route 3",
-        "routeID": "route3",
-        "start": "50 Stone Rd",
-        "startlat": 43.530799,
-        "startlong": -80.226220,
-        "img": "test.png" ,
-        "accessible": true,
-        "bus": true,
-         "busname":"2B",
-        "team": [{}]
-      },
-      {
-        "route": "Route 4",
-        "routeID": "route4",
-        "start": "50 Stone Rd",
-        "startlat": 43.530799,
-        "startlong": -80.226220,
-        "accessible": true,
-        "busname":"None",
-        "bus": false,
-        "team": [
-          {
-            "id": "1",
-            "name": "Cheese Omelet"
-          },
-          {
-            "id": "2",
-            "name": "Bacon and Eggs"
-          }
-        ]
-      },
-      {
-        "route": "Route 5",
-        "routeID": "route5",
-        "start": "50 Stone Rd",
-        "startlat": 43.530799,
-        "startlong": -80.226220,
-        "accessible": false,
-        "busname":"3B",
-        "bus": true,
-        "team": [{}]
-      },
-      {
-        "route": "Route 6",
-        "routeID": "route6",
-        "start": "50 Stone Rd",
-        "startlat": 43.530799,
-        "startlong": -80.226220,
-        "accessible": true,
-        "bus": true,
-        "busname":"50",
-        "team": [{}]
-      },
-      {
-        "route": "Route 7",
-        "routeID": "route7",
-        "start": "50 Stone Rd",
-        "startlat": 43.530799,
-        "startlong": -80.226220,
-        "accessible": false,
-        "busname":"None",
-        "bus": false,
-        team: [{
-            "id": "1",
-            "name": "Rice Crackers",
-        }]
-      }
-  ];
+    $scope.routes = [
+        {
+            "route": "Route 1",
+            "routeID": "route1",
+            "accessible": true,
+            "bus": true,
+            "busname":"2A",
+            "start": "50 Stone Rd",
+            "startlat": 43.530799,
+            "startlong":-80.226220,
+            "team": [{
+                "id": "1",
+                "name": "Fried Chicken"
+            }]
+        },
+        {
+            "route": "Route 2",
+            "routeID": "route2",
+            "start": "50 Stone Rd",
+            "busname": "None",
+            "startlat": 43.530799,
+            "startlong": -80.226220,
+            "accessible": true,
+            "bus": false,
+            "team": [{}]
+        },
+        {
+            "route": "Route 3",
+            "routeID": "route3",
+            "start": "50 Stone Rd",
+            "startlat": 43.530799,
+            "startlong": -80.226220,
+            "img": "test.png" ,
+            "accessible": true,
+            "bus": true,
+            "busname":"2B",
+            "team": [{}]
+        },
+        {
+            "route": "Route 4",
+            "routeID": "route4",
+            "start": "50 Stone Rd",
+            "startlat": 43.530799,
+            "startlong": -80.226220,
+            "accessible": true,
+            "busname":"None",
+            "bus": false,
+            "team": [
+                {
+                    "id": "1",
+                    "name": "Cheese Omelet"
+                },
+                {
+                    "id": "2",
+                    "name": "Bacon and Eggs"
+                }
+            ]
+        },
+        {
+            "route": "Route 5",
+            "routeID": "route5",
+            "start": "50 Stone Rd",
+            "startlat": 43.530799,
+            "startlong": -80.226220,
+            "accessible": false,
+            "busname":"3B",
+            "bus": true,
+            "team": [{}]
+        },
+        {
+            "route": "Route 6",
+            "routeID": "route6",
+            "start": "50 Stone Rd",
+            "startlat": 43.530799,
+            "startlong": -80.226220,
+            "accessible": true,
+            "bus": true,
+            "busname":"50",
+            "team": [{}]
+        },
+        {
+            "route": "Route 7",
+            "routeID": "route7",
+            "start": "50 Stone Rd",
+            "startlat": 43.530799,
+            "startlong": -80.226220,
+            "accessible": false,
+            "busname":"None",
+            "bus": false,
+            team: [{
+                "id": "1",
+                "name": "Rice Crackers",
+            }]
+        }
+    ];
+    $scope.shownRoute = null;
+    $scope.toggleAccordion = function (route) {
+        if ($scope.isAccordionOpen(route)) {
+            $scope.shownRoute = null;
+        } else {
+            $scope.shownRoute = route;
+            window.setTimeout(function(){
+                $scope.mapSetup(route);
+            }, 1000);
+            // $scope.myLocation.setPosition(new google.maps.LatLng(route.startlat, route.startlong))
+            // $scope.map.setCenter(new google.maps.LatLng(route.startlat, route.startlong))
+        }
+        //Resize if an accordion is too big -- Might be needed
+        //$ionicScrollDelegate.resize();
+    };
+
+    $scope.isAccordionOpen = function(route) {
+        return $scope.shownRoute === route;
+    };
+
+    $scope.mapSetup = function(route) {
+        var myLatlng = new google.maps.LatLng(37.3000, -120.4833);
+        var mapOptions = {
+            center: myLatlng,
+            zoom: 16,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.querySelector("#" +route.routeID+ " #map"), mapOptions);
+        map.setCenter(new google.maps.LatLng(route.startlat, route.startlong));
+        // navigator.geolocation.getCurrentPosition(function (pos) {
+        //     $scope.myLocation = new google.maps.Marker({
+        //         position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
+        //         map: map,
+        //         title: "My Location"
+        //     });
+        // });
+    };
+
+    // $scope.data = {
+    //     clientSide: 'ng'
+    // };
+    //
+    // $scope.onChange = function (item) {
+    //     console.log("Route:", item.team);
+
+})
+.controller('Routes', function ($scope, $stateParams, $http, $ionicLoading) {
+    /*$http.put("/api/route/1",
+        {
+
+            "type" : 6
+        }).then(function () { console.log("test") });*/
+
+    $http.get("/api/route").then(function (response) {
+        $scope.response = response;
+
+        $scope.routes = angular.copy(response['data']);
+
+        angular.forEach($scope.routes, function (obj) {
+            $http.get("/api/team/"+obj.teamId).then(function (response) {
+                obj.team = response['data'][0]['name'];
+
+            });
+
+
+            str = obj.type.toString(2);
+
+            obj.routeType = str.split('');
+
+
+        });
+    });
+
+
+
   $scope.shownRoute = null;
   $scope.toggleAccordion = function (route) {
     if ($scope.isAccordionOpen(route)) {
@@ -227,7 +303,7 @@ angular.module('starter.controllers', [])
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     var map = new google.maps.Map(document.querySelector("#" +route.routeID+ " #map"), mapOptions);
-    map.setCenter(new google.maps.LatLng(route.startlat, route.startlong));
+    map.setCenter(new google.maps.LatLng(43.530737, -80.226274));
     // navigator.geolocation.getCurrentPosition(function (pos) {
     //     $scope.myLocation = new google.maps.Marker({
     //         position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
@@ -243,275 +319,288 @@ angular.module('starter.controllers', [])
   //
   // $scope.onChange = function (item) {
   //     console.log("Route:", item.team);
+
     // };
 })
 
 .controller('TeamList', function ($scope, $stateParams) {
-  $scope.teams = [
-      {
-        "team": "Team Fun",
-        "accessible": false,
-        "routes": 2
-      },
-      {
-        "team": "Team Weird",
-        "accessible": false,
-        "routes": 0
-      },
-      {
-        "team": "Team Smart",
-        "img": "test.png" ,
-        "accessible": false,
-        "routes": 0
-      },
-      {
-        "team": "Team Silly",
-        "accessible": true,
-        "routes": 1
-      },
-      {
-        "team": "Team Crazy",
-        "accessible": false,
-        "routes": 2
-      },
-      {
-        "team": "Team Fluffy",
-        "accessible": false,
-        "routes": 0
-      },
-      {
-        "team": "Team Lazy",
-        "accessible": false,
-        "routes": 1
-      }
-  ];
+    $scope.teams = [
+        {
+            "team": "Team Fun",
+            "accessible": false,
+            "routes": 2
+        },
+        {
+            "team": "Team Weird",
+            "accessible": false,
+            "routes": 0
+        },
+        {
+            "team": "Team Smart",
+            "img": "test.png" ,
+            "accessible": false,
+            "routes": 0
+        },
+        {
+            "team": "Team Silly",
+            "accessible": true,
+            "routes": 1
+        },
+        {
+            "team": "Team Crazy",
+            "accessible": false,
+            "routes": 2
+        },
+        {
+            "team": "Team Fluffy",
+            "accessible": false,
+            "routes": 0
+        },
+        {
+            "team": "Team Lazy",
+            "accessible": false,
+            "routes": 1
+        }
+    ];
 })
 
 .controller('Teams', function ($scope, $stateParams, AuthService) {
-  $scope.role = AuthService.role();
-  $scope.shownTeam = null;
-  $scope.shownRoute = null;
-  $scope.toggleTeamAccordion = function(info) {
-    if ($scope.isTeamAccordionOpen(info)) {
-      $scope.shownTeam = null;
-    } else {
-      $scope.shownTeam = info;
-    }
-    //Resize if an accordion is too big -- Might be needed
-    //$ionicScrollDelegate.resize();
-  };
-  $scope.isTeamAccordionOpen = function(info) {
-    return $scope.shownTeam === info;
-  };
+    $scope.role = AuthService.role();
+    $scope.shownTeam = null;
+    $scope.shownRoute = null;
+    $scope.toggleTeamAccordion = function(info) {
+        if ($scope.isTeamAccordionOpen(info)) {
+            $scope.shownTeam = null;
+        } else {
+            $scope.shownTeam = info;
+        }
+        //Resize if an accordion is too big -- Might be needed
+        //$ionicScrollDelegate.resize();
+    };
+    $scope.isTeamAccordionOpen = function(info) {
+        return $scope.shownTeam === info;
+    };
 
-  $scope.toggleRouteAccordion = function(info) {
-    if ($scope.isRouteAccordionOpen(info)) {
-      $scope.shownRoute = null;
-    } else {
-      $scope.shownRoute = info;
-    }
-    //Resize if an accordion is too big -- Might be needed
-    //$ionicScrollDelegate.resize();
-  };
-  $scope.isRouteAccordionOpen = function(info) {
-    return $scope.shownRoute === info;
-  };
+    $scope.toggleRouteAccordion = function(info) {
+        if ($scope.isRouteAccordionOpen(info)) {
+            $scope.shownRoute = null;
+        } else {
+            $scope.shownRoute = info;
+        }
+        //Resize if an accordion is too big -- Might be needed
+        //$ionicScrollDelegate.resize();
+    };
+    $scope.isRouteAccordionOpen = function(info) {
+        return $scope.shownRoute === info;
+    };
 
-  // $scope.data = {
-  //     clientSide: 'ng'
-  // };
-  //
-  // $scope.onChange = function (item) {
-  //     console.log("Route:", item.team);
-  // };
+    // $scope.data = {
+    //     clientSide: 'ng'
+    // };
+    //
+    // $scope.onChange = function (item) {
+    //     console.log("Route:", item.team);
+    // };
 })
 
 .controller('addRoute', function ($scope, $stateParams) {
-  $scope.routes = [
-      {
-        "route": "Route 1",
-        "accessible": true,
-        "team": [{
-            "id": "1",
-            "name": "Fried Chicken"
-        }]
-      },
-      {
-        "route": "Route 2",
-        "accessible": true,
-        "team": [{}]
-      },
-      {
-        "route": "Route 3",
-        "img": "test.png" ,
-        "accessible": true,
-        "team": [{}]
-      },
-      {
-        "route": "Route 4",
-        "accessible": true,
-        "team": [
-          {
-            "id": "1",
-            "name": "Cheese Omelet"
-          },
-          {
-            "id": "2",
-            "name": "Bacon and Eggs"
-          }
-        ]
-      },
-      {
-        "route": "Route 5",
-        "accessible": false,
-        "team": [{}]
-      },
-      {
-        "route": "Route 6",
-        "accessible": true,
-        "team": [{}]
-      },
-      {
-        "route": "Route 7",
-        "accessible": false,
-        team: [{
-            "id": "1",
-            "name": "Rice Crackers",
-        }]
-      }
-  ];
-  var selected = [];
+    $scope.routes = [
+        {
+            "route": "Route 1",
+            "accessible": true,
+            "team": [{
+                "id": "1",
+                "name": "Fried Chicken"
+            }]
+        },
+        {
+            "route": "Route 2",
+            "accessible": true,
+            "team": [{}]
+        },
+        {
+            "route": "Route 3",
+            "img": "test.png" ,
+            "accessible": true,
+            "team": [{}]
+        },
+        {
+            "route": "Route 4",
+            "accessible": true,
+            "team": [
+                {
+                    "id": "1",
+                    "name": "Cheese Omelet"
+                },
+                {
+                    "id": "2",
+                    "name": "Bacon and Eggs"
+                }
+            ]
+        },
+        {
+            "route": "Route 5",
+            "accessible": false,
+            "team": [{}]
+        },
+        {
+            "route": "Route 6",
+            "accessible": true,
+            "team": [{}]
+        },
+        {
+            "route": "Route 7",
+            "accessible": false,
+            team: [{
+                "id": "1",
+                "name": "Rice Crackers",
+            }]
+        }
+    ];
+    var selected = [];
 
-  $scope.clicked = function (member) {
-      var index = selected.indexOf(member);
-      if(index > -1) {
-          selected.splice(index, 1);
-          member.selected = false;
-      } else {
-          selected.push(member);
-          member.selected = true;
-      }
-  }
+    $scope.clicked = function (member) {
+        var index = selected.indexOf(member);
+        if(index > -1) {
+            selected.splice(index, 1);
+            member.selected = false;
+        } else {
+            selected.push(member);
+            member.selected = true;
+        }
+    }
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
-  $scope.test = [
-    {title: "Testing How This Works", id: 1},
-  ];
-  $scope.temp = "ASDF"
+    $scope.test = [
+        {title: "Testing How This Works", id: 1},
+    ];
+    $scope.temp = "ASDF"
 })
 
 
 
 .controller('Notifications', function($scope, $stateParams, AuthService) {
-  $scope.test = [
-    {title: "Testing How This Works", id: 1},
-  ];
-  $scope.role = AuthService.role();
+    $scope.test = [
+        {title: "Testing How This Works", id: 1},
+    ];
+    $scope.role = AuthService.role();
 
 
 })
 
 .controller('LiveChat', function($scope, $stateParams) {
-  $scope.test = [
-    {title: "Testing How This Works", id: 1},
-  ];
+    $scope.test = [
+        {title: "Testing How This Works", id: 1},
+    ];
 })
 
 .controller('MyAccount', function($scope, $stateParams, $http, AuthService) {
-  $scope.role = parseInt(AuthService.role());
-  $scope.name = AuthService.name();
-  $scope.email = AuthService.email();
-  $scope.busStatus = parseInt(AuthService.busStatus());
+    $scope.role = parseInt(AuthService.role());
+    $scope.name = AuthService.name();
+    $scope.email = AuthService.email();
+    $scope.busStatus = parseInt(AuthService.busStatus());
 
 
-  var teamID = parseInt(AuthService.teamID());
-  if(teamID === 0){
-      $scope.onBusRoute = false;
-  }
-  else{
-      $http.get("/api/route/teamId/" + teamID).then(function(response){
-        console.log(reponse);
+    var teamID = parseInt(AuthService.teamID());
+    var routeCountForMyTeam = 0;
+    $scope.onBusRoute = false;
+
+    if(teamID != 0){
+        $http.get("/api/route/teamId/" + teamID).then(function(response){
+            routeCountForMyTeam = response.data.length;
+
+            if(routeCountForMyTeam > 0){
+                for(var i = 0; i < routeCountForMyTeam; i++){
+                    var type = response.data[i].type;
+                    var typeBitmap = type.toString(2).split("");
 
 
-      });
+                    if(typeBitmap.length >= 3){
+                        if(typeBitmap[2] == "1"){
+                            $scope.onBusRoute = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        });
+    }
 
-  }
 
 
-
-  console.log($scope.role);
+    //console.log($scope.role);
 })
 
 /*var selected = [];
 
 $scope.clicked = function (member) {
-    var index = selected.indexOf(member);
-    if(index > -1) {
-        selected.splice(index, 1);
-        member.selected = false;
-    } else {
-        selected.push(member);
-        member.selected = true;
-    }
+var index = selected.indexOf(member);
+if(index > -1) {
+selected.splice(index, 1);
+member.selected = false;
+} else {
+selected.push(member);
+member.selected = true;
+}
 }*/
 
 .controller('Waiver', function($scope, $stateParams, $http, $ionicPopup, $timeout, $state, $ionicViewService, AuthService) {
-  // An alert dialog
-  console.log($stateParams);
-  $scope.registerData = $stateParams.registerData;
-  console.log($scope.registerData);
-  $scope.teamCaptain = $stateParams.teamCaptain;
-  $scope.showAlert = function() {
-    var alertPopup = $ionicPopup.alert({
-      title: 'Warning!',
-      template: 'You must sign the waiver'
-    });
-    alertPopup.then(function(res) {
-      console.log('Thank you for not eating my delicious ice cream cone');
-    });
-  };
-
-  $scope.signWaiver = function() {
-    console.log("Registering with: ", $scope.registerData);
-    if($scope.teamCaptain===true) {
-      //create team first
-    } else {
-      $http.post("/api/participants/",
-        {
-          "name": $scope.registerData.firstname + " " + $scope.registerData.lastname,
-          "type": 1,
-          "email": $scope.registerData.email,
-          "username": $scope.registerData.username,
-          "password": $scope.registerData.password,
-          "teamId": null,
-          "accessibleStatus": $scope.registerData.accessibilityNeeds,
-          "studentStatus": 0,
-          "busStatus": 0,
-          "participantStatus": 1
-        }
-      ).then(function(response){
-        console.log(response);
-        AuthService.login($scope.registerData.username, $scope.registerData.password);
-        $ionicViewService.nextViewOptions({
-            disableBack: true
+    // An alert dialog
+    console.log($stateParams);
+    $scope.registerData = $stateParams.registerData;
+    console.log($scope.registerData);
+    $scope.teamCaptain = $stateParams.teamCaptain;
+    $scope.showAlert = function() {
+        var alertPopup = $ionicPopup.alert({
+            title: 'Warning!',
+            template: 'You must sign the waiver'
         });
-        $state.go("app.home", {}, {"location": "replace"});
-      });
+        alertPopup.then(function(res) {
+            console.log('Thank you for not eating my delicious ice cream cone');
+        });
+    };
+
+    $scope.signWaiver = function() {
+        console.log("Registering with: ", $scope.registerData);
+        if($scope.teamCaptain===true) {
+            //create team first
+        } else {
+            $http.post("/api/participants/",
+            {
+                "name": $scope.registerData.firstname + " " + $scope.registerData.lastname,
+                "type": 1,
+                "email": $scope.registerData.email,
+                "username": $scope.registerData.username,
+                "password": $scope.registerData.password,
+                "teamId": null,
+                "accessibleStatus": $scope.registerData.accessibilityNeeds,
+                "studentStatus": 0,
+                "busStatus": 0,
+                "participantStatus": 1
+            }
+        ).then(function(response){
+            console.log(response);
+            AuthService.login($scope.registerData.username, $scope.registerData.password);
+            $ionicViewService.nextViewOptions({
+                disableBack: true
+            });
+            $state.go("app.home", {}, {"location": "replace"});
+        });
     }
-  };
+};
 })
 
 .controller('Register', function($scope, $stateParams, $state, AuthService) {
-  $scope.registerData = {};
-  $scope.registerData.teamPrivacy = "public";
-  $scope.teamCaptain = $stateParams.teamCaptain;
-  $scope.register = function(registerForm) {
-    if(!registerForm.$valid) {
-      return;
-    } else {
-      console.log($scope.registerData);
-      $state.go("app.waiver",{"registerData": $scope.registerData, "teamCaptain": $scope.teamCaptain});
-    }
-  };
+    $scope.registerData = {};
+    $scope.registerData.teamPrivacy = "public";
+    $scope.teamCaptain = $stateParams.teamCaptain;
+    $scope.register = function(registerForm) {
+        if(!registerForm.$valid) {
+            return;
+        } else {
+            console.log($scope.registerData);
+            $state.go("app.waiver",{"registerData": $scope.registerData, "teamCaptain": $scope.teamCaptain});
+        }
+    };
 });

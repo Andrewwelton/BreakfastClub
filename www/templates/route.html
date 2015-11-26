@@ -6,23 +6,23 @@
               <ion-item class="item-stable" ng-click="toggleAccordion(route)" ng-class="{active: isAccordionOpen(route)}">
                 <i class="icon" ng-class="isAccordionOpen(route) ? 'ion-minus' : 'ion-plus'"></i>
                 &nbsp;
-                {{route.route}}
+                {{route.name}}
                 <div class="route-icons">
-                  <i ng-if="route.bus" class="fa fa-bus"></i>
-                  <i ng-if="route.accessible" class="fa fa-wheelchair"></i>
+                  <i ng-if="route.routeType[0] == 1 && route.routeType.length == 3" class="fa fa-car"></i>
+                  <i ng-if="(route.routeType[1] == 1 && route.routeType.length == 3) || (route.routeType[0] == 1 && route.routeType.length == 2)" class="fa fa-male"></i>
+                  <i ng-if="(route.routeType[2] == 1 && route.routeType.length == 3) || (route.routeType[1] == 1 && route.routeType.length == 2) || (route.routeType[0] == 1 && route.routeType.length == 1)" class="fa fa-bus"></i>
+                  <i ng-if="route.accessibility == 1" class="fa fa-wheelchair"></i>
                 </div>
               </ion-item>
                 <ion-item class="item-accordion" ng-show="isAccordionOpen(route)">
-                    {{route.start}}
+                    {{route.waypoints}}
                     
                 </ion-item>
                 <ion-item class="item-accordion" ng-show="isAccordionOpen(route)">
-                    Bus: {{route.busname}}
+                    {{route.team}}
+
                 </ion-item>
 
-                <ion-item class="item-accordion" ng-show="isAccordionOpen(route)" ng-repeat="teams in route.team">
-                       <span ng-if="teams.id">Team {{teams.id}}: </span>{{teams.name}}
-                </ion-item>
                     <div id="map" data-tap-disabled="true" ng-if="isAccordionOpen(route)"></div>
           </div>
           </ion-list>
