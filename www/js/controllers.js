@@ -418,10 +418,28 @@ angular.module('starter.controllers', [])
   ];
 })
 
-.controller('MyAccount', function($scope, $stateParams, AuthService) {
+.controller('MyAccount', function($scope, $stateParams, $http, AuthService) {
   $scope.role = parseInt(AuthService.role());
   $scope.name = AuthService.name();
   $scope.email = AuthService.email();
+  $scope.busStatus = parseInt(AuthService.busStatus());
+
+
+  var teamID = parseInt(AuthService.teamID());
+  if(teamID === 0){
+      $scope.onBusRoute = false;
+  }
+  else{
+      $http.get("/api/route/teamId/" + teamID).then(function(response){
+        console.log(reponse);
+
+
+      });
+
+  }
+
+
+
   console.log($scope.role);
 })
 
