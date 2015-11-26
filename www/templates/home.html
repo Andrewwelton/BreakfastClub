@@ -2,27 +2,29 @@
   <div class="bar bar-subheader">
     <div class="button-bar">
       <!--Not Logged In HTML-->
-      <a class="button button-positive" ng-click="teamCaptainPrompt()" ng-if="loggedIn===false">Register</a>
-      <button class="button button-positive" ng-click="login()" ng-if="loggedIn===false">Log In</button>
+      <a class="button trick-button" ng-click="teamCaptainPrompt()" ng-if="loggedIn===false">Register</a>
+      <button class="button trick-button" ng-click="login()" ng-if="loggedIn===false">Log In</button>
 
       <!--Logged In HTML-->
-      <a class="button button-positive" href="#/app/myaccount" ng-if="loggedIn===true">My Account</a>
-      <button class="button button-positive" ng-click="logout()" ng-if="loggedIn===true">Log Out</button>
+      <a class="button trick-button" href="#/app/myaccount" ng-if="loggedIn===true">My Account</a>
+      <button class="button trick-button" ng-click="logout()" ng-if="loggedIn===true">Log Out</button>
     </div>
   </div>
   <ion-content class="has-subheader" style="padding:20px;">
     <h1>Home</h1>
-    <img id="img" src="img/placeholder.jpg" width="100%"> </img>
-    <p>{{response}}
+    <img id="img" src="img/trick-or-eat.jpg" width="100%"> </img>
+    <p>{{response}}</p>
     <p>&nbsp;&nbsp;&nbsp;&nbsp;Trick or Eat is a youth-led national event that puts a new spin on the annual night of giving – Halloween!
       Thousands of Trick or Eaters across Canada, go door to door to collect food for local community organizations, and
       funds to support students advocating for good food for all. Trick or Eat is a national day of action, for young
       people to come together and actively show that they want to see a difference on the issue of hunger on their campuses
       and in their communities.
     </p>
-
     <p> To make a donation, please follow the
       <a href="https://secure.e2rm.com/registrant/donate.aspx?EventID=16241&LangPref=en-CA&Referrer=http%3a%2f%2fwww.mealexchange.com%2f"> link</a>
+    </p>
+    <p>
+      &nbsp;
     </p>
   </ion-content>
 </ion-view>

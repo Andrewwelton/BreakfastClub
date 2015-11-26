@@ -82,7 +82,7 @@ angular.module('starter.controllers', [])
 //TrickOrEat controller (AKA Home controller)
 //$scope are variables that can be used in the HTML
 //AuthService is needed to handle logins
-.controller('TrickOrEat', function($scope, $ionicHistory, $http, AuthService) {
+.controller('TrickOrEat', function($scope, $ionicHistory, $http, $ionicScrollDelegate, AuthService) {
     //Watches the value of AuthService.isAuthenticated waiting for a change.
     //The value is sometimes returned as a string, hence the conversion
     $scope.$watch(AuthService.isAuthenticated, function(newValue, oldValue){
@@ -92,9 +92,10 @@ angular.module('starter.controllers', [])
             $scope.loggedIn = newValue;
         }
     });
-    $http.get("/api/team/", {"id":32}).then(function(response){
+    $http.get("/api/team/1", {"id":1}).then(function(response){
       console.log(response);
       $scope.response = response;
+      $ionicScrollDelegate.resize();
     });
     // Example of a variable to iterate over
     $scope.test = [{"label":"Hello World"}, {"label":"Hello World 2"}, {"label":"Hello World 3"}];

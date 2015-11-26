@@ -28,18 +28,23 @@
     <ion-content>
       <ion-list>
         <ion-item menu-close ng-click="login()" ng-if="loggedIn===false">
+          <i class="fa fa-sign-in"></i>
           Login
         </ion-item>
         <ion-item menu-close href="#/app/home">
+          <i class="fa fa-home"></i>
           Home
         </ion-item>
         <ion-item menu-close href="#/app/team" ng-if="role!==0 && loggedIn===true">
+          <i class="fa fa-users"></i>
           Team
         </ion-item>
         <ion-item menu-close href="#/app/teams" ng-if="role===0">
+          <i class="fa fa-users"></i>
           Teams
         </ion-item>
          <ion-item menu-close href="#/app/route">
+           <i class="fa fa-compass"></i>
            Routes
          </ion-item>
       </ion-list>

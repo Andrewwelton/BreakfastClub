@@ -1,4 +1,15 @@
-/* Empty. Add your own CSS if you like */
+.trick-button {
+  background-color: #FF9800;
+  color: #000;
+  border-color: #000;
+}
+
+.trick-button.activated {
+  background-color: #000;
+  color: #FFF;
+  border-color: #FFF;
+}
+
 .error {
   color: red;
 }
