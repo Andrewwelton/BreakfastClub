@@ -1,6 +1,5 @@
 ﻿<ion-view view-title="Routes">
     <ion-content ng-init="init()">
-        {{response}}
         <h1>Routes</h1>
           <ion-list>
             <div id="{{route.routeID}}" ng-repeat="route in routes">
@@ -9,7 +8,9 @@
                 &nbsp;
                 {{route.name}}
                 <div class="route-icons">
-                  <i ng-if="route.type == 0" class="fa fa-bus"></i>
+                  <i ng-if="route.routeType[0] == 1 && route.routeType.length == 3" class="fa fa-car"></i>
+                  <i ng-if="(route.routeType[1] == 1 && route.routeType.length == 3) || (route.routeType[0] == 1 && route.routeType.length == 2)" class="fa fa-male"></i>
+                  <i ng-if="(route.routeType[2] == 1 && route.routeType.length == 3) || (route.routeType[1] == 1 && route.routeType.length == 2) || (route.routeType[0] == 1 && route.routeType.length == 1)" class="fa fa-bus"></i>
                   <i ng-if="route.accessibility == 1" class="fa fa-wheelchair"></i>
                 </div>
               </ion-item>
@@ -17,8 +18,12 @@
                     {{route.waypoints}}
                     
                 </ion-item>
+                <ion-item class="item-accordion" ng-show="isAccordionOpen(route)">
+                    {{route.team}}
 
-                    <!--<div id="map" data-tap-disabled="true" ng-if="isAccordionOpen(route)"></div>-->
+                </ion-item>
+
+                    <div id="map" data-tap-disabled="true" ng-if="isAccordionOpen(route)"></div>
           </div>
           </ion-list>
     </ion-content>

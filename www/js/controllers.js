@@ -103,86 +103,30 @@ angular.module('starter.controllers', [])
 
 
 .controller('Routes', function ($scope, $stateParams, $http, $ionicLoading) {
-    $http.post("/api/route",
+    /*$http.put("/api/route/1",
         {
-            "name": "Route 1",
-            "type": 0,
-            "accessibility": 1,
-            "maxParticipants": 5,
-            "waypoints": "Loren Ipsum",
-        }).then(function () { console.log("test") });
-
+           
+            "type" : 6
+        }).then(function () { console.log("test") });*/
 
     $http.get("/api/route").then(function (response) {
-        console.log(response);
         $scope.response = response;
 
-        $scope.routes = [
-      {
-          "name": "Route 1",
-          "id": 1,
-          "TeamId": 1,
-          "accessibility": 1,
-          "type": 0,
-          "maxParticipants": 5,
-          "waypoints": "50 Stone Rd",
+        $scope.routes = angular.copy(response['data']);
 
-      },
-      {
-          "name": "Route 2",
-          "id": 2,
-          "TeamId": 12,
-          "waypoints": "50 Stone Rd",
-          "accessibility": 1,
-          "maxParticipants": 5,
-          "type": 1,
-      },
-      {
-          "name": "Route 3",
-          "id": 3,
-          "TeamId": 8,
-          "waypoints": "50 Stone Rd",
-          "accessibility": 1,
-          "maxParticipants": 4,
-          "type": 0,
-      },
-      {
-          "name": "Route 4",
-          "id": 4,
-          "TeamId": 11,
-          "waypoints": "50 Stone Rd",
-          "accessibility": 1,
-          "maxParticipants": 5,
-          "type": 1,
-      },
-      {
-          "name": "Route 5",
-          "id": 5,
-          "TeamId": 5,
-          "waypoints": "50 Stone Rd",
-          "accessibility": 0,
-          "maxParticipants": 4,
-          "type": 0,
-      },
-      {
-          "name": "Route 6",
-          "id": 6,
-          "TeamId": 7,
-          "waypoints": "50 Stone Rd",
-          "accessibility": 1,
-          "maxParticipants": 5,
-          "type": 0,
-      },
-      {
-          "name": "Route 7",
-          "id": 7,
-          "TeamId": 6,
-          "waypoints": "50 Stone Rd",
-          "accessibility": 0,
-          "maxParticipants": 5,
-          "type": 1,
-      }
-        ];
+        angular.forEach($scope.routes, function (obj) {
+            $http.get("/api/team/"+obj.teamId).then(function (response) {
+                obj.team = response['data'][0]['name'];
+                 
+            });
+
+
+            str = obj.type.toString(2);
+
+            obj.routeType = str.split('');
+
+            
+        });
     });
 
   
@@ -193,9 +137,9 @@ angular.module('starter.controllers', [])
       $scope.shownRoute = null;
     } else {
       $scope.shownRoute = route;
-      /*window.setTimeout(function(){
+      window.setTimeout(function(){
         $scope.mapSetup(route);
-      }, 1000);*/
+      }, 1000);
       // $scope.myLocation.setPosition(new google.maps.LatLng(route.startlat, route.startlong))
       // $scope.map.setCenter(new google.maps.LatLng(route.startlat, route.startlong))
     }
@@ -207,7 +151,7 @@ angular.module('starter.controllers', [])
     return $scope.shownRoute === route;
   };
 
-  /*$scope.mapSetup = function(route) {
+  $scope.mapSetup = function(route) {
     var myLatlng = new google.maps.LatLng(37.3000, -120.4833);
     var mapOptions = {
         center: myLatlng,
@@ -215,7 +159,7 @@ angular.module('starter.controllers', [])
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     var map = new google.maps.Map(document.querySelector("#" +route.routeID+ " #map"), mapOptions);
-    map.setCenter(new google.maps.LatLng(route.startlat, route.startlong));
+    map.setCenter(new google.maps.LatLng(43.530737, -80.226274));
     // navigator.geolocation.getCurrentPosition(function (pos) {
     //     $scope.myLocation = new google.maps.Marker({
     //         position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
@@ -223,7 +167,7 @@ angular.module('starter.controllers', [])
     //         title: "My Location"
     //     });
     // });
-  };*/
+  };
 
   // $scope.data = {
   //     clientSide: 'ng'
