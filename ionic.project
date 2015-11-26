@@ -11,8 +11,8 @@
       "proxyUrl": "http://131.104.49.63/api/participants/"
     },
     {
-        "path": "/api/route",
-        "proxyUrl": "http://131.104.49.63/api/route/"
+      "path": "/api/route",
+      "proxyUrl": "http://131.104.49.63/api/route/"
     }
   ]
 }
