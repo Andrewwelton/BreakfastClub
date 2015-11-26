@@ -103,7 +103,7 @@ angular.module('starter.controllers', [])
 
 
 
-<<<<<<< HEAD
+
 .controller('Routes', function ($scope, $stateParams, $ionicLoading) {
     $scope.routes = [
         {
@@ -244,7 +244,8 @@ angular.module('starter.controllers', [])
     //
     // $scope.onChange = function (item) {
     //     console.log("Route:", item.team);
-=======
+
+})
 .controller('Routes', function ($scope, $stateParams, $http, $ionicLoading) {
     /*$http.put("/api/route/1",
         {
@@ -318,7 +319,7 @@ angular.module('starter.controllers', [])
   //
   // $scope.onChange = function (item) {
   //     console.log("Route:", item.team);
->>>>>>> routes
+
     // };
 })
 
