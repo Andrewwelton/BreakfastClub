@@ -92,7 +92,7 @@ angular.module('starter.controllers', [])
             $scope.loggedIn = newValue;
         }
     });
-    $http.get("/api/team/1", {"id":1}).then(function(response){
+    $http.get("/api/team/1").then(function(response){
       console.log(response);
       $scope.response = response;
       $ionicScrollDelegate.resize();
