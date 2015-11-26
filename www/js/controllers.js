@@ -364,7 +364,10 @@ angular.module('starter.controllers', [])
     ];
 })
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 .controller('Teams', function ($scope, $stateParams, AuthService, $http) {
   $scope.role = AuthService.role();
   $scope.shownTeam = null;
@@ -414,7 +417,10 @@ angular.module('starter.controllers', [])
   $scope.isTeamAccordionOpen = function(info) {
     return $scope.shownTeam === info;
   };
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 
     $scope.toggleRouteAccordion = function(info) {
         if ($scope.isRouteAccordionOpen(info)) {
