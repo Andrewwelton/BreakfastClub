@@ -10,17 +10,17 @@
 
       "path": "/api/participants/",
       "proxyUrl": "http://131.104.49.63/api/participants/"
-<<<<<<< HEAD
+
 
       "path": "/api/route/",
       "proxyUrl": "http://131.104.49.63/api/route/"
 
-=======
+
     },
     {
         "path": "/api/route",
         "proxyUrl": "http://131.104.49.63/api/route/"
->>>>>>> 4faf888e53b46e873437d089a456e798f4f8dbdf
+
     }
   ]
 }
