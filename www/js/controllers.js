@@ -245,7 +245,7 @@ angular.module('starter.controllers', [])
   $scope.newMember = function() {
 
     for(var i = 0;i< $scope.number;i++) {
-      if($scope.teamAdd[i]['name'] != null && $scope.teamAdd[i]['email'] != null) {
+      if($scope.teamAdd[i]['name'] != null && $scope.teamAdd[i]['email'] != null && $scope.teamAdd[i]['email'].indexOf('@') > -1) {
         $scope.show = 1;
         return;
       }
