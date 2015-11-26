@@ -106,12 +106,6 @@ angular.module('starter.controllers', [])
 
 
 .controller('Routes', function ($scope, $stateParams, $http, $ionicLoading) {
-    /*$http.put("/api/route/1",
-    {
-  
-    "type" : 6
-  }).then(function () { console.log("test") });*/
-
     $http.get("/api/route").then(function (response) {
         $scope.response = response;
 
@@ -131,32 +125,24 @@ angular.module('starter.controllers', [])
 
         });
     });
+  $scope.shownRoute = null;
+  $scope.toggleAccordion = function (route) {
+    if ($scope.isAccordionOpen(route)) {
+      $scope.shownRoute = null;
+    } else {
+      $scope.shownRoute = route;
+      window.setTimeout(function(){
+        $scope.mapSetup(route);
+      }, 1000);
+    }
+  };
 
-
-
-    $scope.shownRoute = null;
-    $scope.toggleAccordion = function (route) {
-        if ($scope.isAccordionOpen(route)) {
-            $scope.shownRoute = null;
-        } else {
-            $scope.shownRoute = route;
-            window.setTimeout(function(){
-                $scope.mapSetup(route);
-            }, 1000);
-            // $scope.myLocation.setPosition(new google.maps.LatLng(route.startlat, route.startlong))
-            // $scope.map.setCenter(new google.maps.LatLng(route.startlat, route.startlong))
-        }
-        //Resize if an accordion is too big -- Might be needed
-        //$ionicScrollDelegate.resize();
-    };
-
-    $scope.isAccordionOpen = function(route) {
-        return $scope.shownRoute === route;
-    };
-
+  $scope.isAccordionOpen = function(route) {
+    return $scope.shownRoute === route;
+  };
 
     $scope.mapSetup = function (route) {
-      
+
 
         var myLatlng = new google.maps.LatLng(37.3000, -120.4833);
         var mapOptions = {
@@ -201,18 +187,7 @@ angular.module('starter.controllers', [])
          });
 
     };
-
 })
-
-// $scope.data = {
-//     clientSide: 'ng'
-// };
-//
-// $scope.onChange = function (item) {
-//     console.log("Route:", item.team);
-
-// };
-
 
 .controller('TeamList', function ($scope, $stateParams) {
   $scope.teams = [
@@ -391,6 +366,10 @@ $scope.isRouteAccordionOpen = function(info) {
   $scope.test = [
     {title: "Testing How This Works", id: 1},
   ];
+})
+
+.controller('busWaiver', function($scope, $stateParams) {
+ //put bus waiver hur
 })
 
 .controller('MyAccount', function($scope, $stateParams, $http, AuthService) {
