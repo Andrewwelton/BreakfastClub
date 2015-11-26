@@ -5,7 +5,7 @@
         <ion-list>
           <div ng-repeat="route in routes">
             <div class="item" ng-click="clicked(route)" ng-class="{ active: route.selected }">
-              <h3 class="spaceWrap"><b>{{route.route}}</b></h3>
+              <h3 class="spaceWrap"><b>{{route['data'][0]['name']}}</b></h3>
             </div>
           </div>
         </ion-list><br />

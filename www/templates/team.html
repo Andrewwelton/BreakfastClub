@@ -1,7 +1,7 @@
 <ion-view view-title="Team" cache-view="false">
   <ion-content style="padding:10px;">
     <ion-item class="item-stable" id="teaminfo" ng-click="toggleTeamAccordion(teaminfo)" ng-class="{active: isTeamAccordionOpen(teaminfo)}">
-        <i class="icon" ng-class="isTeamAccordionOpen(teaminfo) ? 'ion-minus' : 'ion-plus'"></i>
+      <i class="icon" ng-class="isTeamAccordionOpen(teaminfo) ? 'ion-minus' : 'ion-plus'"></i>
       &nbsp;
       Team Info
       <i ng-if="route.accessible" class="fa fa-wheelchair"></i>
@@ -13,10 +13,10 @@
 
         <table>
           <div ng-repeat="members in teamMembers">
-          <tr>
-            <td class="cell-pad"><b>(C)</b> {{teamMembers['data'][0]['name']}}</td>
-            <td class="cell-pad">{{teamMembers['data'][0]['email']}}</td>
-          </tr>
+            <tr>
+              <td class="cell-pad"><b>(C)</b> {{teamMembers['data'][0]['name']}}</td>
+              <td class="cell-pad">{{teamMembers['data'][0]['email']}}</td>
+            </tr>
           </div>
           <tr ng-repeat="i in getNumber(number) track by $index">
             <td class="cell-pad"><label class="item item-input">
@@ -27,12 +27,12 @@
             </label></td>
           </tr>
         </table>
-        <a class="button button-positive button-full" ng-if="role===2 || role===0" >Send Invite</a>
+        <a class="button button-positive button-full" ng-click="newMember()" >Send Invite</a>
       </p>
     </ion-item>
 
     <ion-item id="routeinfo" class="item-stable" ng-click="toggleRouteAccordion(routeinfo)" ng-class="{active: isRouteAccordionOpen(routeinfo)}">
-        <i class="icon" ng-class="isRouteAccordionOpen(routeinfo) ? 'ion-minus' : 'ion-plus'"></i>
+      <i class="icon" ng-class="isRouteAccordionOpen(routeinfo) ? 'ion-minus' : 'ion-plus'"></i>
       &nbsp;
       Route Info
       <i ng-if="route.accessible" class="fa fa-wheelchair"></i>
@@ -41,7 +41,7 @@
 
       <b>Route(s): </b> {{teamRoutes['data'][0]['name']}}<br/><br/>
 
-      <a class="button button-positive button-full" ng-if="role===0||role===2" href="#/app/addroute">Choose Route(s)</a><br/>
+      <a class="button button-positive button-full" href="#/app/addroute">Choose Route(s)</a><br/>
 
       <img id="img" src="img/map.gif" width="100%"> </img><br /><br />
 
