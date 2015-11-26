@@ -368,8 +368,18 @@ $scope.isRouteAccordionOpen = function(info) {
   ];
 })
 
-.controller('busWaiver', function($scope, $stateParams) {
- //put bus waiver hur
+.controller('busWaiver', function($scope, $stateParams, $http, AuthService, $state) {
+    var userID = parseInt(AuthService.id());
+    $scope.signBusWaiver = function(){
+        $http.put("/api/participants/" + userID, {"busStatus" : 1})
+        .success(function(response){
+            $state.go("app.myaccount");
+
+        })
+        .error(function(response){
+            alert("failure");
+        })
+    };
 })
 
 .controller('MyAccount', function($scope, $stateParams, $http, AuthService) {
