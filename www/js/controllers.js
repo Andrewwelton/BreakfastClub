@@ -143,11 +143,7 @@ angular.module('starter.controllers', [])
       window.setTimeout(function(){
         $scope.mapSetup(route);
       }, 1000);
-      // $scope.myLocation.setPosition(new google.maps.LatLng(route.startlat, route.startlong))
-      // $scope.map.setCenter(new google.maps.LatLng(route.startlat, route.startlong))
     }
-    //Resize if an accordion is too big -- Might be needed
-    //$ionicScrollDelegate.resize();
   };
 
   $scope.isAccordionOpen = function(route) {
@@ -171,15 +167,6 @@ angular.module('starter.controllers', [])
     //     });
     // });
   };
-
-  // $scope.data = {
-  //     clientSide: 'ng'
-  // };
-  //
-  // $scope.onChange = function (item) {
-  //     console.log("Route:", item.team);
-
-    // };
 })
 
 .controller('TeamList', function ($scope, $stateParams) {
