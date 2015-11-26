@@ -419,7 +419,8 @@ angular.module('starter.controllers', [])
 })
 
 .controller('MyAccount', function($scope, $stateParams, AuthService) {
-  $scope.role = AuthService.role();
+  $scope.role = parseInt(AuthService.role());
+  console.log($scope.role);
 })
 
 /*var selected = [];
