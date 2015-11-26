@@ -17,7 +17,7 @@
       <p>
         <table>
             <tr ng-repeat="members in teamMembers['data']">
-              <td class="cell-pad">{{members['name']}}</td>
+              <td class="cell-pad">{{members['name']}} <span ng-if="members['type'] === 1">(C)</span></td>
               <td class="cell-pad">{{members['email']}}</td>
             </tr>
           <tr ng-repeat="i in getNumber(number) track by $index">

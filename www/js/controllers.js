@@ -200,15 +200,13 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('Team', function ($scope, $stateParams, AuthService, $http) {
+.controller('Team', function ($scope, $stateParams, AuthService, $http, $state) {
     $scope.role = AuthService.role();
     $scope.shownTeam = null;
     $scope.shownRoute = null;
 
   var numMems = 0;
   var teamID;
-
-  console.log($stateParams);
 
   if($stateParams.teamId != null) {
     teamID = $stateParams.teamId;
@@ -235,10 +233,12 @@ angular.module('starter.controllers', [])
     });
 
     $http.get("/api/route/teamId/" + teamID).then(function(teamRoutes){
-        //console.log(teamRoutes);
         $scope.teamRoutes = teamRoutes;
-
     });
+
+    $scope.goToAddRoute = function(){
+      $state.go("app.addroute", {"teamId": teamID})
+    }
 
   $scope.teamAdd = {};
 
@@ -283,7 +283,7 @@ $scope.isRouteAccordionOpen = function(info) {
 };
 })
 
-.controller('addRoute', function ($scope, $stateParams, $http, AuthService) {
+.controller('addRoute', function ($scope, $stateParams, $http, AuthService, $state) {
 
   $http.get("/api/route").then(function(routes){
     console.log(routes);
@@ -291,7 +291,13 @@ $scope.isRouteAccordionOpen = function(info) {
   });
 
   var selected = [];
-  var teamID = parseInt(AuthService.teamID());
+  var teamID;
+
+  if($stateParams.teamId != null) {
+    teamID = $stateParams.teamId;
+  } else {
+    teamID = parseInt(AuthService.teamID());
+  }
 
   $scope.addR = function() {
     $scope.routes['data'].forEach(function(route) {
@@ -299,11 +305,13 @@ $scope.isRouteAccordionOpen = function(info) {
         $http.put("/api/route/" + route['id'], { 'teamId': teamID }).success(function(result) {
           console.log(result);
           $scope.resultPut = result;
+          $state.go("app.team", {"teamId": teamID})
         }).error(function() {
           console.log("error");
         });
       }
     });
+
   }
 
 
