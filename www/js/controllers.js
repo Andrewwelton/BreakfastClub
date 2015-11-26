@@ -347,14 +347,20 @@ $scope.isRouteAccordionOpen = function(info) {
 
   var selected = [];
 
-  $scope.addRoute = function() {
-    $http.put("/api/route/" + routeId, { 'teamId': 2 }).success(function(result) {
-      console.log(result);
-      $scope.resultPut = result;
-    }).error(function() {
-      console.log("error");
+  $scope.addR = function() {
+    $scope.routes['data'].forEach(function(route) {
+      if(route.selected) {
+        $http.put("/api/route/" + route['id'], { 'teamId': 2 }).success(function(result) {
+          console.log(result);
+          $scope.resultPut = result;
+        }).error(function() {
+          console.log("error");
+        });
+      }
     });
   }
+
+
 
   $scope.clicked = function (member) {
     var index = selected.indexOf(member);
