@@ -190,13 +190,13 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('TeamList', function ($scope, $stateParams, $http) {
+.controller('TeamList', function ($scope, $stateParams, $http, $state) {
   $http.get("/api/team/").then(function(response){
     $scope.teams = response.data;
     console.log($scope.teams);
   });
   $scope.goToTeam = function(team){
-    $state.go("app.team", {"teamID": team.id})
+    $state.go("app.team", {"teamId": team.id})
   }
 })
 
