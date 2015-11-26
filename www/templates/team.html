@@ -10,14 +10,11 @@
       <b>Team Name: </b> {{team['data'][0]['name']}}<br/><br/>
       <b>Team Members:</b><br/>
       <p>
-
         <table>
-          <div ng-repeat="members in teamMembers">
-            <tr>
-              <td class="cell-pad"><b>(C)</b> {{teamMembers['data'][0]['name']}}</td>
-              <td class="cell-pad">{{teamMembers['data'][0]['email']}}</td>
+            <tr ng-repeat="members in teamMembers['data']">
+              <td class="cell-pad">{{members['name']}}</td>
+              <td class="cell-pad">{{members['email']}}</td>
             </tr>
-          </div>
           <tr ng-repeat="i in getNumber(number) track by $index">
             <td class="cell-pad"><label class="item item-input">
               <input type="text" placeholder="Name">
@@ -39,7 +36,13 @@
     </ion-item>
     <ion-item class="item-accordion" ng-show="isRouteAccordionOpen(routeinfo)">
 
-      <b>Route(s): </b> {{teamRoutes['data'][0]['name']}}<br/><br/>
+      <b>Route(s): </b> <br/>
+
+      <table>
+          <tr ng-repeat="routes in teamRoutes['data']">
+            <td class="cell-pad">{{routes['name']}}</td>
+          </tr>
+      </table>
 
       <a class="button button-positive button-full" href="#/app/addroute">Choose Route(s)</a><br/>
 

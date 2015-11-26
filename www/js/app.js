@@ -61,7 +61,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngMessages'])
     views: {
       'menuContent': {
         templateUrl: 'templates/team.html',
-        controller: 'Teams'
+        controller: 'Team'
       }
     }
   })

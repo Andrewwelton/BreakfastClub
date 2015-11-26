@@ -2,103 +2,103 @@ angular.module('starter.controllers', [])
 //Main controller for the application
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $state, AuthService) {
 
-    // With the new view caching in Ionic, Controllers are only called
-    // when they are recreated or on app start, instead of every page change.
-    // To listen for when this page is active (for example, to refresh data),
-    // listen for the $ionicView.enter event:
-    //$scope.$on('$ionicView.enter', function(e) {
-    //});
+  // With the new view caching in Ionic, Controllers are only called
+  // when they are recreated or on app start, instead of every page change.
+  // To listen for when this page is active (for example, to refresh data),
+  // listen for the $ionicView.enter event:
+  //$scope.$on('$ionicView.enter', function(e) {
+  //});
 
-    // Form data for the login modal
-    $scope.loginData = {};
+  // Form data for the login modal
+  $scope.loginData = {};
 
-    // Create the login modal that we will use later
-    $ionicModal.fromTemplateUrl('templates/login.html', {
-        scope: $scope
-    }).then(function(modal) {
-        $scope.modal = modal;
-    });
+  // Create the login modal that we will use later
+  $ionicModal.fromTemplateUrl('templates/login.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
 
-    $ionicModal.fromTemplateUrl('templates/teamcaptain.html', {
-        scope: $scope
-    }).then(function(modal) {
-        $scope.teamCaptain = modal;
-    });
+  $ionicModal.fromTemplateUrl('templates/teamcaptain.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.teamCaptain = modal;
+  });
 
-    $scope.$watch(AuthService.isAuthenticated, function(newValue, oldValue){
-        if(typeof newValue !== "boolean") {
-            $scope.loggedIn = newValue === "true";
-            $scope.role = AuthService.role();
-        } else {
-            $scope.loggedIn = newValue;
-            $scope.role = AuthService.role();
-        }
-    });
-    $scope.role = AuthService.role();
-
-    // Triggered in the login modal to close it
-    $scope.closeLogin = function() {
-        $scope.modal.hide();
-    };
-
-    // Open the login modal
-    $scope.login = function() {
-        $scope.modal.show();
-    };
-
-    // Log out of the currently logged in account
-    $scope.logout = function() {
-        AuthService.logout();
-    };
-
-    $scope.teamCaptainPrompt = function() {
-        $scope.teamCaptain.show();
-    };
-
-    $scope.teamCaptainPromptClose = function() {
-        $scope.teamCaptain.hide();
+  $scope.$watch(AuthService.isAuthenticated, function(newValue, oldValue){
+    if(typeof newValue !== "boolean") {
+      $scope.loggedIn = newValue === "true";
+      $scope.role = AuthService.role();
+    } else {
+      $scope.loggedIn = newValue;
+      $scope.role = AuthService.role();
     }
+  });
+  $scope.role = AuthService.role();
 
-    $scope.teamCaptainContinue = function(event) {
-        $scope.teamCaptain.hide();
-        if(event.target.id == "no") {
-            $state.go("app.register",{"teamCaptain": false});
-        } else {
-            $state.go("app.register",{"teamCaptain": true});
-        }
-    }
+  // Triggered in the login modal to close it
+  $scope.closeLogin = function() {
+    $scope.modal.hide();
+  };
 
-    // Perform the login action when the user submits the login form
-    $scope.doLogin = function() {
-        AuthService.login($scope.loginData.username, $scope.loginData.password).then(function(success){
-            if(success) {
-                $scope.closeLogin();
-            } else {
-                $scope.loginError = true;
-            }
-        });
+  // Open the login modal
+  $scope.login = function() {
+    $scope.modal.show();
+  };
+
+  // Log out of the currently logged in account
+  $scope.logout = function() {
+    AuthService.logout();
+  };
+
+  $scope.teamCaptainPrompt = function() {
+    $scope.teamCaptain.show();
+  };
+
+  $scope.teamCaptainPromptClose = function() {
+    $scope.teamCaptain.hide();
+  }
+
+  $scope.teamCaptainContinue = function(event) {
+    $scope.teamCaptain.hide();
+    if(event.target.id == "no") {
+      $state.go("app.register",{"teamCaptain": false});
+    } else {
+      $state.go("app.register",{"teamCaptain": true});
     }
+  }
+
+  // Perform the login action when the user submits the login form
+  $scope.doLogin = function() {
+    AuthService.login($scope.loginData.username, $scope.loginData.password).then(function(success){
+      if(success) {
+        $scope.closeLogin();
+      } else {
+        $scope.loginError = true;
+      }
+    });
+  }
 })
 //TrickOrEat controller (AKA Home controller)
 //$scope are variables that can be used in the HTML
 //AuthService is needed to handle logins
 .controller('TrickOrEat', function($scope, $ionicHistory, $http, $ionicScrollDelegate, AuthService) {
-    //Watches the value of AuthService.isAuthenticated waiting for a change.
-    //The value is sometimes returned as a string, hence the conversion
-    $scope.$watch(AuthService.isAuthenticated, function(newValue, oldValue){
-        if(typeof newValue !== "boolean") {
-            $scope.loggedIn = newValue === "true";
-        } else {
-            $scope.loggedIn = newValue;
-        }
-    });
-    $http.get("/api/team/1").then(function(response){
-        console.log(response);
-        $scope.response = response;
-        $ionicScrollDelegate.resize();
-    });
-    // Example of a variable to iterate over
-    $scope.test = [{"label":"Hello World"}, {"label":"Hello World 2"}, {"label":"Hello World 3"}];
+  //Watches the value of AuthService.isAuthenticated waiting for a change.
+  //The value is sometimes returned as a string, hence the conversion
+  $scope.$watch(AuthService.isAuthenticated, function(newValue, oldValue){
+    if(typeof newValue !== "boolean") {
+      $scope.loggedIn = newValue === "true";
+    } else {
+      $scope.loggedIn = newValue;
+    }
+  });
+  $http.get("/api/team/1").then(function(response){
+    console.log(response);
+    $scope.response = response;
+    $ionicScrollDelegate.resize();
+  });
+  // Example of a variable to iterate over
+  $scope.test = [{"label":"Hello World"}, {"label":"Hello World 2"}, {"label":"Hello World 3"}];
 })
 
 
@@ -106,93 +106,93 @@ angular.module('starter.controllers', [])
 
 
 .controller('Routes', function ($scope, $stateParams, $http, $ionicLoading) {
-    /*$http.put("/api/route/1",
-    {
-  
-    "type" : 6
-  }).then(function () { console.log("test") });*/
+  /*$http.put("/api/route/1",
+  {
 
-    $http.get("/api/route").then(function (response) {
-        $scope.response = response;
+  "type" : 6
+}).then(function () { console.log("test") });*/
 
-        $scope.routes = angular.copy(response['data']);
+$http.get("/api/route").then(function (response) {
+  $scope.response = response;
 
-        angular.forEach($scope.routes, function (obj) {
-            $http.get("/api/team/"+obj.teamId).then(function (response) {
-                obj.team = response['data'][0]['name'];
+  $scope.routes = angular.copy(response['data']);
 
-            });
+  angular.forEach($scope.routes, function (obj) {
+    $http.get("/api/team/"+obj.teamId).then(function (response) {
+      obj.team = response['data'][0]['name'];
 
-
-            str = obj.type.toString(2);
-
-            obj.routeType = str.split('');
-
-
-        });
     });
 
 
+    str = obj.type.toString(2);
 
+    obj.routeType = str.split('');
+
+
+  });
+});
+
+
+
+$scope.shownRoute = null;
+$scope.toggleAccordion = function (route) {
+  if ($scope.isAccordionOpen(route)) {
     $scope.shownRoute = null;
-    $scope.toggleAccordion = function (route) {
-        if ($scope.isAccordionOpen(route)) {
-            $scope.shownRoute = null;
-        } else {
-            $scope.shownRoute = route;
-            window.setTimeout(function(){
-                $scope.mapSetup(route);
-            }, 1000);
-            // $scope.myLocation.setPosition(new google.maps.LatLng(route.startlat, route.startlong))
-            // $scope.map.setCenter(new google.maps.LatLng(route.startlat, route.startlong))
-        }
-        //Resize if an accordion is too big -- Might be needed
-        //$ionicScrollDelegate.resize();
-    };
+  } else {
+    $scope.shownRoute = route;
+    window.setTimeout(function(){
+      $scope.mapSetup(route);
+    }, 1000);
+    // $scope.myLocation.setPosition(new google.maps.LatLng(route.startlat, route.startlong))
+    // $scope.map.setCenter(new google.maps.LatLng(route.startlat, route.startlong))
+  }
+  //Resize if an accordion is too big -- Might be needed
+  //$ionicScrollDelegate.resize();
+};
 
-    $scope.isAccordionOpen = function(route) {
-        return $scope.shownRoute === route;
-    };
+$scope.isAccordionOpen = function(route) {
+  return $scope.shownRoute === route;
+};
 
 
-    $scope.mapSetup = function (route) {
-      
+$scope.mapSetup = function (route) {
 
-        var myLatlng = new google.maps.LatLng(37.3000, -120.4833);
-        var mapOptions = {
-            center: myLatlng,
-            zoom: 16,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.querySelector("#Route" + route.id + " #map"), mapOptions);
 
-        var coords = [
-            { lat: 43.530737, lng: -80.226274 },
-            { lat: 43.529803, lng: -80.224611 },
-            { lat: 43.529453, lng: -80.224128 },
-            { lat: 43.527594, lng: -80.226746 }
+  var myLatlng = new google.maps.LatLng(37.3000, -120.4833);
+  var mapOptions = {
+    center: myLatlng,
+    zoom: 16,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  var map = new google.maps.Map(document.querySelector("#Route" + route.id + " #map"), mapOptions);
 
-        ];
+  var coords = [
+    { lat: 43.530737, lng: -80.226274 },
+    { lat: 43.529803, lng: -80.224611 },
+    { lat: 43.529453, lng: -80.224128 },
+    { lat: 43.527594, lng: -80.226746 }
 
-        var path = new google.maps.Polyline({
-            path: coords,
-            geodesic: true,
-            strokeColor: "#FFAA00",
-            strokeOpacity: 1.0,
-            strokeWeight: 2
-        });
-        map.setCenter(new google.maps.LatLng(43.530737, -80.226274));
+  ];
 
-        path.setMap(map);
-        // navigator.geolocation.getCurrentPosition(function (pos) {
-        //     $scope.myLocation = new google.maps.Marker({
-        //         position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
-        //         map: map,
-        //         title: "My Location"
-        //     });
-        // });
+  var path = new google.maps.Polyline({
+    path: coords,
+    geodesic: true,
+    strokeColor: "#FFAA00",
+    strokeOpacity: 1.0,
+    strokeWeight: 2
+  });
+  map.setCenter(new google.maps.LatLng(43.530737, -80.226274));
 
-    };
+  path.setMap(map);
+  // navigator.geolocation.getCurrentPosition(function (pos) {
+  //     $scope.myLocation = new google.maps.Marker({
+  //         position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
+  //         map: map,
+  //         title: "My Location"
+  //     });
+  // });
+
+};
 
 })
 
@@ -247,7 +247,7 @@ angular.module('starter.controllers', [])
   ];
 })
 
-.controller('Teams', function ($scope, $stateParams, AuthService, $http) {
+.controller('Team', function ($scope, $stateParams, AuthService, $http) {
   $scope.role = AuthService.role();
   $scope.shownTeam = null;
   $scope.shownRoute = null;
@@ -256,19 +256,25 @@ angular.module('starter.controllers', [])
   var teamID = parseInt(AuthService.teamID());
 
   $http.get("/api/team/" + teamID).then(function(team){
-    //console.log(team);
     $scope.team = team;
   });
 
-  $http.get("/api/participants/teamId/" + teamID).then(function(teamMembers){
-    numMems = teamMembers['headers']['length'];
-    $scope.number = 5 - numMems;
-    $scope.teamMembers = teamMembers;
+  $http.get("/api/route").then(function(routes){
+    console.log(routes);
+    $scope.routes = routes;
+  });
 
+  $http.get("/api/participants/teamId/" + teamID).then(function(teamMembers){
+
+    numMems = teamMembers['data']['length'];
+    $scope.number = 5 - numMems;
+
+    $scope.teamMembers = teamMembers;
+    console.log(teamMembers);
   });
 
   $http.get("/api/route/teamId/" + teamID).then(function(teamRoutes){
-    console.log(teamRoutes);
+    //console.log(teamRoutes);
     $scope.teamRoutes = teamRoutes;
 
   });
@@ -343,11 +349,21 @@ $scope.isRouteAccordionOpen = function(info) {
 
 .controller('addRoute', function ($scope, $stateParams, $http) {
 
-  $http.get("/api/team").then(function(routes){
+  $http.get("/api/route").then(function(routes){
+    console.log(routes);
     $scope.routes = routes;
   });
 
   var selected = [];
+
+  $scope.addRoute = function() {
+    $http.put("/api/route/" + routeId, { 'teamId': 2 }).success(function(result) {
+      console.log(result);
+      $scope.resultPut = result;
+    }).error(function() {
+      console.log("error");
+    });
+  }
 
   $scope.clicked = function (member) {
     var index = selected.indexOf(member);
