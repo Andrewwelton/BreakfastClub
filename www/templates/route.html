@@ -2,7 +2,7 @@
     <ion-content ng-init="init()">
         <h1>Routes</h1>
           <ion-list>
-            <div id="{{route.routeID}}" ng-repeat="route in routes">
+            <div id="Route{{route.id}}" ng-repeat="route in routes">
               <ion-item class="item-stable" ng-click="toggleAccordion(route)" ng-class="{active: isAccordionOpen(route)}">
                 <i class="icon" ng-class="isAccordionOpen(route) ? 'ion-minus' : 'ion-plus'"></i>
                 &nbsp;
