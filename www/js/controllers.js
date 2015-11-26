@@ -244,7 +244,15 @@ $scope.mapSetup = function (route) {
   $scope.shownRoute = null;
 
   var numMems = 0;
-  var teamID = parseInt(AuthService.teamID());
+  var teamID;
+
+  console.log($stateParams);
+
+  if($stateParams.teamId != null) {
+    teamID = $stateParams.teamId;
+  } else {
+    teamID = parseInt(AuthService.teamID());
+  }
 
   $http.get("/api/team/" + teamID).then(function(team){
     $scope.team = team;
@@ -270,38 +278,21 @@ $scope.mapSetup = function (route) {
 
   });
 
+  $scope.teamAdd = {};
+
+  $scope.newMember = function() {
+
+    for(var i = 0;i< $scope.number;i++) {
+      if($scope.teamAdd[i]['name'] != null && $scope.teamAdd[i]['email'] != null) {
+        $scope.show = 1;
+        return;
+      }
+    }
+  };
+
   $scope.getNumber = function(num) {
     return new Array(num);
   }
-
-  /*$http.put("/api/participants/" + AuthService.id(), { 'teamId': 2 }).success(function(result) {
-  console.log(result);
-  $scope.resultPut = result;
-}).error(function() {
-console.log("error");
-});*/
-
-
-$scope.newMember = function() {
-  $http.post("/api/participants/",
-  {
-    "name": "Butts McGee",
-    "type": 1,
-    "email": "drew@drewmail.com",
-    "username": "drew",
-    "password": "a",
-    "teamId": 2,
-    "accessibleStatus": 0,
-    "studentStatus": 0,
-    "busStatus": 0,
-    "participantStatus": 1
-  }
-
-).then(function(response){
-  console.log(response);
-});
-
-}
 
 $scope.toggleTeamAccordion = function(info) {
   if ($scope.isTeamAccordionOpen(info)) {
@@ -328,17 +319,9 @@ $scope.toggleRouteAccordion = function(info) {
 $scope.isRouteAccordionOpen = function(info) {
   return $scope.shownRoute === info;
 };
-
-// $scope.data = {
-//     clientSide: 'ng'
-// };
-//
-// $scope.onChange = function (item) {
-//     console.log("Route:", item.team);
-// };
 })
 
-.controller('addRoute', function ($scope, $stateParams, $http) {
+.controller('addRoute', function ($scope, $stateParams, $http, AuthService) {
 
   $http.get("/api/route").then(function(routes){
     console.log(routes);
@@ -346,11 +329,12 @@ $scope.isRouteAccordionOpen = function(info) {
   });
 
   var selected = [];
+  var teamID = parseInt(AuthService.teamID());
 
   $scope.addR = function() {
     $scope.routes['data'].forEach(function(route) {
       if(route.selected) {
-        $http.put("/api/route/" + route['id'], { 'teamId': 2 }).success(function(result) {
+        $http.put("/api/route/" + route['id'], { 'teamId': teamID }).success(function(result) {
           console.log(result);
           $scope.resultPut = result;
         }).error(function() {
@@ -359,8 +343,6 @@ $scope.isRouteAccordionOpen = function(info) {
       }
     });
   }
-
-
 
   $scope.clicked = function (member) {
     var index = selected.indexOf(member);
