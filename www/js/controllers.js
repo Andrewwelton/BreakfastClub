@@ -103,6 +103,7 @@ angular.module('starter.controllers', [])
 
 
 
+<<<<<<< HEAD
 .controller('Routes', function ($scope, $stateParams, $ionicLoading) {
     $scope.routes = [
         {
@@ -243,6 +244,81 @@ angular.module('starter.controllers', [])
     //
     // $scope.onChange = function (item) {
     //     console.log("Route:", item.team);
+=======
+.controller('Routes', function ($scope, $stateParams, $http, $ionicLoading) {
+    /*$http.put("/api/route/1",
+        {
+           
+            "type" : 6
+        }).then(function () { console.log("test") });*/
+
+    $http.get("/api/route").then(function (response) {
+        $scope.response = response;
+
+        $scope.routes = angular.copy(response['data']);
+
+        angular.forEach($scope.routes, function (obj) {
+            $http.get("/api/team/"+obj.teamId).then(function (response) {
+                obj.team = response['data'][0]['name'];
+                 
+            });
+
+
+            str = obj.type.toString(2);
+
+            obj.routeType = str.split('');
+
+            
+        });
+    });
+
+  
+  
+  $scope.shownRoute = null;
+  $scope.toggleAccordion = function (route) {
+    if ($scope.isAccordionOpen(route)) {
+      $scope.shownRoute = null;
+    } else {
+      $scope.shownRoute = route;
+      window.setTimeout(function(){
+        $scope.mapSetup(route);
+      }, 1000);
+      // $scope.myLocation.setPosition(new google.maps.LatLng(route.startlat, route.startlong))
+      // $scope.map.setCenter(new google.maps.LatLng(route.startlat, route.startlong))
+    }
+    //Resize if an accordion is too big -- Might be needed
+    //$ionicScrollDelegate.resize();
+  };
+
+  $scope.isAccordionOpen = function(route) {
+    return $scope.shownRoute === route;
+  };
+
+  $scope.mapSetup = function(route) {
+    var myLatlng = new google.maps.LatLng(37.3000, -120.4833);
+    var mapOptions = {
+        center: myLatlng,
+        zoom: 16,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.querySelector("#" +route.routeID+ " #map"), mapOptions);
+    map.setCenter(new google.maps.LatLng(43.530737, -80.226274));
+    // navigator.geolocation.getCurrentPosition(function (pos) {
+    //     $scope.myLocation = new google.maps.Marker({
+    //         position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
+    //         map: map,
+    //         title: "My Location"
+    //     });
+    // });
+  };
+
+  // $scope.data = {
+  //     clientSide: 'ng'
+  // };
+  //
+  // $scope.onChange = function (item) {
+  //     console.log("Route:", item.team);
+>>>>>>> routes
     // };
 })
 
