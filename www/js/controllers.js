@@ -103,115 +103,99 @@ angular.module('starter.controllers', [])
 
 
 .controller('Routes', function ($scope, $stateParams, $http, $ionicLoading) {
-    $http.get("/api/route/", { "id": 32 }).then(function (response) {
+    $http.post("/api/route",
+        {
+            "name": "Route 1",
+            "type": 0,
+            "accessibility": 1,
+            "maxParticipants": 5,
+            "waypoints": "Loren Ipsum",
+        }).then(function () { console.log("test") });
+
+
+    $http.get("/api/route").then(function (response) {
         console.log(response);
         $scope.response = response;
+
+        $scope.routes = [
+      {
+          "name": "Route 1",
+          "id": 1,
+          "TeamId": 1,
+          "accessibility": 1,
+          "type": 0,
+          "maxParticipants": 5,
+          "waypoints": "50 Stone Rd",
+
+      },
+      {
+          "name": "Route 2",
+          "id": 2,
+          "TeamId": 12,
+          "waypoints": "50 Stone Rd",
+          "accessibility": 1,
+          "maxParticipants": 5,
+          "type": 1,
+      },
+      {
+          "name": "Route 3",
+          "id": 3,
+          "TeamId": 8,
+          "waypoints": "50 Stone Rd",
+          "accessibility": 1,
+          "maxParticipants": 4,
+          "type": 0,
+      },
+      {
+          "name": "Route 4",
+          "id": 4,
+          "TeamId": 11,
+          "waypoints": "50 Stone Rd",
+          "accessibility": 1,
+          "maxParticipants": 5,
+          "type": 1,
+      },
+      {
+          "name": "Route 5",
+          "id": 5,
+          "TeamId": 5,
+          "waypoints": "50 Stone Rd",
+          "accessibility": 0,
+          "maxParticipants": 4,
+          "type": 0,
+      },
+      {
+          "name": "Route 6",
+          "id": 6,
+          "TeamId": 7,
+          "waypoints": "50 Stone Rd",
+          "accessibility": 1,
+          "maxParticipants": 5,
+          "type": 0,
+      },
+      {
+          "name": "Route 7",
+          "id": 7,
+          "TeamId": 6,
+          "waypoints": "50 Stone Rd",
+          "accessibility": 0,
+          "maxParticipants": 5,
+          "type": 1,
+      }
+        ];
     });
 
-  $scope.routes = [
-      {
-        "route": "Route 1",
-        "routeID": "route1",
-        "accessible": true,
-        "bus": true,
-        "busname":"2A",
-        "start": "50 Stone Rd",
-        "startlat": 43.530799,
-        "startlong":-80.226220,
-        "team": [{
-            "id": "1",
-            "name": "Fried Chicken"
-        }]
-      },
-      {
-        "route": "Route 2",
-        "routeID": "route2",
-        "start": "50 Stone Rd",
-        "busname": "None",
-        "startlat": 43.530799,
-        "startlong": -80.226220,
-        "accessible": true,
-        "bus": false,
-        "team": [{}]
-      },
-      {
-        "route": "Route 3",
-        "routeID": "route3",
-        "start": "50 Stone Rd",
-        "startlat": 43.530799,
-        "startlong": -80.226220,
-        "img": "test.png" ,
-        "accessible": true,
-        "bus": true,
-         "busname":"2B",
-        "team": [{}]
-      },
-      {
-        "route": "Route 4",
-        "routeID": "route4",
-        "start": "50 Stone Rd",
-        "startlat": 43.530799,
-        "startlong": -80.226220,
-        "accessible": true,
-        "busname":"None",
-        "bus": false,
-        "team": [
-          {
-            "id": "1",
-            "name": "Cheese Omelet"
-          },
-          {
-            "id": "2",
-            "name": "Bacon and Eggs"
-          }
-        ]
-      },
-      {
-        "route": "Route 5",
-        "routeID": "route5",
-        "start": "50 Stone Rd",
-        "startlat": 43.530799,
-        "startlong": -80.226220,
-        "accessible": false,
-        "busname":"3B",
-        "bus": true,
-        "team": [{}]
-      },
-      {
-        "route": "Route 6",
-        "routeID": "route6",
-        "start": "50 Stone Rd",
-        "startlat": 43.530799,
-        "startlong": -80.226220,
-        "accessible": true,
-        "bus": true,
-        "busname":"50",
-        "team": [{}]
-      },
-      {
-        "route": "Route 7",
-        "routeID": "route7",
-        "start": "50 Stone Rd",
-        "startlat": 43.530799,
-        "startlong": -80.226220,
-        "accessible": false,
-        "busname":"None",
-        "bus": false,
-        team: [{
-            "id": "1",
-            "name": "Rice Crackers",
-        }]
-      }
-  ];
+  
+  
   $scope.shownRoute = null;
   $scope.toggleAccordion = function (route) {
     if ($scope.isAccordionOpen(route)) {
       $scope.shownRoute = null;
     } else {
       $scope.shownRoute = route;
-      window.setTimeout(function(){
+      /*window.setTimeout(function(){
         $scope.mapSetup(route);
-      }, 1000);
+      }, 1000);*/
       // $scope.myLocation.setPosition(new google.maps.LatLng(route.startlat, route.startlong))
       // $scope.map.setCenter(new google.maps.LatLng(route.startlat, route.startlong))
     }
@@ -223,7 +207,7 @@ angular.module('starter.controllers', [])
     return $scope.shownRoute === route;
   };
 
-  $scope.mapSetup = function(route) {
+  /*$scope.mapSetup = function(route) {
     var myLatlng = new google.maps.LatLng(37.3000, -120.4833);
     var mapOptions = {
         center: myLatlng,
@@ -239,7 +223,7 @@ angular.module('starter.controllers', [])
     //         title: "My Location"
     //     });
     // });
-  };
+  };*/
 
   // $scope.data = {
   //     clientSide: 'ng'
