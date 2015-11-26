@@ -1,5 +1,6 @@
 angular.module("starter")
 .service("AuthService", function($http){
+  var id = null;
   var username = "";
   var password = "";
   var isAuthenticated = false;
@@ -20,6 +21,7 @@ angular.module("starter")
         //login the user
         if(user.username == name && user.password == pw){
           console.log(user);
+          id = user.id;
           isAuthenticated = true;
           username = user.username;
           password = user.password;
@@ -32,6 +34,7 @@ angular.module("starter")
           busStatus = user.busStatus;
           participantStatus = user.participantStatus;
           window.localStorage.setItem("loggedIn", true);
+          window.localStorage.setItem("id", id);
           window.localStorage.setItem("username", username);
           window.localStorage.setItem("password", password);
           window.localStorage.setItem("role", role);
@@ -62,6 +65,7 @@ angular.module("starter")
     busStatus = null;
     participantStatus = null;
     window.localStorage.setItem("loggedIn", false);
+    window.localStorage.setItem("id", null);
     window.localStorage.setItem("username", "");
     window.localStorage.setItem("password", "");
     window.localStorage.setItem("role", -1);
@@ -76,6 +80,12 @@ angular.module("starter")
   return {
     login: login,
     logout: logout,
+    id: function(){
+      if(id == null) {
+        id = window.localStorage.getItem("id");
+      }
+      return id;
+    },
     username: function() {
       if(username.length == 0) {
         username = window.localStorage.getItem("username");
