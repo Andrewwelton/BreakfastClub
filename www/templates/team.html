@@ -41,15 +41,21 @@
     </ion-item>
     <ion-item class="item-accordion" ng-show="isRouteAccordionOpen(routeinfo)">
 
-      <b>Route(s): </b> <br/>
+      <b>Route:</b> <br/>
 
       <table>
+          <tr ng-if="teamRoutes['data'].length==0">
+            <td class="cell-pad">No route selected. </td>
+          </tr>
+          <tr ng-if="teamRoutes['data'].length==0 && role===1">
+            <td class="cell-pad">Ask your Team Captain to pick one!</td>
+          </tr>
           <tr ng-repeat="routes in teamRoutes['data']">
             <td class="cell-pad">{{routes['name']}}</td>
           </tr>
       </table>
 
-      <a class="button trick-button button-full" href="#/app/addroute">Choose Route(s)</a><br/>
+      <a class="button trick-button button-full" href="#/app/addroute">Choose Route</a><br/>
 
       <img id="img" src="img/map.gif" width="100%"> </img><br /><br />
 
