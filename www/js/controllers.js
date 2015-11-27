@@ -232,8 +232,17 @@ angular.module('starter.controllers', [])
         console.log(teamMembers);
     });
 
-    $http.get("/api/route/teamId/" + teamID).then(function(teamRoutes){
-        $scope.teamRoutes = teamRoutes;
+    $http.get("/api/route").then(function (response) {
+        $scope.response = response;
+
+        $scope.routes = angular.copy(response['data']);
+
+        angular.forEach($scope.routes, function (obj) {
+
+            str = obj.type.toString(2);
+
+            obj.routeType = str.split('');
+        });
     });
 
     $scope.goToAddRoute = function(){
@@ -245,15 +254,27 @@ angular.module('starter.controllers', [])
   $scope.newMember = function() {
 
     for(var i = 0;i< $scope.number;i++) {
-      if($scope.teamAdd[i]['name'] != null && $scope.teamAdd[i]['email'] != null && $scope.teamAdd[i]['email'].indexOf('@') > -1) {
+      if(!$scope.teamAdd[i]['name'] && !$scope.teamAdd[i]['email'] && $scope.teamAdd[i]['email'].indexOf('@') > -1) {
         $scope.show = 1;
         return;
+      } else {
+
       }
     }
   };
 
   $scope.getNumber = function(num) {
     return new Array(num);
+  }
+
+  $scope.Access = function(num) {
+    if(num == 0) return 'No';
+    else if (num == 1) return 'Yes';
+  }
+
+  $scope.Type = function(num) {
+    if(num == 0) return 'No';
+    else if (num == 1) return 'Yes';
   }
 
 $scope.toggleTeamAccordion = function(info) {

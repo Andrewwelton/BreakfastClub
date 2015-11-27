@@ -7,11 +7,19 @@
       <i ng-if="route.accessible" class="fa fa-wheelchair"></i>
     </ion-item>
     <ion-item class="item-accordion" ng-show="isTeamAccordionOpen(teaminfo)">
+
       <div ng-if="show === 1">
         <div style="border:1px solid grey;background:limegreen;padding:10px;">
           <h2>Invite Sent!</h2>
         </div><br/>
       </div>
+
+      <div ng-if="show === 1">
+        <div style="border:1px solid grey;background:red;padding:10px;">
+          <h2>Please Fill All Fields!</h2>
+        </div><br/>
+      </div>
+
       <b>Team Name: </b> {{team['data'][0]['name']}}<br/><br/>
       <b>Team Members:</b><br/>
       <p>
@@ -41,17 +49,23 @@
     </ion-item>
     <ion-item class="item-accordion" ng-show="isRouteAccordionOpen(routeinfo)">
 
-      <b>Route:</b> <br/>
+      <b>Route(s):</b> <br/>
 
       <table>
-          <tr ng-if="teamRoutes['data'].length==0">
+          <tr ng-if="routes.length==0">
             <td class="cell-pad">No route selected. </td>
           </tr>
-          <tr ng-if="teamRoutes['data'].length==0 && role===1">
+          <tr ng-if="routes.length==0 && role===1">
             <td class="cell-pad">Ask your Team Captain to pick one!</td>
           </tr>
-          <tr ng-repeat="routes in teamRoutes['data']">
-            <td class="cell-pad">{{routes['name']}}</td>
+          <tr ng-repeat="route in routes">
+            <td class="cell-pad">{{route['name']}}</td>
+            <td class="cell-pad">
+              <i ng-if="route.routeType[0] == 1 && route.routeType.length == 3" class="fa fa-car"></i>
+              <i ng-if="(route.routeType[1] == 1 && route.routeType.length == 3) || (route.routeType[0] == 1 && route.routeType.length == 2)" class="fa fa-male"></i>
+              <i ng-if="(route.routeType[2] == 1 && route.routeType.length == 3) || (route.routeType[1] == 1 && route.routeType.length == 2) || (route.routeType[0] == 1 && route.routeType.length == 1)" class="fa fa-bus"></i>
+              <i ng-if="route.accessibility == 1" class="fa fa-wheelchair"></i>
+            </td>
           </tr>
       </table>
 
@@ -61,7 +75,6 @@
 
       <b>Bus: </b> 1A<br/><br/>
 
-      <b>Accessible: </b> Yes<br/><br/>
     </ion-item>
   </ion-content>
 </ion-view>
