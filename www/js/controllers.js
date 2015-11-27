@@ -232,7 +232,6 @@ angular.module('starter.controllers', [])
         console.log(teamMembers);
     });
 
-<<<<<<< HEAD
     $http.get("/api/route").then(function (response) {
         $scope.response = response;
 
@@ -244,26 +243,6 @@ angular.module('starter.controllers', [])
 
             obj.routeType = str.split('');
         });
-=======
-    $http.get("/api/route/teamId/" + teamID).then(function(teamRoutes){
-        $scope.teamRoutes = teamRoutes;
-        if($scope.teamRoutes['data'].length > 0) {
-          var temp = $scope.teamRoutes['data'][0];
-          var type = temp.type;
-          type = type.toString(2).split("");
-          if(type.length != 3) {
-            type[2] = "0";
-          }
-          if(type[2] === "1") {
-            $scope.busRoute = true;
-          } else {
-            $scope.busRoute = false;
-          }
-          $scope.accessibleRoute = temp.accessibility == 1 ? true : false;
-          $scope.routeBitmap = type;
-          console.log($scope.routeBitmap);
-        }
->>>>>>> origin/master
     });
 
     $scope.goToAddRoute = function(){
