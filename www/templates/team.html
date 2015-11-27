@@ -71,10 +71,28 @@
 
       <a class="button trick-button button-full" ng-click="goToAddRoute()">Choose Route</a><br/>
 
-      <img id="img" src="img/map.gif" width="100%"> </img><br /><br />
+      <div id="map" data-tap-disabled="true" ng-if="teamRoutes['data'].length > 0"></div><br /><br />
 
+<<<<<<< HEAD
       <b>Bus: </b> 1A<br/><br/>
 
+=======
+      <div ng-if="busRoute">
+        <b><i class="fa fa-bus"></i>&nbsp;Bus: </b> 1A<br/><br/>
+      </div>
+      <div ng-if="accessibleRoute">
+        <b><i class="fa fa-wheelchair"></i>&nbsp;Accessible: </b> Yes<br/><br/>
+      </div>
+      <div ng-if="!accessibleRoute">
+        <b><i class="fa fa-wheelchair"></i>&nbsp;Accessible: </b> Yes<br/><br/>
+      </div>
+      <div ng-if="teamRoutes['data'].length > 0">
+        <b>Route Type: </b>
+        <i ng-if="routeBitmap[0] == '1'" class="fa fa-car"></i>
+        <i ng-if="routeBitmap[1] == '1'" class="fa fa-male"></i>
+        <i ng-if="routeBitmap[2] == '1'" class="fa fa-bus"></i>
+      </div>
+>>>>>>> origin/master
     </ion-item>
   </ion-content>
 </ion-view>

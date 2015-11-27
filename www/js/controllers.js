@@ -232,6 +232,7 @@ angular.module('starter.controllers', [])
         console.log(teamMembers);
     });
 
+<<<<<<< HEAD
     $http.get("/api/route").then(function (response) {
         $scope.response = response;
 
@@ -243,6 +244,26 @@ angular.module('starter.controllers', [])
 
             obj.routeType = str.split('');
         });
+=======
+    $http.get("/api/route/teamId/" + teamID).then(function(teamRoutes){
+        $scope.teamRoutes = teamRoutes;
+        if($scope.teamRoutes['data'].length > 0) {
+          var temp = $scope.teamRoutes['data'][0];
+          var type = temp.type;
+          type = type.toString(2).split("");
+          if(type.length != 3) {
+            type[2] = "0";
+          }
+          if(type[2] === "1") {
+            $scope.busRoute = true;
+          } else {
+            $scope.busRoute = false;
+          }
+          $scope.accessibleRoute = temp.accessibility == 1 ? true : false;
+          $scope.routeBitmap = type;
+          console.log($scope.routeBitmap);
+        }
+>>>>>>> origin/master
     });
 
     $scope.goToAddRoute = function(){
@@ -295,12 +316,57 @@ $scope.toggleRouteAccordion = function(info) {
         $scope.shownRoute = null;
     } else {
         $scope.shownRoute = info;
+        $scope.mapSetup();
     }
     //Resize if an accordion is too big -- Might be needed
     //$ionicScrollDelegate.resize();
 };
 $scope.isRouteAccordionOpen = function(info) {
     return $scope.shownRoute === info;
+};
+$scope.mapSetup = function (route) {
+    var myLatlng = new google.maps.LatLng(37.3000, -120.4833);
+    var mapOptions = {
+        center: myLatlng,
+        zoom: 16,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.querySelector("#map"), mapOptions);
+
+    var coords = [
+        { lat: 43.530737, lng: -80.226274 },
+        { lat: 43.529803, lng: -80.224611 },
+        { lat: 43.529453, lng: -80.224128 },
+        { lat: 43.527594, lng: -80.226746 }
+
+    ];
+
+    var path = new google.maps.Polyline({
+        path: coords,
+        geodesic: true,
+        strokeColor: "#FFAA00",
+        strokeOpacity: 1.0,
+        strokeWeight: 5
+    });
+    map.setCenter(new google.maps.LatLng(43.530737, -80.226274));
+
+    path.setMap(map);
+    navigator.geolocation.getCurrentPosition(function (pos) {
+        $scope.myLocation = new google.maps.Marker({
+            position: new google.maps.LatLng(43.530737, -80.226274),
+            map: map,
+            title: "Start"
+        });
+    });
+
+    navigator.geolocation.getCurrentPosition(function (pos) {
+        $scope.myLocation = new google.maps.Marker({
+            position: new google.maps.LatLng(43.527594, -80.226746),
+            map: map,
+            title: "End"
+        });
+    });
+
 };
 })
 
@@ -319,6 +385,51 @@ $scope.isRouteAccordionOpen = function(info) {
   } else {
     teamID = parseInt(AuthService.teamID());
   }
+
+  $scope.mapSetup = function (route) {
+      var myLatlng = new google.maps.LatLng(37.3000, -120.4833);
+      var mapOptions = {
+          center: myLatlng,
+          zoom: 16,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      var map = new google.maps.Map(document.querySelector("#map"), mapOptions);
+
+      var coords = [
+          { lat: 43.530737, lng: -80.226274 },
+          { lat: 43.529803, lng: -80.224611 },
+          { lat: 43.529453, lng: -80.224128 },
+          { lat: 43.527594, lng: -80.226746 }
+
+      ];
+
+      var path = new google.maps.Polyline({
+          path: coords,
+          geodesic: true,
+          strokeColor: "#FFAA00",
+          strokeOpacity: 1.0,
+          strokeWeight: 5
+      });
+      map.setCenter(new google.maps.LatLng(43.530737, -80.226274));
+
+      path.setMap(map);
+      navigator.geolocation.getCurrentPosition(function (pos) {
+          $scope.myLocation = new google.maps.Marker({
+              position: new google.maps.LatLng(43.530737, -80.226274),
+              map: map,
+              title: "Start"
+          });
+      });
+
+      navigator.geolocation.getCurrentPosition(function (pos) {
+          $scope.myLocation = new google.maps.Marker({
+              position: new google.maps.LatLng(43.527594, -80.226746),
+              map: map,
+              title: "End"
+          });
+      });
+
+  };
 
   $scope.addR = function() {
     $scope.routes['data'].forEach(function(route) {
@@ -342,8 +453,18 @@ $scope.isRouteAccordionOpen = function(info) {
       selected.splice(index, 1);
       member.selected = false;
     } else {
+      for(var i = 0; i < selected.length; i++) {
+        selected[i].selected = false;
+      }
+      selected.length = 0;
       selected.push(member);
       member.selected = true;
+      $scope.mapSetup();
+      var type = member.type.toString(2).split("");
+      if(type.length != 3) {
+        type[2] = "0";
+      }
+      $scope.routeBitmap = type;
     }
   }
 })

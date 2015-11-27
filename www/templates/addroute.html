@@ -1,17 +1,23 @@
 <ion-view view-title="Routes">
     <ion-content style="padding:10px;">
-        <h1>Choose Route(s)</h1>
+        <h1>Choose Route</h1>
 
         <ion-list>
           <div ng-repeat="route in routes['data']">
             <div class="item" ng-click="clicked(route)" ng-class="{ active: route.selected }">
-              <h3 class="spaceWrap"><b>{{route['name']}}</b></h3>
+              <h3 class="spaceWrap"><i ng-if="route.accessibility===1" class="fa fa-wheelchair"></i>&nbsp;<b>{{route['name']}}</b></h3>
             </div>
           </div>
         </ion-list><br />
+        <div>
+          <b>Route Type: </b>
+          <i ng-if="routeBitmap[0] == '1'" class="fa fa-car"></i>
+          <i ng-if="routeBitmap[1] == '1'" class="fa fa-male"></i>
+          <i ng-if="routeBitmap[2] == '1'" class="fa fa-bus"></i>
+        </div>
+        <br/>
+        <div id="map" data-tap-disabled="true"></div><br /><br />
 
-        <img id="img" src="img/map.gif" width="100%"> </img>
-
-        <br/><br/><a class="button button-positive button-full" ng-click="addR()">Submit</a>
+        <br/><br/><a class="button trick-button button-full" ng-click="addR()">Submit</a>
     </ion-content>
 </ion-view>
